@@ -1,0 +1,1 @@
+如果需要运行，请在以下目录下创建assets目录 backend/web frontend/web
