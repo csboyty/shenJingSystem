@@ -52,9 +52,11 @@ class ReturnInfoController extends Controller
             'returnInfo' => $returnInfo
         ]);
     }
-    public function actionRecord($patientId,$date)
+    public function actionRecord($patientId)
     {
         $patient = $this->findPatientModel($patientId);
+
+        $date=isset($_GET["date"])?$_GET["date"]:null;
 
         if(isset($date)){
             $returnInfo = $this->findModel($patientId);

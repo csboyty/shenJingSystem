@@ -4,7 +4,7 @@ $this->title = '病患管理';
 ?>
 
 
-<a class="btn btn-success" href="patient/create">
+<a class="btn btn-primary" href="patient/create">
     <span class="glyphicon glyphicon-plus"></span> 新建
 </a>
 <div class="input-group tableSearchContainer col-md-6">

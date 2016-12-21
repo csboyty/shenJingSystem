@@ -371,7 +371,7 @@ $other=isset($record->other)?$record->other:null;
     </div>
 
     <br>
-    <button class="btn btn-success col-md-offset-5 col-md-2" id="saveInfo">保存</button>
+    <button class="btn btn-primary col-md-offset-5 col-md-2" id="saveInfo">保存</button>
 </div>
 
 <?php

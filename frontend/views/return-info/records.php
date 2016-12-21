@@ -4,7 +4,7 @@ $check_result=isset($returnInfo->check_result)?json_decode($returnInfo->check_re
 
 ?>
 
-<a class="btn btn-success" href="return-info/record?patientId=<?= $patient->id;  ?>">
+<a class="btn btn-primary" href="return-info/record?patientId=<?= $patient->id;  ?>">
     <span class="glyphicon glyphicon-plus"></span> 新建
 </a>
 <table class="dataTable">

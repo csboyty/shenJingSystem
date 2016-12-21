@@ -512,7 +512,7 @@ $profession=$examine_info&&isset($examine_info->profession)?json_decode($examine
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveNormal" class="btn btn-success form-control">保存</button>
+                            <button type="submit" id="saveNormal" class="btn btn-primary form-control">保存</button>
                         </div>
                     </div>
                 </form>
@@ -566,7 +566,7 @@ $profession=$examine_info&&isset($examine_info->profession)?json_decode($examine
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveProfession" class="btn btn-success form-control">保存</button>
+                            <button type="submit" id="saveProfession" class="btn btn-primary form-control">保存</button>
                         </div>
                     </div>
                 </form>

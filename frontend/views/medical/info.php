@@ -40,7 +40,7 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?json_decode($pe
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveFirstInfo" class="btn btn-success form-control">保存</button>
+                            <button type="submit" id="saveFirstInfo" class="btn btn-primary form-control">保存</button>
                         </div>
                     </div>
                 </form>
@@ -642,7 +642,7 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?json_decode($pe
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="savePerformance" class="btn btn-success form-control">保存</button>
+                            <button type="submit" id="savePerformance" class="btn btn-primary form-control">保存</button>
                         </div>
                     </div>
                 </form>
@@ -703,7 +703,7 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?json_decode($pe
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="次" id="drugInfoFrequency1">
                     </div>
-                    <button type="submit" id="drugInfoAdd" class="btn btn-success">新增</button>
+                    <button type="submit" id="drugInfoAdd" class="btn btn-primary">新增</button>
                 </form>
                 <table class="dataTable" id="drugInfoTable">
                     <thead>

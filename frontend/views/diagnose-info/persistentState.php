@@ -82,7 +82,7 @@ $status=$diagnoseInfo?json_decode($diagnoseInfo->status):null;
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-2">
-            <button type="submit" id="saveStatus" class="btn btn-success form-control">保存</button>
+            <button type="submit" id="saveStatus" class="btn btn-primary form-control">保存</button>
         </div>
     </div>
 </form>

@@ -3,7 +3,13 @@
 
 $this->title = '数据统计';
 ?>
-    <div>今天新增病例：<b><?= $counts["today"]; ?></b>，本月新增病例：<b><?= $counts["month"]; ?></b>，总计病例：<b><?= $counts["all"]; ?></b></div>
+    <div class="row statCounts">
+        <div class="col-md-4"><b class="count"><?= $counts["today"]; ?></b><label class="label">今天新增</label></div>
+        <div class="col-md-4"><b class="count"><?= $counts["month"]; ?></b><label class="label">本月新增</label></div>
+        <div class="col-md-4"><b class="count"><?= $counts["all"]; ?></b><label class="label">总计病例</label></div>
+    </div>
+
+
     <hr>
     <div id="sex" style="width: 600px;height:400px;"></div>
     <hr>

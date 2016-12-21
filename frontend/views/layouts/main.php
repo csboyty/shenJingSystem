@@ -37,11 +37,11 @@ AppAsset::register($this);
 <div class="left">
     <ul class="menu">
         <li class="item">
-            <span class="glyphicon glyphicon-flag"></span>
+            <span class="glyphicon glyphicon-th-list"></span>
             <a class="link" href="patient/">病患管理</a>
         </li>
         <li class="item">
-            <span class="glyphicon glyphicon-flag"></span>
+            <span class="glyphicon glyphicon-stats"></span>
             <a class="link" href="stat/">数据统计</a>
         </li>
     </ul>

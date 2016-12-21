@@ -23,7 +23,7 @@ $effectInfo=$treatment_effect&&isset($treatment_effect->effectInfo)?json_decode(
     <div class="form-group">
         <input class="form-control" type="text"  placeholder="发作持续时间" id="effectInfoField5">
     </div>
-    <button type="submit" class="btn btn-success" id="effectInfoAdd">新增</button>
+    <button type="submit" class="btn btn-primary" id="effectInfoAdd">新增</button>
 </form>
 <table class="dataTable" id="effectInfoTable">
     <thead>

@@ -53,7 +53,7 @@ $this->title = $model->fullname.'的信息';
         </div>
         <br>
         <div class="row">
-            <a class="col-md-offset-2 btn btn-success" href="medical/<?= $model->id; ?>">病史信息</a>
+            <a class="col-md-offset-2 btn btn-primary" href="medical/<?= $model->id; ?>">病史信息</a>
             <a class="col-xs-offset-1 btn btn-primary" href="diagnose-info/<?= $model->id; ?>">拟诊信息</a>
             <a class="col-xs-offset-1 btn btn-info"  href="diagnose-process/<?= $model->id; ?>">诊治诊断</a>
             <a class="col-xs-offset-1 btn btn-warning" href="return-info/<?= $model->id; ?>">随访记录</a>

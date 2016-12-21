@@ -19,7 +19,7 @@ $this->title = '修改密码';
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-8">
-                <button type="submit" class="btn btn-success form-control">确定</button>
+                <button type="submit" class="btn btn-primary form-control">确定</button>
             </div>
         </div>
     </form>
