@@ -646,28 +646,38 @@ $other=isset($check_result->other)?json_decode($check_result->other):array();
                                 <p style="margin-top: 10px;">
                                     蛋白：<input class="width50" type="text"
                                               data-name-parent="other" name="naoJiYeDanBai"
-                                              value="<?= isset($other->naoJiYeDanBai)?$other->naoJiYeDanBai:""; ?>">&nbsp;g/l&nbsp;&nbsp;
-                                    氯化物：<input class="width50" type="text"
-                                               data-name-parent="other" name="naoJiYeLvHuaWu"
-                                               value="<?= isset($other->naoJiYeLvHuaWu)?$other->naoJiYeLvHuaWu:""; ?>">&nbsp;mmol/l&nbsp;&nbsp;
-                                    糖：<input class="width50" type="text"
-                                             data-name-parent="other" name="naoJiYeTang"
-                                             value="<?= isset($other->naoJiYeTang)?$other->naoJiYeTang:""; ?>">&nbsp;mmol/l&nbsp;&nbsp;
-                                    细胞总数：<input class="width50" type="text"
-                                                data-name-parent="other" name="naoJiYeXiBao"
-                                                value="<?= isset($other->naoJiYeXiBao)?$other->naoJiYeXiBao:""; ?>">&nbsp;&nbsp;&nbsp;
-                                    <br>白细胞：<input class="width50" type="text"
-                                               data-name-parent="other" name="naoJiYeBaiXiBao"
-                                               value="<?= isset($other->naoJiYeBaiXiBao)?$other->naoJiYeBaiXiBao:""; ?>">&nbsp;&nbsp;&nbsp;
-                                    单核：<input class="width50" type="text"
-                                              data-name-parent="other" name="naoJiYeDanHe"
-                                              value="<?= isset($other->naoJiYeDanHe)?$other->naoJiYeDanHe:""; ?>">&nbsp;&nbsp;&nbsp;
-                                    多核：<input class="width50" type="text"
-                                              data-name-parent="other" name="naoJiYeDuoHe"
-                                              value="<?= isset($other->naoJiYeDuoHe)?$other->naoJiYeDuoHe:""; ?>">&nbsp;&nbsp;&nbsp;
+                                              value="<?= isset($other->naoJiYeDanBai)?$other->naoJiYeDanBai:""; ?>">
+                                        &nbsp;g/l&nbsp;&nbsp;
                                     细胞学：<input class="width50" type="text"
                                                data-name-parent="other" name="naoJiYeXiBaoXue"
-                                               value="<?= isset($other->naoJiYeXiBaoXue)?$other->naoJiYeXiBaoXue:""; ?>">&nbsp;&nbsp;&nbsp;
+                                               value="<?= isset($other->naoJiYeXiBaoXue)?$other->naoJiYeXiBaoXue:""; ?>">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                    糖：<input class="width50" type="text"
+                                             data-name-parent="other" name="naoJiYeTang"
+                                             value="<?= isset($other->naoJiYeTang)?$other->naoJiYeTang:""; ?>">
+                                        &nbsp;mmol/l&nbsp;&nbsp;
+                                    氯化物：<input class="width50" type="text"
+                                               data-name-parent="other" name="naoJiYeLvHuaWu"
+                                               value="<?= isset($other->naoJiYeLvHuaWu)?$other->naoJiYeLvHuaWu:""; ?>">
+                                        &nbsp;mmol/l&nbsp;&nbsp;
+
+                                        <br><br>
+
+                                    单核：<input class="width50" type="text"
+                                              data-name-parent="other" name="naoJiYeDanHe"
+                                              value="<?= isset($other->naoJiYeDanHe)?$other->naoJiYeDanHe:""; ?>">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    白细胞：<input class="width50" type="text"
+                                               data-name-parent="other" name="naoJiYeBaiXiBao"
+                                               value="<?= isset($other->naoJiYeBaiXiBao)?$other->naoJiYeBaiXiBao:""; ?>">
+                                        &nbsp;&nbsp;
+                                    多核：<input class="width50" type="text"
+                                              data-name-parent="other" name="naoJiYeDuoHe"
+                                              value="<?= isset($other->naoJiYeDuoHe)?$other->naoJiYeDuoHe:""; ?>">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    细胞总数：<input class="width50" type="text"
+                                                data-name-parent="other" name="naoJiYeXiBao"
+                                                value="<?= isset($other->naoJiYeXiBao)?$other->naoJiYeXiBao:""; ?>">
                                 </p>
                             </div>
                         </div>

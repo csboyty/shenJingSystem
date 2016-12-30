@@ -21,17 +21,67 @@ $profession=$examine_info&&isset($examine_info->profession)?json_decode($examine
             <div class="panel-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label class="control-label col-md-2">一般数据</label>
-                        <div class="col-md-8">
-                            T&nbsp;<input type="text" data-name-parent="normal" name="T" value="<?= isset($normal->T)?$normal->T:""; ?>" class="width50">&nbsp;度，
-                            P&nbsp;<input type="text" data-name-parent="normal" name="P" value="<?= isset($normal->P)?$normal->P:""; ?>"  class="width50">&nbsp;次/分，
-                            R&nbsp;<input type="text" data-name-parent="normal" name="R" value="<?= isset($normal->R)?$normal->R:""; ?>" class="width50">&nbsp;次/分，
-                            SBP&nbsp;<input type="text" data-name-parent="normal" name="SBP" value="<?= isset($normal->SBP)?$normal->SBP:""; ?>" class="width50">&nbsp;mmHg，
-                            <br><br>
-                            DBP&nbsp;<input type="text" data-name-parent="normal" name="DBP" value="<?= isset($normal->DBP)?$normal->DBP:""; ?>"  class="width50">&nbsp;mmHg，
-                            身高&nbsp;<input type="text" data-name-parent="normal" name="height" value="<?= isset($normal->height)?$normal->height:""; ?>"  class="width50">&nbsp;cm，
-                            体重&nbsp;<input type="text" data-name-parent="normal" name="weight" value="<?= isset($normal->weight)?$normal->weight:""; ?>"  class="width50">&nbsp;Kg
+                        <label class="control-label col-md-2">T</label>
+
+                        <div class="col-md-4">
+                            <input type="text" data-name-parent="normal" name="T" value="<?= isset($normal->T)?$normal->T:""; ?>"
+                                   class="form-control">
                         </div>
+                        <div class="col-md-2 controlUnit">度</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">P</label>
+
+                        <div class="col-md-4">
+                            <input type="text" data-name-parent="normal" name="P" value="<?= isset($normal->P)?$normal->P:""; ?>"
+                                   class="form-control">
+                        </div>
+                        <div class="col-md-2 controlUnit">次/分</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">R</label>
+
+                        <div class="col-md-4">
+                            <input type="text" data-name-parent="normal" name="R"
+                                   value="<?= isset($normal->R)?$normal->R:""; ?>" class="form-control">
+                        </div>
+                        <div class="col-md-2 controlUnit">次/分</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">SBP</label>
+
+                        <div class="col-md-4">
+                            <input type="text" data-name-parent="normal" name="SBP"
+                                   value="<?= isset($normal->SBP)?$normal->SBP:""; ?>" class="form-control">
+                        </div>
+                        <div class="col-md-2 controlUnit">mmHg</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">DBP</label>
+
+                        <div class="col-md-4">
+                            <input type="text" data-name-parent="normal" name="DBP"
+                                   value="<?= isset($normal->DBP)?$normal->DBP:""; ?>"  class="form-control">
+                        </div>
+                        <div class="col-md-2 controlUnit">mmHg</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">身高</label>
+
+                        <div class="col-md-4">
+                            <input type="text" data-name-parent="normal" name="height"
+                                   value="<?= isset($normal->height)?$normal->height:""; ?>"  class="form-control">
+                        </div>
+                        <div class="col-md-2 controlUnit">cm</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">体重</label>
+
+                        <div class="col-md-4">
+                            <input type="text" data-name-parent="normal" name="weight"
+                                   value="<?= isset($normal->weight)?$normal->weight:""; ?>"  class="form-control">
+                        </div>
+                        <div class="col-md-2 controlUnit">Kg</div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-2">皮肤粘膜</label>

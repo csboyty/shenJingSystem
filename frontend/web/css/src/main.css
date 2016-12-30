@@ -8,7 +8,6 @@ body{
     height: 100%;
     position: relative;
     font-family: "Arail","Microsoft YaHei","Heiti";
-    background: #f2f3ea !important;
 }
 ul{
     padding:0px;
@@ -17,6 +16,9 @@ ul{
 }
 a{
     text-decoration: none!important;
+}
+label{
+    font-weight: normal;
 }
 label.error{
     color: red;
@@ -32,6 +34,11 @@ label.error{
 }
 .left{
     width: 180px;
+    position: absolute;
+    top: 70px;
+    bottom: 0px;
+    left: 0px;
+    background: rgb(75, 82, 92);
 }
 .right{
     border-left: 1px solid #ccccc8;
@@ -46,7 +53,7 @@ label.error{
     overflow: auto;
 }
 .main{
-    width: 90%;
+    width: 100%;
     margin: 0px auto 0px auto;
 }
 .hasRightBorder{
@@ -69,7 +76,6 @@ label.error{
     height: 100px;
     margin: 0px;
     display: inline-block;
-    color: #4B525C;
     line-height: 70px;
     padding-left: 20px;
 }
@@ -112,9 +118,12 @@ label.error{
 .menu .item {
     min-height: 40px;
     width: 100%;
-    border: 1px solid #edece3;
     line-height: 40px;
     position: relative;
+    border-top:1px solid #000;
+}
+.menu .item:first-child{
+    border: none;
 }
 .menu .item .glyphicon{
     padding: 0px 10px;
@@ -124,7 +133,6 @@ label.error{
 .menu .item .link{
     font-size: 16px;
     color: #9FA0A0;
-    border-left: 1px solid #edece3;
     display: inline-block;
     position: absolute;
     left:34px;
@@ -136,10 +144,10 @@ label.error{
     cursor: pointer;
 }
 .menu .item:hover{
-    background: #F7F7F7;
+    background: #000;
 }
 .menu .item:hover .link,.menu .item:hover .glyphicon{
-    color: #699BD2;
+    color: #fff;
 }
 /*.menu .item:hover .subMenu{
     display: block;
@@ -226,7 +234,6 @@ table.dataTable .thumb{
     padding: 5px 10px;
 }
 
-
 /**
 *loading
 */
@@ -269,6 +276,9 @@ table.dataTable .thumb{
 .label{
     font-weight: normal;
 }
+.text-primary{
+    color: #699bd2;
+}
 .tab-content .tab-pane{
     padding-top:10px;
 }
@@ -283,6 +293,13 @@ table.dataTable .thumb{
     background: none;
     box-shadow: 0 2px 3px -1px rgba(0,0,0,0.3);
 }
+.panel-default .panel-title{
+    color: #699bd2;
+}
+.form-group .controlUnit{
+    line-height: 34px;
+    padding-left: 0px;
+}
 
 /***********************************统计页面**************************/
 .statCounts{
@@ -290,7 +307,6 @@ table.dataTable .thumb{
 }
 .statCounts .count{
     font-size: 36px;
-    color: #699bd2;
 }
 .statCounts .label{
     display: block;
