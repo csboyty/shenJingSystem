@@ -4,7 +4,7 @@ $this->title="登陆";
 
 <form class="pCenter" id="myForm" method="post" action="site/login" name="login_user_form">
     <span class="loginIcon">登陆图标</span>
-    <h1 class="logo">湘雅数据库</h1>
+    <h1 class="logo">神经系统数据库</h1>
     <div class="row">
         <input class="ctrlInput" type="text" name="username" placeholder="账号">
     </div>

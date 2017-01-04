@@ -10,7 +10,7 @@ $this->title = '病患管理';
 <div class="input-group tableSearchContainer col-md-6">
     <input type="text" id="filter" class="form-control" placeholder="编号/姓名">
     <span class="input-group-btn">
-        <button id="searchBtn" class="btn btn-default" type="button">搜索</button>
+        <button id="searchBtn" class="btn btn-primary" type="button">搜索</button>
     </span>
 </div>
 <table id="myTable" class="dataTable">

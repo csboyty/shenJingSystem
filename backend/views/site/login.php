@@ -4,14 +4,12 @@ $this->title="登陆";
 
 <form class="pCenter" id="myForm" method="post" action="site/login" name="login_user_form">
     <span class="loginIcon">登陆图标</span>
-    <h1 class="logo">湘雅神经系统</h1>
+    <h1 class="logo">神经系统数据库</h1>
     <div class="row">
-        <label class="ctrlLabel">账号</label>
-        <input class="ctrlInput bgLc" type="text" name="username">
+        <input class="ctrlInput bgLc" type="text" name="username" placeholder="账号">
     </div>
     <div class="row">
-        <label  class="ctrlLabel">密码</label>
-        <input id="password" class="ctrlInput bgLc" type="password" name="password">
+        <input id="password" class="ctrlInput bgLc" type="password" name="password" placeholder="密码">
     </div>
     <div class="row">
         <input type="submit" class="ctrlBtn" value="登陆">

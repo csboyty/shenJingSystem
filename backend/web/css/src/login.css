@@ -8,8 +8,8 @@ body{
     height: 100%;
     position: relative;
     font-family: "Arail","微软雅黑","Heiti";
-    background: #373737;
-    border-top:3px solid #5dc05f;
+    background: #f7f7f7;
+    border-top:3px solid #699bd2;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -30,52 +30,45 @@ body{
 .loginIcon{
     display: block;
     font-size: 0px;
-    background: url(../../images/login/iconLogin.png) no-repeat;
-    width: 120px;
-    height: 119px;
+    background: url(../../images/login/iconLogin.svg) no-repeat;
+    width: 88px;
+    height: 88px;
     position: absolute;
     left:50%;
-    top:50%;
-    margin: -234px 0px 0px -60px;
+    top:0%;
+    margin: -44px 0px 0px -44px;
 }
 .logo{
     text-align: center;
     margin: 70px 0px 50px 0px;
+    color: #699bd2;
 }
 .row{
     width: 80%;
-    margin: 10px auto 10px auto;
-}
-.ctrlLabel{
-    color: #727171;
-    font-size: 16px;
-    margin-right: 10px;
-    min-width: 50px;
-    text-align: right;
+    margin: 20px auto 20px auto;
 }
 .ctrlInput{
-    width: 250px;
+    width: 100%;
     height: 32px;
     border: #abacb3 solid 1px;
     border-radius: 4px;
     padding-left: 4px;
 }
 .ctrlBtn{
-    width: 250px;
+    width: 100%;
     height: 36px;
     color: #fff;
     font-size: 16px;
-    border: 1px solid #4cae4c;
-    background: #5cb85c;
+    border: 1px solid #699bd2;
+    background: #699bd2;
     border-radius: 4px;
-    margin-left: 65px;
 }
 .ctrlBtn:hover{
-    background: #4cae4c;
+    background: #699bd2;
     cursor: pointer;
 }
-.bgLc{
-    background-position: 3px 8px;
+label{
+    font-weight: normal;
 }
 label.error{
     color: red;

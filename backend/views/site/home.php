@@ -10,4 +10,4 @@
 $this->title = '欢迎进入系统';
 ?>
 
-<h1 class="text-success text-center">欢迎使用管理系统</h1>
+<h1 class="text-primary text-center">欢迎使用管理系统</h1>

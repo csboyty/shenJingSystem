@@ -5,7 +5,7 @@ $this->title = '用户管理';
 ?>
 
 
-<a class="btn btn-success" href="user/create">
+<a class="btn btn-primary" href="user/create">
     <span class="glyphicon glyphicon-plus"></span> 新建
 </a>
 <table id="myTable" class="dataTable">
