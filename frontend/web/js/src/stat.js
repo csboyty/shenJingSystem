@@ -32,7 +32,7 @@ $(document).ready(function () {
                 subtext: '纯属虚构',
                 x: 'center'
             },
-            color: ['#509c90', '#eb6100', '#EC577B', '#EFB33F', '#5D92D4', '#C2494A', '#4AC246', '#874361'],
+            color: ['#66a4f9', '#eb6100', '#EC577B', '#32d6c5', '#4ac246'],
             tooltip: {
                 trigger: 'item',
                 formatter: "{a} <br/>{b}: {c} ({d}%)"
@@ -81,7 +81,7 @@ $(document).ready(function () {
                 subtext: '纯属虚构',
                 x: 'center'
             },
-            color: ['#C2494A', '#5D92D4', '#4AC246', '#874361', '#eb6100', '#509c90', '#EC577B', '#EFB33F'],
+            color: ['#66a4f9', '#eb6100', '#EC577B', '#32d6c5', '#4ac246'],
             tooltip: {
                 trigger: 'item',
                 formatter: "{a} <br/>{b} : {c} ({d}%)"

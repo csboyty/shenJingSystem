@@ -10,7 +10,7 @@ $this->title = '数据统计';
     </div>
 
 
-    <hr>
+    <br><br>
     <div id="sex" style="width: 600px;height:400px;"></div>
     <hr>
     <div id="age" style="width: 600px;height:400px;"></div>

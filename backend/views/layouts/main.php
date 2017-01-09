@@ -23,7 +23,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="header">
-    <h1 class="logo text-primary">神经系统发作性疾病临床资源数据库</h1>
+    <h1 class="logo">神经系统发作性疾病临床资源数据库</h1>
     <nav class="topNav">
         <ul>
             <!--<li><a href="account/edit-pwd" class="editpwd">修改密码</a></li>-->
@@ -33,8 +33,6 @@ AppAsset::register($this);
 </div>
 
 <div class="left">
-    <br>
-    <br>
     <ul class="menu">
         <li class="item">
             <span class="glyphicon glyphicon-flag"></span>

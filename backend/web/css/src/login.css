@@ -9,7 +9,7 @@ body{
     position: relative;
     font-family: "Arail","微软雅黑","Heiti";
     background: #f7f7f7;
-    border-top:3px solid #699bd2;
+    border-top:3px solid #66a4f9;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -41,7 +41,7 @@ body{
 .logo{
     text-align: center;
     margin: 70px 0px 50px 0px;
-    color: #699bd2;
+    color: #66a4f9;
 }
 .row{
     width: 80%;
@@ -59,12 +59,12 @@ body{
     height: 36px;
     color: #fff;
     font-size: 16px;
-    border: 1px solid #699bd2;
-    background: #699bd2;
+    border: 1px solid #66a4f9;
+    background: #66a4f9;
     border-radius: 4px;
 }
 .ctrlBtn:hover{
-    background: #699bd2;
+    background: #66a4f9;
     cursor: pointer;
 }
 label{

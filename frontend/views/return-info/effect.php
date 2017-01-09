@@ -49,7 +49,7 @@ $effectInfo=$treatment_effect&&isset($treatment_effect->effectInfo)?json_decode(
     ?>
     </tbody>
 </table>
-<h4 class="text-primary">说明</h4>
+<h4 class="text-own">说明</h4>
 <p>
     1）已用药时间精确到天<br>
     2）发作类型请填写编号，同前。<br>
