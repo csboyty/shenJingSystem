@@ -46,14 +46,6 @@ class PatientController extends Controller
         return $this->render('index');
     }
 
-    public function actionDetail($id){
-
-        $model = $this->findModel($id);
-        return $this->render("detail",[
-            'model' => $model,
-        ]);
-    }
-
     public function actionList(){
         $params=Yii::$app->request->queryParams;
         $limit=$params["iDisplayLength"];
@@ -62,7 +54,7 @@ class PatientController extends Controller
         $filter = $params["filter"];
         $query=PatientInfo::find();
         if($filter){
-            $query->where(['or', 'id=:filter', 'fullname=:filter'],[":filter"=>$filter]);
+            $query->where(['or', 'no=:filter', 'fullname=:filter'],[":filter"=>$filter]);
         }
         $count=$query->count();
         $aaData=$query
@@ -87,17 +79,17 @@ class PatientController extends Controller
 
         $model=new PatientInfo();
 
-        return $this->render('createOrUpdate',[
+        return $this->render('info',[
             'model' => $model,
         ]);
     }
 
-    public function actionUpdate($id){
+    public function actionInfo($id){
 
         //这样获取会将isNewRecord设置为false
         $model = $this->findModel($id);
 
-        return $this->render('createOrUpdate',[
+        return $this->render('info',[
             'model' => $model,
         ]);
     }
@@ -124,7 +116,8 @@ class PatientController extends Controller
 
         if ($model->load($data) && $model->save()) {
             return [
-                "success"=>true
+                "success"=>true,
+                "id" => $model->id
             ];
         }else{
             return [

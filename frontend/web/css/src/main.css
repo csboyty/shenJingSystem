@@ -191,9 +191,6 @@ label.error{
 /**
 *复写datatable
 */
-.tableSearchContainer{
-    margin: 10px 0px;
-}
 table.dataTable{
     margin-top: 20px;
     width: 100%;
@@ -231,6 +228,26 @@ table.dataTable .thumb{
     background: #F7F7F7;
     color: #66a4f9!important;
     padding: 5px 10px;
+}
+/**
+* 页面link list
+*/
+.pageLinkList{
+
+}
+.pageLinkList .item{
+    display: block;
+    color: #000;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+.pageLinkList .item:hover{
+    color: #5dc05f;
+}
+.pageLinkList .item.active{
+    color:#66a4f9
 }
 
 /**
@@ -312,7 +329,9 @@ table.dataTable .thumb{
     line-height: 34px;
     padding-left: 0px;
 }
-
+.col-left{
+    border-right:1px solid #ccc;
+}
 /***********************************统计页面**************************/
 .statCounts{
     text-align: center;

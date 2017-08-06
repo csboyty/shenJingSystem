@@ -7,23 +7,24 @@ use Yii;
 /**
  * This is the model class for table "patient_info".
  *
- * @property integer $id
+ * @property string $id
+ * @property string $no
  * @property string $create_at
  * @property string $fullname
  * @property string $sex
- * @property string $birthday
+ * @property integer $age
  * @property string $education
  * @property string $profession
  * @property string $marriage
  * @property integer $relatives_count
  * @property string $address
  * @property string $tel
- * @property string $contact_name
+ * @property string $contact
  *
- * @property DiagnoseInfo[] $diagnoseInfos
- * @property DiagnoseProcess[] $diagnoseProcesses
- * @property MedicalHistory[] $medicalHistories
- * @property ReturnInfo[] $returnInfos
+ * @property DiagnoseInfo $diagnoseInfo
+ * @property DiagnoseProcess $diagnoseProcess
+ * @property Medical $medical
+ * @property ReturnInfo $returnInfo
  */
 class PatientInfo extends \yii\db\ActiveRecord
 {
@@ -42,15 +43,14 @@ class PatientInfo extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'required'],
-            [['relatives_count', 'age'], 'integer'],
             [['create_at'], 'safe'],
+            [['age', 'relatives_count'], 'integer'],
+            [['id', 'no', 'profession', 'contact'], 'string', 'max' => 32],
             [['fullname'], 'string', 'max' => 255],
             [['sex', 'education'], 'string', 'max' => 8],
-            [['profession','id'], 'string', 'max' => 32],
             [['marriage'], 'string', 'max' => 2],
             [['address'], 'string', 'max' => 64],
-            [['tel'], 'string', 'max' => 15],
-            [['contact'], 'string', 'max' => 32]
+            [['tel'], 'string', 'max' => 15]
         ];
     }
 
@@ -61,6 +61,7 @@ class PatientInfo extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'no' => 'No',
             'create_at' => 'Create At',
             'fullname' => 'Fullname',
             'sex' => 'Sex',
@@ -78,32 +79,32 @@ class PatientInfo extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDiagnoseInfos()
+    public function getDiagnoseInfo()
     {
-        return $this->hasMany(DiagnoseInfo::className(), ['patient_id' => 'id']);
+        return $this->hasOne(DiagnoseInfo::className(), ['patient_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDiagnoseProcesses()
+    public function getDiagnoseProcess()
     {
-        return $this->hasMany(DiagnoseProcess::className(), ['patient_id' => 'id']);
+        return $this->hasOne(DiagnoseProcess::className(), ['patient_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMedicals()
+    public function getMedical()
     {
-        return $this->hasMany(Medical::className(), ['patient_id' => 'id']);
+        return $this->hasOne(Medical::className(), ['patient_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getReturnInfos()
+    public function getReturnInfo()
     {
-        return $this->hasMany(ReturnInfo::className(), ['patient_id' => 'id']);
+        return $this->hasOne(ReturnInfo::className(), ['patient_id' => 'id']);
     }
 }

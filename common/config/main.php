@@ -25,7 +25,8 @@ return [
         ],
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
-            'enablePrettyUrl' => true,//加了这两句则不能使用gii  http://localhost/xiangya/frontend/web/index.php?r=gii
+            'enablePrettyUrl' => true,//加了这两句则不能使用gii  http://localhost/shenJingSystem/frontend/web/index.php?r=gii
+            //通过这个使用gii  http://localhost/shenJingSystem/frontend/web/gii
             'showScriptName' => false,
             'rules'=>array(
                 '<controller:[a-z-]+>/<id:\d+>'=>'<controller>/index',

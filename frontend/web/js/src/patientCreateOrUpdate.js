@@ -1,16 +1,19 @@
 var patientCreateOrUpdate=(function(config,functions){
     return{
-        submitForm:function(form){
+        submitForm:function(form,callback){
             var me=this;
             functions.showLoading();
             $(form).ajaxSubmit({
                 dataType:"json",
+                url:config.ajaxUrls.patientSubmit,
+                type:"post",
                 success:function(response){
                     if(response.success){
                         $().toastmessage("showSuccessToast",config.messages.optSuccess);
-                        setTimeout(function(){
-                            window.location.href="patient/index";
-                        },3000);
+
+                        console.log(response);
+
+                        //callback(response.id);
                     }else{
                         functions.ajaxReturnErrorHandler(response.error_code);
                     }
@@ -24,86 +27,23 @@ var patientCreateOrUpdate=(function(config,functions){
 })(config,functions);
 
 $(document).ready(function(){
-    $("#myForm").validate({
-        ignore:[],
-        rules: {
-            id: {
-                required:true,
-                maxlength:32
-            },
-            create_at: {
-                required:true
-            },
-            fullname:{
-                required:true,
-                maxlength:32
-            },
-            sex: {
-                required:true
-            },
-            age:{
-                required:true,
-                number:true,
-                maxlength:3
-            },
-            relatives_count:{
-                required:true,
-                number:true,
-                maxlength:2
-            },
-            address:{
-                required:true,
-                maxlength:64
-            },
-            contact:{
-                required:true,
-                maxlength:32
-            },
-            tel:{
-                required:true,
-                maxlength:15
+
+    setInterval(function(){
+        patientCreateOrUpdate.submitForm($("#myForm"),function(id){
+            if(!$("#editId")){
+                $('<div id="editId">'+id+'</div>'+
+                    '<input type="hidden" name="isEdit" value="true">').prependTo($("#myForm"));
+
+                $("#pageLinkList .item").attr("href",function(index,oldValue){
+                    return oldValue+id;
+                });
             }
-        },
-        messages: {
-            id: {
-                required:config.validErrors.required,
-                maxlength:config.validErrors.maxLength.replace("${max}",32)
-            },
-            create_at: {
-                required:config.validErrors.required
-            },
-            fullname:{
-                required:config.validErrors.required,
-                maxlength:config.validErrors.maxLength.replace("${max}",32)
-            },
-            sex: {
-                required:config.validErrors.required
-            },
-            age:{
-                required:config.validErrors.required,
-                number:config.validErrors.number,
-                maxlength:config.validErrors.maxLength.replace("${max}",3)
-            },
-            relatives_count:{
-                required:config.validErrors.required,
-                number:config.validErrors.number,
-                maxlength:config.validErrors.maxLength.replace("${max}",2)
-            },
-            address:{
-                required:config.validErrors.required,
-                maxlength:config.validErrors.maxLength.replace("${max}",64)
-            },
-            contact:{
-                required:config.validErrors.required,
-                maxlength:config.validErrors.maxLength.replace("${max}",32)
-            },
-            tel:{
-                required:config.validErrors.required,
-                maxlength:config.validErrors.maxLength.replace("${max}",15)
-            }
-        },
-        submitHandler:function(form) {
-            patientCreateOrUpdate.submitForm(form);
-        }
+        });
+    },50000);
+
+    $("#nextPage").click(function(){
+        patientCreateOrUpdate.submitForm($("#myForm"),function(id){
+            location.href="medical/"+id;
+        });
     });
 });

@@ -8,6 +8,7 @@
 var config={
     baseUrl:"",
     ajaxUrls:{
+        patientSubmit:"patient/submit",
         patientDelete:"patient/delete/:id",
         uploadFile:"upload",
         patientGetAll:"patient/list",

@@ -21,12 +21,12 @@ var userMgr=(function(config,functions){
                 "sUrl":config.dataTable.langUrl
             },
             "aoColumns": [
-                { "mDataProp": "id"},
+                { "mDataProp": "no"},
                 { "mDataProp": "fullname"},
                 { "mDataProp": "opt",
                     "fnRender":function(oObj){
                         return '<a href="patient/detail/'+oObj.aData.id+'">详情</a>&nbsp;&nbsp;&nbsp;'+
-                            '<a href="patient/update/'+oObj.aData.id+'">修改</a>';
+                            '<a href="patient/info/'+oObj.aData.id+'">修改</a>';
                     }
                 }
             ] ,
