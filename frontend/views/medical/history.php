@@ -110,11 +110,7 @@ $historyFamily=$history_info&&isset($history_info->historyFamily)?json_decode($h
                             <input class="form-control"  value="<?= isset($historyPast->drug)?$historyPast->drug:""; ?> " type="text" data-name-parent="historyPast" name="drug">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-2 col-md-offset-2">
-                            <button type="submit" id="saveHistoryPast" class="btn btn-primary form-control">保存</button>
-                        </div>
-                    </div>
+
                 </form>
             </div>
         </div>
@@ -172,11 +168,6 @@ $historyFamily=$history_info&&isset($history_info->historyFamily)?json_decode($h
                             <div class="ctrlPanel <?= $qiTaPanelClass; ?>" id="personalCtrlPanel">
                                 其他病：<input type="text" value="<?= isset($historyPersonal->otherMedical)?$historyPersonal->otherMedical:""; ?>" data-name-parent="historyPersonal" name="otherMedical">
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 col-md-offset-2">
-                            <button type="submit" id="saveHistoryPersonal" class="btn btn-primary form-control">保存</button>
                         </div>
                     </div>
                 </form>
@@ -265,11 +256,6 @@ $historyFamily=$history_info&&isset($history_info->historyFamily)?json_decode($h
                             </a>
                             <input type="hidden" value="<?= $historyFamily?$historyFamily->familyImage:""; ?>"
                                    data-name-parent="historyFamily"  name="familyImage" id="fileUrl">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveHistoryFamily" class="btn btn-primary form-control">保存</button>
                         </div>
                     </div>
                 </form>

@@ -25,8 +25,7 @@ var userMgr=(function(config,functions){
                 { "mDataProp": "fullname"},
                 { "mDataProp": "opt",
                     "fnRender":function(oObj){
-                        return '<a href="patient/detail/'+oObj.aData.id+'">详情</a>&nbsp;&nbsp;&nbsp;'+
-                            '<a href="patient/info/'+oObj.aData.id+'">修改</a>';
+                        return '<a href="patient/info/'+oObj.aData.id+'">详情</a>';
                     }
                 }
             ] ,

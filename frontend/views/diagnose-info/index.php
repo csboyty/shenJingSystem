@@ -5,42 +5,57 @@ $this->title =  $patient->fullname."拟诊信息";
     var patientId="<?= $patient->id;  ?>";
 </script>
 
-<a class="btn btn-primary" style="margin-bottom: 10px;" href="javascript:history.go(-1);">
-    <span class="glyphicon glyphicon-arrow-left"></span> 返回
-</a>
 
-<ul class="nav nav-tabs" id="myTabs">
-    <li class="active"><a href="#seizureType" aria-controls="seizureType" data-toggle="tab">癫痫发作类型</a></li>
-    <li><a href="#type" aria-controls="type" data-toggle="tab">癫痫综合征类型</a></li>
-    <li><a href="#persistentState" aria-controls="persistentState" data-toggle="tab">癫痫持续状态</a></li>
-</ul>
+<div class="row">
+    <div class="col-md-10 col-left">
+        <ul class="nav nav-tabs" id="myTabs">
+            <li class="active"><a href="#seizureType" aria-controls="seizureType" data-toggle="tab">癫痫发作类型</a></li>
+            <li><a href="#type" aria-controls="type" data-toggle="tab">癫痫综合征类型</a></li>
+            <li><a href="#persistentState" aria-controls="persistentState" data-toggle="tab">癫痫持续状态</a></li>
+        </ul>
 
-<!-- Tab panes -->
-<div class="tab-content">
-    <div class="tab-pane active" id="seizureType">
-        <?php
-            echo $this->render("seizureType",[
-                "diagnoseInfo"=>$diagnoseInfo
-            ]);
-        ?>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="seizureType">
+                <?php
+                echo $this->render("seizureType",[
+                    "diagnoseInfo"=>$diagnoseInfo
+                ]);
+                ?>
+            </div>
+
+            <!------------------------------病史-------------------------------->
+            <div class="tab-pane" id="type">
+                <?php
+                echo $this->render("type",[
+                    "diagnoseInfo"=>$diagnoseInfo
+                ]);
+                ?>
+            </div>
+
+            <!------------------------------体格检查-------------------------------->
+            <div class="tab-pane" id="persistentState">
+                <?php
+                echo $this->render("persistentState",[
+                    "diagnoseInfo"=>$diagnoseInfo
+                ]);
+                ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="button" class="btn btn-primary form-control" id="toDiagnoseProcess">》诊治诊断</button>
+        </div>
+
     </div>
-
-    <!------------------------------病史-------------------------------->
-    <div class="tab-pane" id="type">
-        <?php
-            echo $this->render("type",[
-                "diagnoseInfo"=>$diagnoseInfo
-            ]);
-        ?>
-    </div>
-
-    <!------------------------------体格检查-------------------------------->
-    <div class="tab-pane" id="persistentState">
-        <?php
-            echo $this->render("persistentState",[
-                "diagnoseInfo"=>$diagnoseInfo
-            ]);
-        ?>
+    <div class="col-md-2">
+        <div class="pageLinkList">
+            <a href="patient/info/<?= $patient->id; ?>" class="item">基本信息</a>
+            <a href="medical/<?= $patient->id; ?>" class="item">病史信息</a>
+            <a href="diagnose-info/<?= $patient->id; ?>" class="item">拟诊信息</a>
+            <a href="diagnose-process/<?= $patient->id; ?>" class="item active">诊治诊断</a>
+            <a href="return-info/<?= $patient->id; ?>" class="item">随访信息</a>
+        </div>
     </div>
 </div>
 

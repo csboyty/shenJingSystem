@@ -560,11 +560,6 @@ $profession=$examine_info&&isset($examine_info->profession)?json_decode($examine
                             ?>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveNormal" class="btn btn-primary form-control">保存</button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -612,11 +607,6 @@ $profession=$examine_info&&isset($examine_info->profession)?json_decode($examine
                         <div class="col-md-8">
                             <input class="form-control" value="<?= isset($profession->shenJingYangXing)?$profession->shenJingYangXing:""; ?>" type="text"
                                    data-name-parent="profession" name="shenJingYangXing">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveProfession" class="btn btn-primary form-control">保存</button>
                         </div>
                     </div>
                 </form>

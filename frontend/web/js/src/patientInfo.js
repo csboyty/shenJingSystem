@@ -11,9 +11,7 @@ var patientCreateOrUpdate=(function(config,functions){
                     if(response.success){
                         $().toastmessage("showSuccessToast",config.messages.optSuccess);
 
-                        console.log(response);
-
-                        //callback(response.id);
+                        callback(response.id);
                     }else{
                         functions.ajaxReturnErrorHandler(response.error_code);
                     }
@@ -31,7 +29,7 @@ $(document).ready(function(){
     setInterval(function(){
         patientCreateOrUpdate.submitForm($("#myForm"),function(id){
             if(!$("#editId")){
-                $('<div id="editId">'+id+'</div>'+
+                $('<div id="editId" data-value="'+id+'"></div>'+
                     '<input type="hidden" name="isEdit" value="true">').prependTo($("#myForm"));
 
                 $("#pageLinkList .item").attr("href",function(index,oldValue){
@@ -41,9 +39,20 @@ $(document).ready(function(){
         });
     },50000);
 
-    $("#nextPage").click(function(){
+    $("#toMedicalInfo").click(function(){
         patientCreateOrUpdate.submitForm($("#myForm"),function(id){
             location.href="medical/"+id;
         });
+    });
+
+    $("#pageLinkList .item").click(function(){
+        var href = $(this).attr("href");
+
+        if(!$("#editId")){
+            patientCreateOrUpdate.submitForm($("#myForm"),function(id){
+                location.href = (href+"id");
+            });
+            return false;
+        }
     });
 });

@@ -38,11 +38,6 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?json_decode($pe
                                    data-name-parent="firstInfo" name="date">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveFirstInfo" class="btn btn-primary form-control">保存</button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -638,11 +633,6 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?json_decode($pe
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="savePerformance" class="btn btn-primary form-control">保存</button>
                         </div>
                     </div>
                 </form>

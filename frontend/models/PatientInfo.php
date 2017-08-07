@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "patient_info".
  *
- * @property string $id
+ * @property integer $id
  * @property string $no
  * @property string $create_at
  * @property string $fullname
@@ -42,10 +42,9 @@ class PatientInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
             [['create_at'], 'safe'],
             [['age', 'relatives_count'], 'integer'],
-            [['id', 'no', 'profession', 'contact'], 'string', 'max' => 32],
+            [['no', 'profession', 'contact'], 'string', 'max' => 32],
             [['fullname'], 'string', 'max' => 255],
             [['sex', 'education'], 'string', 'max' => 8],
             [['marriage'], 'string', 'max' => 2],

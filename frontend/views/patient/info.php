@@ -7,7 +7,7 @@ $this->title = '基本信息';
             <?php
             if($model->id){
                 ?>
-                <div id="editId"><?= $model->id;  ?></div>
+                <input type="hidden" id="editId" value="<?= $model->id; ?>">
                 <input type="hidden" name="isEdit" value="true">
             <?php
             }
@@ -160,13 +160,13 @@ $this->title = '基本信息';
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-8">
-                    <button type="button" class="btn btn-primary form-control" id="nexPage">下一页</button>
+                    <button type="button" class="btn btn-primary form-control" id="toMedicalInfo">》病史信息</button>
                 </div>
             </div>
         </form>
     </div>
     <div class="col-md-2">
-        <div class="pageLinkList">
+        <div class="pageLinkList" id="pageLinkList">
             <a href="patient/info/<?= $model->id; ?>" class="item active">基本信息</a>
             <a href="medical/<?= $model->id; ?>" class="item">病史信息</a>
             <a href="diagnose-info/<?= $model->id; ?>" class="item">拟诊信息</a>
@@ -179,5 +179,5 @@ $this->title = '基本信息';
 
 
 <?php
-$this->registerJsFile("@web/js/src/patientCreateOrUpdate.js",['depends' => [frontend\assets\AppAsset::className()]]);
+$this->registerJsFile("@web/js/src/patientInfo.js",['depends' => [frontend\assets\AppAsset::className()]]);
 ?>
