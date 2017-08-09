@@ -53,6 +53,10 @@ $(document).ready(function(){
                 location.href = (href+"id");
             });
             return false;
+        }else{
+            patientCreateOrUpdate.submitForm($("#myForm"),function(id){
+                location.href = href;
+            });
         }
     });
 });

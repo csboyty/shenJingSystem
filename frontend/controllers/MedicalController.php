@@ -56,20 +56,11 @@ class MedicalController extends Controller
     public function actionInfoUpdate(){
         $params=Yii::$app->request->post();
         $model=$this->findModel($params["patientId"]);
-        $type=$params["type"];
         $col=$params["col"];
+        $info=$params["value"];
         if(!$model){
             $model=new Medical();
-            $info=array($type=>$params[$type]);
             $model->patient_id=$params["patientId"];
-        }else{
-            if(isset($model->$col)){
-                $info=$model->$col;
-                $info=json_decode($info);
-                $info->$type=$params[$type];
-            }else{
-                $info=array($type=>$params[$type]);
-            }
         }
 
         $model->$col=json_encode($info);

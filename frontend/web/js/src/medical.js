@@ -26,34 +26,91 @@ var medical = (function (config, functions) {
             ];
 
             return arr.join('');
+        },
+        saveBaseInfo:function(callback){
+            var firstInfo = functions.getInfo("firstInfo"),
+                performance = functions.getInfo("performance"),
+                drugInfos = this.getDrugInfo();
+            var me = this;
+
+            functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
+                patientId: patientId,
+                col:"performance_info",
+                value: JSON.stringify({
+                    firstInfo:firstInfo,
+                    performance:performance,
+                    drugInfos:drugInfos
+                })
+            },function(){
+                me.saveCheckInfo(callback);
+            });
+        },
+        saveCheckInfo:function(callback){
+            var normal = functions.getInfo("normal"),
+                profession = functions.getInfo("profession");
+            var me = this;
+
+            functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
+                patientId: patientId,
+                col:"examine_info",
+                value: JSON.stringify({
+                    normal:normal,
+                    profession:profession
+                })
+            },function(){
+                me.saveHistoryInfo(callback);
+            });
+        },
+        saveHistoryInfo:function(callback){
+            var historyPast = functions.getInfo("historyPast"),
+                historyPersonal = functions.getInfo("historyPersonal"),
+                historyFamily = functions.getInfo("historyFamily");
+
+            functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
+                patientId: patientId,
+                col:"history_info",
+                value: JSON.stringify({
+                    historyPast:historyPast,
+                    historyPersonal:historyPersonal,
+                    historyFamily:historyFamily
+                })
+            },function(){
+                callback();
+            });
+        },
+        saveMedical:function(callback){
+            this.saveBaseInfo(callback);
         }
     }
 })(config, functions);
 $(document).ready(function () {
+
+    $("#toDiagnoseInfo").click(function(){
+        medical.saveMedical(function(){
+            location.href="diagnose-info/"+patientId;
+        });
+    });
+    $("#pageLinkList .item").click(function(){
+        var href = $(this).attr("href");
+        medical.saveMedical(function(){
+            location.href = href;
+        });
+    });
+    $("#myTabs a").click(function(){
+        medical.saveMedical();
+    });
+
     $("#drugInfoAdd").click(function () {
         var info;
-        if ($("#drugInfoFrequency1").val() == "" || $("#drugInfoAmount").val() == "") {
-            //提示信息
 
-        } else {
-            info = medical.getDrugInfo();
+        info=[
+            $("#drugInfoName").val(),
+            $("#drugInfoAmount").val() + $("#drugInfoFrequency").val(),
+            $("#drugInfoUnit").val() + $("#drugInfoFrequency1").val()
+        ];
 
-            info.push([
-                $("#drugInfoName").val(),
-                $("#drugInfoAmount").val() + $("#drugInfoFrequency").val(),
-                $("#drugInfoUnit").val() + $("#drugInfoFrequency1").val()
-            ]);
-
-            functions.saveInfo(config.ajaxUrls.medicalDrugInfoUpdate, {
-                patientId: patientId,
-                type:"drugInfo",
-                col:"performance_info",
-                drugInfo: JSON.stringify(info)
-            }, function () {
-                info = medical.createDrugInfoItem(info.pop());
-                $("#drugInfoTable tbody").append(info);
-            });
-        }
+        info = medical.createDrugInfoItem(info);
+        $("#drugInfoTable tbody").append(info);
 
         return false;
     });
@@ -61,43 +118,9 @@ $(document).ready(function () {
     $("#drugInfoTable").on("click", ".deleteDrugInfo", function () {
         if(confirm(config.messages.confirmDelete)){
             var tr=$(this).parents("tr");
-            var info = medical.getDrugInfo(tr.index());
-
-            functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
-                patientId: patientId,
-                type:"drugInfo",
-                col:"performance_info",
-                drugInfo: JSON.stringify(info)
-            }, function () {
-                tr.remove();
-            });
+            tr.remove();
         }
 
-
-        return false;
-    });
-
-    $("#saveFirstInfo").click(function () {
-        var info=functions.getInfo("firstInfo");
-
-        functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
-            patientId: patientId,
-            type:"firstInfo",
-            col:"performance_info",
-            firstInfo: JSON.stringify(info)
-        });
-        return false;
-    });
-    $("#savePerformance").click(function () {
-
-        var info=functions.getInfo("performance");
-
-        functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
-            patientId: patientId,
-            type:"performance",
-            col:"performance_info",
-            performance: JSON.stringify(info)
-        });
 
         return false;
     });
@@ -113,67 +136,5 @@ $(document).ready(function () {
             $("#file").attr("href", url).text(fileInfo.filename + "." + fileInfo.ext);
             $("#fileUrl").val(url);
         });
-    });
-    $("#saveHistoryPast").click(function () {
-        var info=functions.getInfo("historyPast");
-
-        functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
-            patientId: patientId,
-            type:"historyPast",
-            col:"history_info",
-            historyPast: JSON.stringify(info)
-        });
-
-        return false;
-    });
-    $("#saveHistoryPersonal").click(function () {
-        var info=functions.getInfo("historyPersonal");
-
-        functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
-            patientId: patientId,
-            type:"historyPersonal",
-            col:"history_info",
-            historyPersonal: JSON.stringify(info)
-        });
-
-        return false;
-    });
-    $("#saveHistoryFamily").click(function () {
-        var info=functions.getInfo("historyFamily");
-
-        functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
-            patientId: patientId,
-            type:"historyFamily",
-            col:"history_info",
-            historyFamily: JSON.stringify(info)
-        });
-
-        return false;
-    });
-
-    /*******************************************************************************/
-    $("#saveNormal").click(function(){
-        var info=functions.getInfo("normal");
-
-        functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
-            patientId: patientId,
-            type:"profession",
-            col:"examine_info",
-            normal: JSON.stringify(info)
-        });
-
-        return false;
-    });
-    $("#saveProfession").click(function(){
-        var info=functions.getInfo("profession");
-
-        functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
-            patientId: patientId,
-            type:"profession",
-            col:"examine_info",
-            profession: info
-        });
-
-        return false;
     });
 });
