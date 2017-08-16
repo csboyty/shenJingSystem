@@ -210,11 +210,6 @@ $buNengFenLei=$attack_type&&isset($attack_type->buNengFenLei)?json_decode($attac
                             ?>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveBuFenFaZuo" class="btn btn-primary form-control">保存</button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -326,11 +321,6 @@ $buNengFenLei=$attack_type&&isset($attack_type->buNengFenLei)?json_decode($attac
 
                             ?>
 
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button id="saveBuNengFenLei" type="submit" class="btn btn-primary form-control">保存</button>
                         </div>
                     </div>
                 </form>

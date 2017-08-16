@@ -63,7 +63,7 @@ class MedicalController extends Controller
             $model->patient_id=$params["patientId"];
         }
 
-        $model->$col=json_encode($info);
+        $model->$col=$info;
 
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;

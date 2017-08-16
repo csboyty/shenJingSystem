@@ -8,7 +8,7 @@ var diagnoseProcess = (function (config, functions) {
 
             return arr;
         },
-        geTableInfo:function(trs){
+        getTableInfo:function(trs){
             var arr=[];
             trs.each(function(index,el){
                 el=$(el);
@@ -21,7 +21,6 @@ var diagnoseProcess = (function (config, functions) {
 
             return arr;
         },
-        /***************************************************/
         getDrugInfo: function (index) {
             var arr = [];
             $("#drugInfoTable tbody tr").each(function (i,el) {
@@ -52,54 +51,63 @@ var diagnoseProcess = (function (config, functions) {
             ];
 
             return arr.join('');
+        },
+        saveResult:function(callback){
+            var xueNongDu=diagnoseProcess.getXueNongDuInfo(),
+                xueChangGui=diagnoseProcess.getTableInfo($("#xueChangGuiTable tbody tr")),
+                xueShengHua=diagnoseProcess.geTableInfo($("#xueShengHuaTable tbody tr")),
+                other=functions.getInfo("other");
+            var me = this;
+
+            functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
+                patientId: patientId,
+                col:"check_result",
+                value: JSON.stringify({
+                    xueNongDu:xueNongDu,
+                    xueChangGui:xueChangGui,
+                    xueShengHua:xueShengHua,
+                    other:other
+                })
+            },function(){
+                me.saveOptions(callback);
+            });
+        },
+        saveOptions:function(callback){
+            var drugInfo = diagnoseProcess.getDrugInfo(),
+                otherDrug = $("#otherDrug").val();
+            functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
+                patientId: patientId,
+                col:"treatment_options",
+                value:JSON.stringify({
+                    drugInfo:drugInfo,
+                    otherDrug:otherDrug
+                })
+            }, function () {
+                callback();
+            });
+        },
+        saveData:function(callback){
+            this.saveResult(callback);
         }
     }
 })(config, functions);
 $(document).ready(function () {
-    $("#saveXueNongDu").click(function(){
-        var info=diagnoseProcess.getXueNongDuInfo();
-        functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
-            patientId: patientId,
-            type:"xueNongDu",
-            col:"check_result",
-            xueNongDu: JSON.stringify(info)
+    $("#toReturnInfo").click(function(){
+        diagnoseProcess.saveData(function(){
+            location.href="return-info/"+patientId;
         });
-
-        return false;
     });
-    $("#saveXueChangGui").click(function(){
-        var info=diagnoseProcess.geTableInfo($("#xueChangGuiTable tbody tr"));
-        functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
-            patientId: patientId,
-            type:"xueChangGui",
-            col:"check_result",
-            xueChangGui: JSON.stringify(info)
+    $("#pageLinkList .item").click(function(){
+        var href = $(this).attr("href");
+        diagnoseProcess.saveData(function(){
+            location.href = href;
         });
-
-        return false;
     });
-    $("#saveXueShengHua").click(function(){
-        var info=diagnoseProcess.geTableInfo($("#xueShengHuaTable tbody tr"));
-        functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
-            patientId: patientId,
-            type:"xueShengHua",
-            col:"check_result",
-            xueShengHua: JSON.stringify(info)
-        });
-
-        return false;
+    $("#myTabs a").click(function(){
+        diagnoseProcess.saveData();
     });
-    $("#saveOther").click(function(){
-        var info=functions.getInfo("other");
-        functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
-            patientId: patientId,
-            type:"other",
-            col:"check_result",
-            other: JSON.stringify(info)
-        });
 
-        return false;
-    });
+
     /**************************************************************/
     $("#drugInfoAdd").click(function () {
         var invalidFlag=false,info;
@@ -116,25 +124,17 @@ $(document).ready(function () {
             //提示信息
 
         } else {
-            info = diagnoseProcess.getDrugInfo();
 
-            info.push([
+            info=[
                 $("#drugInfoName").val(),
                 $("#drugInfoAmount").val() + $("#drugInfoFrequency").val(),
                 $("#drugInfoUnit").val() + $("#drugInfoFrequency1").val(),
                 $("#drugInfoStartDate").val(),
                 $("#drugInfoEndDate").val()
-            ]);
+            ];
 
-            functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
-                patientId: patientId,
-                type:"drugInfo",
-                col:"treatment_options",
-                drugInfo: JSON.stringify(info)
-            }, function () {
-                info = diagnoseProcess.createDrugInfoItem(info.pop());
-                $("#drugInfoTable tbody").append(info);
-            });
+            info = diagnoseProcess.createDrugInfoItem(info.pop());
+            $("#drugInfoTable tbody").append(info);
         }
 
         return false;
@@ -142,28 +142,8 @@ $(document).ready(function () {
 
     $("#drugInfoTable").on("click", ".deleteDrugInfo", function () {
         var tr=$(this).parents("tr");
-        var info = diagnoseProcess.getDrugInfo(tr.index());
+        tr.remove();
 
-        functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
-            patientId: patientId,
-            type:"drugInfo",
-            col:"treatment_options",
-            drugInfo: JSON.stringify(info)
-        }, function () {
-            tr.remove();
-        });
-
-        return false;
-    });
-    $("#saveOtherDrug").click(function(){
-        var info=$("#otherDrug").val();
-
-        functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
-            patientId: patientId,
-            type:"otherDrug",
-            col:"treatment_options",
-            otherDrug: info
-        });
         return false;
     });
 });

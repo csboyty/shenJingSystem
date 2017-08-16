@@ -76,11 +76,6 @@ $teShu=$type&&isset($type->teShu)?json_decode($type->teShu):null;
                             ?>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveBuWei" class="btn btn-primary form-control">保存</button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -203,11 +198,6 @@ $teShu=$type&&isset($type->teShu)?json_decode($type->teShu):null;
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveQuanMian" class="btn btn-primary form-control">保存</button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -277,11 +267,6 @@ $teShu=$type&&isset($type->teShu)?json_decode($type->teShu):null;
                             ?>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveBuNeng" class="btn btn-primary form-control">保存</button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -322,11 +307,6 @@ $teShu=$type&&isset($type->teShu)?json_decode($type->teShu):null;
                             }
 
                             ?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveTeShu" class="btn btn-primary form-control">保存</button>
                         </div>
                     </div>
                 </form>

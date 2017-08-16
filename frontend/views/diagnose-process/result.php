@@ -138,8 +138,6 @@ $other=isset($check_result->other)?json_decode($check_result->other):array();
                         </tr>
                     </tbody>
                 </table>
-                <br>
-                <button class="btn btn-primary col-md-offset-5 col-md-2" id="saveXueChangGui">保存</button>
             </div>
         </div>
     </div>
@@ -271,8 +269,6 @@ $other=isset($check_result->other)?json_decode($check_result->other):array();
                     </tr>
                     </tbody>
                 </table>
-                <br>
-                <button class="btn btn-primary col-md-offset-5 col-md-2" id="saveXueShengHua">保存</button>
             </div>
         </div>
     </div>
@@ -340,8 +336,6 @@ $other=isset($check_result->other)?json_decode($check_result->other):array();
                     </tr>
                     </tbody>
                 </table>
-                <br>
-                <button class="btn btn-primary col-md-offset-5 col-md-2" id="saveXueNongDu">保存</button>
             </div>
         </div>
     </div>
@@ -713,11 +707,6 @@ $other=isset($check_result->other)?json_decode($check_result->other):array();
                         <div class="col-md-8">
                             <textarea class="form-control"
                                       data-name-parent="other" name="other"><?= isset($other->other)?$other->other:""; ?></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" class="btn btn-primary form-control" id="saveOther">保存</button>
                         </div>
                     </div>
                 </form>

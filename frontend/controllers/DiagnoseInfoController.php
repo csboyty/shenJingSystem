@@ -60,43 +60,14 @@ class DiagnoseInfoController extends Controller
     public function actionInfoUpdate(){
         $params=Yii::$app->request->post();
         $model=$this->findModel($params["patientId"]);
-        $type=$params["type"];
         $col=$params["col"];
+        $info = $params["value"];
         if(!$model){
             $model=new DiagnoseInfo();
-            if($type){
-                $info=array($type=>$params[$type]);
-            }else{
-                $info=$params[$col];
-            }
 
             $model->patient_id=$params["patientId"];
-        }else{
-            if(isset($model->$col)){
-                $info=$model->$col;
-                $info=json_decode($info);
-                if($type){
-                    $info->$type=$params[$type];
-                }else{
-                    $info=$params[$col];
-                }
-
-            }else{
-                if($type){
-                    $info=array($type=>$params[$type]);
-                }else{
-                    $info=$params[$col];
-                }
-            }
         }
-
-        if($type){
-            $model->$col=json_encode($info);
-        }else{
-            $model->$col=$info;
-        }
-
-
+        $model->$col=$info;
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         if($model->save()){

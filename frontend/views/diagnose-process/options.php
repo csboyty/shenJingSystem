@@ -90,4 +90,3 @@ $drugInfos=$treatment_options?json_decode($treatment_options->drugInfo):array();
 <hr>
 <h2 class="text-own">其他用药</h2>
 <textarea style="width:100%;height: 200px;" id="otherDrug"><?= isset($treatment_options->otherDrug)?json_decode($treatment_options->otherDrug):""; ?></textarea>
-<button type="button" class="btn btn-primary" id="saveOtherDrug">保存</button>

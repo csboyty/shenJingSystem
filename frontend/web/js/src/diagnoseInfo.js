@@ -1,98 +1,76 @@
 var diagnoseInfo=(function(config,functions){
 
+    return {
+        saveType:function(callback){
+            var buNengFenLei = functions.getInfo("buNengFenLei"),
+                buFenFaZuo = functions.getInfo("buFenFaZuo"),
+                quanMianFaZuo = functions.getInfo("quanMianFaZuo");
+
+            var me = this;
+
+            functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
+                patientId: patientId,
+                col:"attack_type",
+                value: JSON.stringify({
+                    buNengFenLei:buNengFenLei,
+                    buFenFaZuo:buFenFaZuo,
+                    quanMianFaZuo:quanMianFaZuo
+                })
+            },function(data){
+                me.saveSeizureType(callback);
+            });
+        },
+        saveSeizureType:function(callback){
+            var buWei = functions.getInfo("buWei"),
+                quanMian = functions.getInfo("quanMian"),
+                buNeng = functions.getInfo("buNeng"),
+                teShu = functions.getInfo("teShu");
+
+            var me = this;
+
+            functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
+                patientId: patientId,
+                col:"type",
+                value:JSON.stringify({
+                    buWei:buWei,
+                    quanMian:quanMian,
+                    buNeng:buNeng,
+                    teShu:teShu
+                })
+            },function(data){
+                me.savePersistentSate(callback);
+            });
+        },
+        savePersistentSate:function(callback){
+            functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
+                patientId: patientId,
+                col:"status",
+                status: JSON.stringify(functions.getInfo("status"))
+            },function(data){
+                callback();
+            });
+        },
+        saveData:function(callback){
+            this.saveType(callback);
+        }
+    }
+
 })(config,functions);
 
 $(document).ready(function(){
-    $("#saveBuNengFenLei").click(function () {
-        var info=functions.getInfo("buNengFenLei");
-
-        functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
-            patientId: patientId,
-            type:"buNengFenLei",
-            col:"attack_type",
-            buNengFenLei: JSON.stringify(info)
+    $("#toDiagnoseProcess").click(function(){
+        diagnoseInfo.saveData(function(){
+            location.href="diagnose-process/"+patientId;
         });
-        return false;
     });
-    $("#saveBuFenFaZuo").click(function () {
-        var info=functions.getInfo("buFenFaZuo");
-
-        functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
-            patientId: patientId,
-            type:"buFenFaZuo",
-            col:"attack_type",
-            buFenFaZuo: JSON.stringify(info)
+    $("#pageLinkList .item").click(function(){
+        var href = $(this).attr("href");
+        diagnoseInfo.saveData(function(){
+            location.href = href;
         });
-        return false;
     });
-    $("#saveQuanMianFaZuo").click(function () {
-        var info=functions.getInfo("quanMianFaZuo");
-
-        functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
-            patientId: patientId,
-            type:"quanMianFaZuo",
-            col:"attack_type",
-            quanMianFaZuo: JSON.stringify(info)
-        });
-        return false;
+    $("#myTabs a").click(function(){
+        diagnoseInfo.saveData();
     });
 
-    /***************************************************************************/
-    $("#saveBuWei").click(function () {
-        var info=functions.getInfo("buWei");
-
-        functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
-            patientId: patientId,
-            type:"buWei",
-            col:"type",
-            buWei: JSON.stringify(info)
-        });
-        return false;
-    });
-    $("#saveQuanMian").click(function () {
-        var info=functions.getInfo("quanMian");
-
-        functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
-            patientId: patientId,
-            type:"quanMian",
-            col:"type",
-            quanMian: JSON.stringify(info)
-        });
-        return false;
-    });
-    $("#saveBuNeng").click(function () {
-        var info=functions.getInfo("buNeng");
-
-        functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
-            patientId: patientId,
-            type:"buNeng",
-            col:"type",
-            buNeng: JSON.stringify(info)
-        });
-        return false;
-    });
-    $("#saveTeShu").click(function () {
-        var info=functions.getInfo("teShu");
-
-        functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
-            patientId: patientId,
-            type:"teShu",
-            col:"type",
-            teShu: JSON.stringify(info)
-        });
-        return false;
-    });
-
-    /*******************************************************/
-    $("#saveStatus").click(function () {
-        var info=functions.getInfo("status");
-
-        functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
-            patientId: patientId,
-            type:"",
-            col:"status",
-            status: JSON.stringify(info)
-        });
-        return false;
-    });
 });
