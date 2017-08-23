@@ -7,7 +7,7 @@ $this->title = '基本信息';
             <?php
             if($model->id){
                 ?>
-                <input type="hidden" id="editId" value="<?= $model->id; ?>">
+                <input type="hidden" id="editId" name="id" value="<?= $model->id; ?>">
                 <input type="hidden" name="isEdit" value="true">
             <?php
             }
@@ -159,8 +159,11 @@ $this->title = '基本信息';
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-8">
+                <div class="col-md-offset-2 col-md-3">
                     <button type="button" class="btn btn-primary form-control" id="toMedicalInfo">》病史信息</button>
+                </div>
+                <div class="col-md-offset-2 col-md-3">
+                    <button type="button" class="btn btn-primary form-control" id="save">保存</button>
                 </div>
             </div>
         </form>

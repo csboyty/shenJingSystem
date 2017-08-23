@@ -2,11 +2,11 @@
 
 $performance_info=$medical?json_decode($medical->performance_info):null;
 
-$firstInfo=$performance_info&&isset($performance_info->firstInfo)?json_decode($performance_info->firstInfo):null;
+$firstInfo=$performance_info&&isset($performance_info->firstInfo)?$performance_info->firstInfo:null;
 
-$performance=$performance_info&&isset($performance_info->performance)?json_decode($performance_info->performance):null;
+$performance=$performance_info&&isset($performance_info->performance)?$performance_info->performance:null;
 
-$drugInfos=$performance_info&&isset($performance_info->drugInfo)?json_decode($performance_info->drugInfo):array();
+$drugInfos=$performance_info&&isset($performance_info->drugInfo)?$performance_info->drugInfo:array();
 
 ?>
 <div class="panel-group" id="accordionInfo" aria-multiselectable="true">
@@ -561,7 +561,7 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?json_decode($pe
                                     ?>
                                 </div>
                                 <div style="margin: 5px 0px;">
-                                    终止时间：<input type="date" name="stopDate" value="<?= $performance?$performance->stopDate:"";  ?>"
+                                    终止时间：<input type="date" name="stopDate" value="<?= isset($performance->stopDate)?$performance->stopDate:"";  ?>"
                                                 data-name-parent="performance" name="stopDate">
                                 </div>
                                 <div style="margin: 5px 0px;">

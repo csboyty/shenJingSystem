@@ -75,7 +75,9 @@ var medical = (function (config, functions) {
                     historyFamily:historyFamily
                 })
             },function(){
-                callback();
+                if(callback){
+                    callback();
+                }
             });
         },
         saveData:function(callback){
@@ -85,7 +87,11 @@ var medical = (function (config, functions) {
 })(config, functions);
 $(document).ready(function () {
 
-    $("#toDiagnoseInfo").click(function(){
+    setInterval(function(){
+        medical.saveData();
+    },50000);
+
+    $("#toDiagnoseInfo,#save").click(function(){
         medical.saveData(function(){
             location.href="diagnose-info/"+patientId;
         });
@@ -95,9 +101,6 @@ $(document).ready(function () {
         medical.saveData(function(){
             location.href = href;
         });
-    });
-    $("#myTabs a").click(function(){
-        medical.saveData();
     });
 
     $("#drugInfoAdd").click(function () {

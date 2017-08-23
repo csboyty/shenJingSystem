@@ -29,7 +29,7 @@ class ReturnInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['treatment_effect', 'check_result', 'patient_id'], 'string']
+            [['treatment_effect', 'check_result'], 'string']
         ];
     }
 

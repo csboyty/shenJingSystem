@@ -30,7 +30,7 @@ class DiagnoseInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['attack_type', 'type', 'status', 'patient_id'], 'string']
+            [['attack_type', 'type', 'status'], 'string']
         ];
     }
 

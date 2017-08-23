@@ -1,9 +1,9 @@
 <?php
 $examine_info=$medical?json_decode($medical->examine_info):null;
 
-$normal=$examine_info&&isset($examine_info->normal)?json_decode($examine_info->normal):null;
+$normal=$examine_info&&isset($examine_info->normal)?$examine_info->normal:null;
 
-$profession=$examine_info&&isset($examine_info->profession)?json_decode($examine_info->profession):null;
+$profession=$examine_info&&isset($examine_info->profession)?$examine_info->profession:null;
 
 
 ?>

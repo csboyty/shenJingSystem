@@ -1,11 +1,11 @@
 <?php
 $history_info=$medical?json_decode($medical->history_info):null;
 
-$historyPast=$history_info&&isset($history_info->historyPast)?json_decode($history_info->historyPast):null;
+$historyPast=$history_info&&isset($history_info->historyPast)?$history_info->historyPast:null;
 
-$historyPersonal=$history_info&&isset($history_info->historyPersonal)?json_decode($history_info->historyPersonal):null;
+$historyPersonal=$history_info&&isset($history_info->historyPersonal)?$history_info->historyPersonal:null;
 
-$historyFamily=$history_info&&isset($history_info->historyFamily)?json_decode($history_info->historyFamily):null;
+$historyFamily=$history_info&&isset($history_info->historyFamily)?$history_info->historyFamily:null;
 
 ?>
 <div class="panel-group" id="accordionHistory" aria-multiselectable="true">
@@ -193,7 +193,7 @@ $historyFamily=$history_info&&isset($history_info->historyFamily)?json_decode($h
                                 $parentArray=array("是","否");
                                 $parentSel="";
 
-                                if($historyFamily&&$historyFamily->parent){
+                                if(isset($historyFamily->parent)){
                                     $parentSel=$historyFamily->parent;
                                 }
 
@@ -223,7 +223,7 @@ $historyFamily=$history_info&&isset($history_info->historyFamily)?json_decode($h
                             $parentsArray=array("有","无");
                             $parentsSel="";
 
-                            if($historyFamily&&$historyFamily->parents){
+                            if(isset($historyFamily->parents)){
                                 $parentsSel=$historyFamily->parents;
                             }
 
@@ -251,10 +251,10 @@ $historyFamily=$history_info&&isset($history_info->historyFamily)?json_decode($h
                         <div class="col-md-8" id="uploadContainer">
                             <input type="file" id="uploadFile">
                             <br>
-                            <a id="file" href="<?= $historyFamily?$historyFamily->familyImage:""; ?>">
-                                <?= $historyFamily?$historyFamily->familyImage:""; ?>
+                            <a id="file" href="<?= isset($historyFamily->familyImage)?$historyFamily->familyImage:""; ?>">
+                                <?= isset($historyFamily->familyImage)?$historyFamily->familyImage:""; ?>
                             </a>
-                            <input type="hidden" value="<?= $historyFamily?$historyFamily->familyImage:""; ?>"
+                            <input type="hidden" value="<?= isset($historyFamily->familyImage)?$historyFamily->familyImage:""; ?>"
                                    data-name-parent="historyFamily"  name="familyImage" id="fileUrl">
                         </div>
                     </div>

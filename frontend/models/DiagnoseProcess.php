@@ -29,7 +29,7 @@ class DiagnoseProcess extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['check_result', 'treatment_options', 'patient_id'], 'string']
+            [['check_result', 'treatment_options'], 'string']
         ];
     }
 

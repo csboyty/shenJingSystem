@@ -30,7 +30,7 @@ class Medical extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['performance_info', 'history_info', 'examine_info', 'patient_id'], 'string']
+            [['performance_info', 'history_info', 'examine_info'], 'string']
         ];
     }
 
