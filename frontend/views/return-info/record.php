@@ -1,5 +1,5 @@
 <?php
-$this->title = $patient->fullname."病史信息";
+$this->title = $patient->fullname."随访信息";
 
 $xueChangGui=isset($record->xueChangGui)?$record->xueChangGui:array();
 $xueShengHua=isset($record->xueShengHua)?$record->xueShengHua:array();
@@ -7,6 +7,7 @@ $other=isset($record->other)?$record->other:null;
 ?>
 <script>
     var patientId="<?= $patient->id;  ?>";
+    var recordIndex = "<?= $recordIndex; ?>";
 </script>
 
 <a class="btn btn-primary" style="margin-bottom: 10px;" href="javascript:history.go(-1);">
@@ -370,8 +371,11 @@ $other=isset($record->other)?$record->other:null;
         </div>
     </div>
 
-    <br>
-    <button class="btn btn-primary col-md-offset-5 col-md-2" id="saveInfo">保存</button>
+    <br><br>
+    <div class="form-group">
+        <button class="btn btn-primary form-control" id="saveInfo">保存</button>
+    </div>
+
 </div>
 
 <?php

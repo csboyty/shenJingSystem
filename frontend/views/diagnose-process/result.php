@@ -2,10 +2,10 @@
 
 $check_result=$diagnoseProcess?json_decode($diagnoseProcess->check_result):null;
 
-$xueChangGui=isset($check_result->xueChangGui)?json_decode($check_result->xueChangGui):array();
-$xueShengHua=isset($check_result->xueShengHua)?json_decode($check_result->xueShengHua):array();
-$xueNongDu=isset($check_result->xueNongDu)?json_decode($check_result->xueNongDu):array();
-$other=isset($check_result->other)?json_decode($check_result->other):array();
+$xueChangGui=isset($check_result->xueChangGui)?$check_result->xueChangGui:array();
+$xueShengHua=isset($check_result->xueShengHua)?$check_result->xueShengHua:array();
+$xueNongDu=isset($check_result->xueNongDu)?$check_result->xueNongDu:array();
+$other=isset($check_result->other)?$check_result->other:array();
 
 ?>
 

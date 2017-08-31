@@ -2,13 +2,13 @@
 
 $type=$diagnoseInfo?json_decode($diagnoseInfo->type):null;
 
-$buWei=$type&&isset($type->buWei)?json_decode($type->buWei):null;
+$buWei=$type&&isset($type->buWei)?$type->buWei:null;
 
-$quanMian=$type&&isset($type->quanMian)?json_decode($type->quanMian):null;
+$quanMian=$type&&isset($type->quanMian)?$type->quanMian:null;
 
-$buNeng=$type&&isset($type->buNeng)?json_decode($type->buNeng):null;
+$buNeng=$type&&isset($type->buNeng)?$type->buNeng:null;
 
-$teShu=$type&&isset($type->teShu)?json_decode($type->teShu):null;
+$teShu=$type&&isset($type->teShu)?$type->teShu:null;
 
 ?>
 <div class="panel-group" id="accordionType" aria-multiselectable="true">

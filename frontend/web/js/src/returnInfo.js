@@ -30,10 +30,30 @@ var returnInfo = (function (config, functions) {
             ];
 
             return arr.join('');
+        },
+        saveData:function(callback){
+            var info = this.getEffectInfo();
+            functions.saveInfo(config.ajaxUrls.returnInfoUpdate, {
+                patientId: patientId,
+                col:"treatment_effect",
+                value: JSON.stringify(info)
+            }, function () {
+                if(callback){
+                    callback();
+                }
+            });
         }
     }
 })(config, functions);
 $(document).ready(function () {
+
+    setInterval(function(){
+        returnInfo.saveData();
+    },50000);
+
+    $("#save").click(function(){
+        returnInfo.saveData();
+    });
 
     $("#effectInfoAdd").click(function () {
         var invalidFlag=false,info;
@@ -50,25 +70,17 @@ $(document).ready(function () {
             //提示信息
 
         } else {
-            info = returnInfo.getEffectInfo();
 
-            info.unshift([
+            info=[
                 $("#effectInfoField1").val(),
                 $("#effectInfoField2").val(),
                 $("#effectInfoField3").val(),
                 $("#effectInfoField4").val(),
                 $("#effectInfoField5").val()
-            ]);
+            ];
 
-            functions.saveInfo(config.ajaxUrls.returnInfoUpdate, {
-                patientId: patientId,
-                type:"effectInfo",
-                col:"treatment_effect",
-                effectInfo: JSON.stringify(info)
-            }, function () {
-                info = returnInfo.createEffectInfoItem(info.pop());
-                $("#effectInfoTable tbody").prepend(info);
-            });
+            info = returnInfo.createEffectInfoItem(info);
+            $("#effectInfoTable tbody").prepend(info);
         }
 
         return false;
@@ -77,16 +89,7 @@ $(document).ready(function () {
     $("#effectInfoTable").on("click", ".deleteEffectInfo", function () {
         if(confirm(config.messages.confirmDelete)){
             var tr=$(this).parents("tr");
-            var info = returnInfo.getEffectInfo(tr.index());
-
-            functions.saveInfo(config.ajaxUrls.returnInfoUpdate, {
-                patientId: patientId,
-                type:"effectInfo",
-                col:"treatment_effect",
-                effectInfo: JSON.stringify(info)
-            }, function () {
-                tr.remove();
-            });
+            tr.remove();
         }
 
         return false;

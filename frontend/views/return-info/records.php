@@ -15,11 +15,11 @@ $check_result=isset($returnInfo->check_result)?json_decode($returnInfo->check_re
     </thead>
     <tbody>
     <?php
-        foreach($check_result as $key=>$value){
+        foreach($check_result as $cr){
             ?>
 
             <tr><td>
-                <a href="return-info/record?patientId=<?= $patient->id;  ?>&date=<?= $key; ?>"><?= $key; ?></a>
+                <a href="return-info/record?patientId=<?= $patient->id;  ?>&recordIndex=<?= $cr->recordIndex; ?>"><?= $cr->date; ?></a>
             </td></tr>
 
             <?php

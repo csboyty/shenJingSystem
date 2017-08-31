@@ -45,7 +45,7 @@ var diagnoseInfo=(function(config,functions){
             functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
                 patientId: patientId,
                 col:"status",
-                status: JSON.stringify(functions.getInfo("status"))
+                value: JSON.stringify(functions.getInfo("status"))
             },function(data){
                 callback();
             });
@@ -58,7 +58,10 @@ var diagnoseInfo=(function(config,functions){
 })(config,functions);
 
 $(document).ready(function(){
-    $("#toDiagnoseProcess").click(function(){
+    setInterval(function(){
+        diagnoseInfo.saveData();
+    },50000);
+    $("#toDiagnoseProcess,#save").click(function(){
         diagnoseInfo.saveData(function(){
             location.href="diagnose-process/"+patientId;
         });
@@ -68,9 +71,6 @@ $(document).ready(function(){
         diagnoseInfo.saveData(function(){
             location.href = href;
         });
-    });
-    $("#myTabs a").click(function(){
-        diagnoseInfo.saveData();
     });
 
 });

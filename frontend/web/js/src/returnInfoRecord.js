@@ -18,13 +18,18 @@ var returnInfoAdd = (function (config, functions) {
 $(document).ready(function () {
     $("#saveInfo").click(function(){
         var info={};
+        info.date= functions.formatDate("y-m-d");
         info.other=functions.getInfo("other");
         info.xueChangGui=returnInfoAdd.geTableInfo($("#xueChangGuiTable tbody tr"));
         info.xueShengHua=returnInfoAdd.geTableInfo($("#xueShengHuaTable tbody tr"));
 
         functions.saveInfo(config.ajaxUrls.returnInfoRecordSubmit, {
             patientId: patientId,
-            check_result: JSON.stringify(info)
+            col:"check_result",
+            recordIndex:recordIndex,
+            value: JSON.stringify(info)
+        },function(){
+            location.href="return-info/"+patientId;
         });
         return false;
     })

@@ -1,8 +1,6 @@
 <?php
 
-$treatment_effect=$returnInfo?json_decode($returnInfo->treatment_effect):null;
-
-$effectInfo=$treatment_effect&&isset($treatment_effect->effectInfo)?json_decode($treatment_effect->effectInfo):array();
+$treatment_effect=$returnInfo?json_decode($returnInfo->treatment_effect):array();
 
 ?>
 
@@ -39,7 +37,7 @@ $effectInfo=$treatment_effect&&isset($treatment_effect->effectInfo)?json_decode(
     <tbody>
     <?php
 
-    foreach($effectInfo as $di){
+    foreach($treatment_effect as $di){
         ?>
         <tr><td><?= $di[0] ?></td><td><?= $di[1] ?></td><td><?= $di[2] ?></td>
             <td><?= $di[3] ?></td>

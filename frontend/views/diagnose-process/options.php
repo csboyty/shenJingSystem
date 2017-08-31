@@ -2,7 +2,7 @@
 
 $treatment_options=$diagnoseProcess?json_decode($diagnoseProcess->treatment_options):null;
 
-$drugInfos=$treatment_options?json_decode($treatment_options->drugInfo):array();
+$drugInfos=$treatment_options?$treatment_options->drugInfo:array();
 
 ?>
 

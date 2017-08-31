@@ -1,11 +1,11 @@
 <?php
 $attack_type=$diagnoseInfo?json_decode($diagnoseInfo->attack_type):null;
 
-$buFenFaZuo=$attack_type&&isset($attack_type->buFenFaZuo)?json_decode($attack_type->buFenFaZuo):null;
+$buFenFaZuo=$attack_type&&isset($attack_type->buFenFaZuo)?$attack_type->buFenFaZuo:null;
 
-$quanMianFaZuo=$attack_type&&isset($attack_type->quanMianFaZuo)?json_decode($attack_type->quanMianFaZuo):null;
+$quanMianFaZuo=$attack_type&&isset($attack_type->quanMianFaZuo)?$attack_type->quanMianFaZuo:null;
 
-$buNengFenLei=$attack_type&&isset($attack_type->buNengFenLei)?json_decode($attack_type->buNengFenLei):null;
+$buNengFenLei=$attack_type&&isset($attack_type->buNengFenLei)?$attack_type->buNengFenLei:null;
 
 ?>
 
@@ -275,11 +275,6 @@ $buNengFenLei=$attack_type&&isset($attack_type->buNengFenLei)?json_decode($attac
                             }
 
                             ?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
-                            <button type="submit" id="saveQuanMianFaZuo" class="btn btn-primary form-control">保存</button>
                         </div>
                     </div>
                 </form>

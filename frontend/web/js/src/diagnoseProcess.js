@@ -53,9 +53,9 @@ var diagnoseProcess = (function (config, functions) {
             return arr.join('');
         },
         saveResult:function(callback){
-            var xueNongDu=diagnoseProcess.getXueNongDuInfo(),
-                xueChangGui=diagnoseProcess.getTableInfo($("#xueChangGuiTable tbody tr")),
-                xueShengHua=diagnoseProcess.geTableInfo($("#xueShengHuaTable tbody tr")),
+            var xueNongDu=this.getXueNongDuInfo(),
+                xueChangGui=this.getTableInfo($("#xueChangGuiTable tbody tr")),
+                xueShengHua=this.getTableInfo($("#xueShengHuaTable tbody tr")),
                 other=functions.getInfo("other");
             var me = this;
 
@@ -73,7 +73,7 @@ var diagnoseProcess = (function (config, functions) {
             });
         },
         saveOptions:function(callback){
-            var drugInfo = diagnoseProcess.getDrugInfo(),
+            var drugInfo = this.getDrugInfo(),
                 otherDrug = $("#otherDrug").val();
             functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
                 patientId: patientId,
@@ -92,7 +92,10 @@ var diagnoseProcess = (function (config, functions) {
     }
 })(config, functions);
 $(document).ready(function () {
-    $("#toReturnInfo").click(function(){
+    setInterval(function(){
+        diagnoseProcess.saveData();
+    },50000);
+    $("#toReturnInfo,#save").click(function(){
         diagnoseProcess.saveData(function(){
             location.href="return-info/"+patientId;
         });
@@ -102,9 +105,6 @@ $(document).ready(function () {
         diagnoseProcess.saveData(function(){
             location.href = href;
         });
-    });
-    $("#myTabs a").click(function(){
-        diagnoseProcess.saveData();
     });
 
 
