@@ -56,16 +56,18 @@ class ReturnInfoController extends Controller
     {
         $patient = $this->findPatientModel($patientId);
 
-        $date=isset($_GET["date"])?$_GET["date"]:null;
+        $recordIndex = isset($_GET["recordIndex"])?$_GET["recordIndex"]:null;
 
-        if(isset($date)){
+        if(isset($recordIndex)){
             $returnInfo = $this->findModel($patientId);
             $check_result=json_decode($returnInfo->check_result);
 
-            $record=json_decode($check_result->$date);
+            $record=$check_result[$recordIndex];
+
 
             return $this->render("record",[
                 'patient' => $patient,
+                'recordIndex' => $recordIndex,
                 'record'=>$record
             ]);
         }else{
@@ -78,22 +80,28 @@ class ReturnInfoController extends Controller
     public function actionRecordSubmit(){
         $params=Yii::$app->request->post();
         $model=$this->findModel($params["patientId"]);
-        $date=date("Y-m-d");
+        $info = json_decode($params["value"]);
+        $col = $params["col"];
+        $recordIndex = isset($params["recordIndex"])?$params["recordIndex"]:null;
         if(!$model){
             $model=new ReturnInfo();
-            $info=array($date=>$params["check_result"]);
             $model->patient_id=$params["patientId"];
+            $info->recordIndex = 0;
+            $model->$col = json_encode(array($info));
         }else{
-            if(isset($model->check_result)){
-                $info=$model->check_result;
-                $info=json_decode($info);
-                $info->$date=$params["check_result"];
+            $oldColValue = isset($model->$col)?json_decode($model->$col):array();
+            if(isset($recordIndex)){
+                $info->recordIndex = $recordIndex;
+                $oldColValue[$recordIndex] = $info;
             }else{
-                $info=array($date=>$params["check_result"]);
+                $count = count($oldColValue);
+                $recordIndex = $count;
+                $info->recordIndex = $recordIndex;
+                array_push($oldColValue,$info);
             }
-        }
 
-        $model->check_result=json_encode($info);
+            $model->$col = json_encode($oldColValue);
+        }
 
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -112,23 +120,14 @@ class ReturnInfoController extends Controller
     public function actionInfoUpdate(){
         $params=Yii::$app->request->post();
         $model=$this->findModel($params["patientId"]);
-        $type=$params["type"];
         $col=$params["col"];
+        $info=$params["value"];
         if(!$model){
             $model=new ReturnInfo();
-            $info=array($type=>$params[$type]);
             $model->patient_id=$params["patientId"];
-        }else{
-            if(isset($model->$col)){
-                $info=$model->$col;
-                $info=json_decode($info);
-                $info->$type=$params[$type];
-            }else{
-                $info=array($type=>$params[$type]);
-            }
         }
 
-        $model->$col=json_encode($info);
+        $model->$col=$info;
 
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
