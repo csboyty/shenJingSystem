@@ -52,42 +52,32 @@ var diagnoseProcess = (function (config, functions) {
 
             return arr.join('');
         },
-        saveResult:function(callback){
+        saveData:function(callback){
             var xueNongDu=this.getXueNongDuInfo(),
                 xueChangGui=this.getTableInfo($("#xueChangGuiTable tbody tr")),
                 xueShengHua=this.getTableInfo($("#xueShengHuaTable tbody tr")),
                 other=functions.getInfo("other");
+            var drugInfo = this.getDrugInfo(),
+                otherDrug = $("#otherDrug").val();
             var me = this;
 
             functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
                 patientId: patientId,
-                col:"check_result",
-                value: JSON.stringify({
+                check_result: JSON.stringify({
                     xueNongDu:xueNongDu,
                     xueChangGui:xueChangGui,
                     xueShengHua:xueShengHua,
                     other:other
-                })
-            },function(){
-                me.saveOptions(callback);
-            });
-        },
-        saveOptions:function(callback){
-            var drugInfo = this.getDrugInfo(),
-                otherDrug = $("#otherDrug").val();
-            functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
-                patientId: patientId,
-                col:"treatment_options",
-                value:JSON.stringify({
+                }),
+                treatment_options:JSON.stringify({
                     drugInfo:drugInfo,
                     otherDrug:otherDrug
                 })
-            }, function () {
-                callback();
+            },function(){
+                if(callback){
+                    callback();
+                }
             });
-        },
-        saveData:function(callback){
-            this.saveResult(callback);
         }
     }
 })(config, functions);

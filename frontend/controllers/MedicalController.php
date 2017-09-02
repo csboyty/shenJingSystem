@@ -56,14 +56,17 @@ class MedicalController extends Controller
     public function actionInfoUpdate(){
         $params=Yii::$app->request->post();
         $model=$this->findModel($params["patientId"]);
-        $col=$params["col"];
-        $info=$params["value"];
+        $performance_info=$params["performance_info"];
+        $examine_info = $params["examine_info"];
+        $history_info = $params["history_info"];
         if(!$model){
             $model=new Medical();
             $model->patient_id=$params["patientId"];
         }
 
-        $model->$col=$info;
+        $model->performance_info=$performance_info;
+        $model->examine_info=$examine_info;
+        $model->history_info=$history_info;
 
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;

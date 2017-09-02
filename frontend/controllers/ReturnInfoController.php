@@ -107,7 +107,8 @@ class ReturnInfoController extends Controller
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         if($model->save()){
             return [
-                "success"=>true
+                "success"=>true,
+                "recordIndex"=>$recordIndex
             ];
         }else{
             return [

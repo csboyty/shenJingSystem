@@ -31,7 +31,7 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?$performance_in
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-2">日期</label>
+                        <label class="control-label col-md-2">首次发作日期</label>
 
                         <div class="col-md-8">
                             <input type="date" class="form-control" value="<?= isset($firstInfo->date)?$firstInfo->date:""; ?>"
@@ -61,7 +61,7 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?$performance_in
                             <span>不易改变的因素</span>
                             <div>
                                 <?php
-                                    $elementUnChangeArray=array("性别","年龄","遗传因素","月经","妊娠","觉醒与睡眠");
+                                    $elementUnChangeArray=array("性别","年龄","遗传因素","月经","妊娠","觉醒与睡眠","其他");
                                     $elementUnChangeSel=array();
                                     if($performance&&isset($performance->elementUnChange)){
                                         $elementUnChangeSel=$performance->elementUnChange;
@@ -86,7 +86,7 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?$performance_in
                             <div>
 
                                 <?php
-                                $elementChangeArray=array("发热","饮酒","疲劳","缺睡","药物","停药","精神因素");
+                                $elementChangeArray=array("发热","饮酒","疲劳","缺睡","药物","停药","精神因素","其他");
                                 $elementChangeSel=array();
                                 if($performance&&isset($performance->elementChange)){
                                     $elementChangeSel=$performance->elementChange;
@@ -107,7 +107,7 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?$performance_in
 
                                 <?php
 
-                                if(in_array("感觉因素", $elementUnChangeSel)){
+                                if(in_array("感觉因素", $elementChangeSel)){
                                     $elementFeelChecked=" checked ";
                                     $elementFeelPanelClass="";
                                 }else{
@@ -116,7 +116,7 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?$performance_in
                                 }
 
                                 ?>
-
+                                    <br>
                                     <label class="checkbox-inline">
                                         <input type="checkbox" <?= $elementFeelChecked; ?> value="感觉因素" data-name-parent="performance" name="elementChange"
                                                class="ctrl" data-control-panel="elementCtrlPanel">感觉因素
@@ -147,11 +147,12 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?$performance_in
                                             ?>
                                         </div>
                                     </div>
+
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-2">发作前先兆*</label>
+                        <label class="control-label col-md-2">发作前先兆</label>
 
                         <div class="col-md-8">
                             <?php
@@ -212,13 +213,150 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?$performance_in
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">发作时表现*</label>
 
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">发作时间</label>
                         <div class="col-md-8">
                             <?php
-                            $performanceValuesArray=array("白天或睡前或睡眠中","神志清醒或神志不清醒","突然跌倒或摔倒",
-                                "自动症","感觉异常","精神异常");
+                            $dateArray=array("白天","睡前","睡眠");
+                            $dateSel=array();
+                            if($performance&&isset($performance->date)){
+                                $dateSel=$performance->date;
+                            }
+                            foreach($dateArray as $da){
+                                $dateChecked="";
+                                if(in_array($da, $dateSel)){
+                                    $dateChecked=" checked ";
+                                }
+                                ?>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" <?= $dateChecked; ?>  value="<?= $da; ?>"
+                                           data-name-parent="performance" name="date"><?= $da; ?>
+                                </label>
+
+                            <?php
+                            }
+                            ?>
+                            </div>
+                        </div>
+
+                    <div class="form-group">
+                            <label class="control-label col-md-2">神志</label>
+                            <div class="col-md-8">
+                                <?php
+                                $performanceShenZhiArray=array("清醒","意识障碍");
+                                $performanceShenZhiSel=array();
+                                if($performance&&isset($performance->shenZhi)){
+                                    $performanceShenZhiSel=$performance->shenZhi;
+                                }
+                                foreach($performanceShenZhiArray as $psv){
+                                    $performanceShenZhiChecked="";
+                                    if(in_array($psv, $performanceShenZhiSel)){
+                                        $performanceShenZhiChecked=" checked ";
+                                    }
+                                    ?>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" <?= $performanceShenZhiChecked; ?>  value="<?= $psv; ?>"
+                                               data-name-parent="performance" name="shenZhi"><?= $psv; ?>
+                                    </label>
+
+                                <?php
+                                }
+                                ?>
+
+                                </div>
+                        </div>
+
+
+                    <div class="form-group">
+
+                        <label class="control-label col-md-2">跌倒或摔倒</label>
+                        <div class="col-md-8">
+                            <?php
+                            $xianZhaoArray=array("无","有");
+                            $xianZhao="";
+                            if($performance&&isset($performance->xianZhao)){
+                                $xianZhao=$performance->xianZhao;
+                            }
+                            foreach($xianZhaoArray as $xz){
+                                $xianZhaoChecked="";
+                                if($xz==$xianZhao){
+                                    $xianZhaoChecked=" checked ";
+                                }
+                            ?>
+                            <label class="radio-inline">
+                                <input type="radio" <?= $xianZhaoChecked; ?> value="<?= $xz; ?>" data-name-parent="performance"
+                                       name="xianZhao"><?= $xz; ?>
+                            </label>
+                            <?php
+                            }
+                            ?>
+
+                        </div>
+                        </div>
+
+
+                    <div class="form-group">
+
+                        <label class="control-label col-md-2">大小便失禁</label>
+                        <div class="col-md-8">
+                            <?php
+                            $daXiaoBianArray=array("无","有");
+                            $daXiaoBian="";
+                            if($performance&&isset($performance->daXiaoBian)){
+                                $daXiaoBian=$performance->daXiaoBian;
+                            }
+                            foreach($daXiaoBianArray as $dxb){
+                                $daXiaoBianChecked="";
+                                if($dxb==$daXiaoBian){
+                                    $daXiaoBianChecked=" checked ";
+                                }
+                                ?>
+                                <label class="radio-inline">
+                                    <input type="radio" <?= $daXiaoBianChecked; ?> value="<?= $dxb; ?>" data-name-parent="performance"
+                                           name="daXiaoBian"><?= $dxb; ?>
+                                </label>
+                            <?php
+                            }
+                            ?>
+
+                        </div>
+                        </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">舌咬伤</label>
+                        <div class="col-md-8">
+                            <?php
+                            $sheYaoShangArray=array("无","有");
+                            $sheYaoShang="";
+                            if($performance&&isset($performance->sheYaoShang)){
+                                $sheYaoShang=$performance->sheYaoShang;
+                            }
+                            foreach($sheYaoShangArray as $sys){
+                                $sheYaoShangChecked="";
+                                if($sys==$sheYaoShang){
+                                    $sheYaoShangChecked=" checked ";
+                                }
+                                ?>
+                                <label class="radio-inline">
+                                    <input type="radio" <?= $sheYaoShangChecked; ?> value="<?= $sys; ?>" data-name-parent="performance"
+                                           name="sheYaoShang"><?= $sys; ?>
+                                </label>
+                            <?php
+                            }
+                            ?>
+
+                        </div>
+                        </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">典型发作表现</label>
+                        <div class="col-md-8">
+                            <?php
+                            $performanceValuesArray=array("强直-阵挛","强直","阵挛","失张力","自动症","感觉异常","精神异常","失神");
                             $performanceValuesSel=array();
                             if($performance&&isset($performance->performanceValues)){
                                 $performanceValuesSel=$performance->performanceValues;
@@ -239,53 +377,77 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?$performance_in
                             ?>
 
                             <?php
-
-                            if(in_array("短暂的强直或阵挛或失张力", $performanceValuesSel)){
-                                $shiLiChecked=" checked ";
-                                $shiLiPanelClass="";
+                            if(in_array("其他", $performanceValuesSel)){
+                                $fzQiTaChecked=" checked ";
+                                $fzQiTaPanelClass="";
                             }else{
-                                $shiLiChecked="";
-                                $shiLiPanelClass="hidden";
+                                $fzQiTaChecked="";
+                                $fzQiTaPanelClass="hidden";
                             }
 
                             ?>
-
                             <label class="checkbox-inline">
-                                <input type="checkbox" <?= $shiLiChecked; ?> value="短暂的强直或阵挛或失张力"
-                                       data-name-parent="performance" name="performanceValues"
-                                       class="ctrl" data-control-panel="performanceCtrlPanel">短暂的强直或阵挛或失张力
+                                <input type="checkbox" <?= $fzQiTaChecked; ?> value="其他"
+                                       data-name-parent="performance" name="faZuoQita" class="ctrl"
+                                       data-control-panel="performanceFaZuoQiTa">其他
                             </label>
+                            <div class="ctrlPanel <?= $fzQiTaPanelClass; ?>" id="performanceFaZuoQiTa">
+                                其他：<input type="text" value="<?= isset($performance->faZuoQiTa)?$performance->faZuoQiTa:""; ?>"
+                                          data-name-parent="performance" name="faZuoQiTa">
+                            </div>
+                        </div>
+                        </div>
 
 
-                            <div class="ctrlPanel <?= $shiLiPanelClass; ?>" id="performanceCtrlPanel">
-                                <span>短暂的强直或阵挛或失张力</span>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">发作部位</label>
+                        <div class="col-md-8">
+                            <?php
+                            $buWeiArray=array("左侧","右侧","双侧","面部","上肢","下肢");
+                            $buWeiSel=array();
+                            if($performance&&isset($performance->buWei)){
+                                $buWeiSel=$performance->buWei;
+                            }
+                            foreach($buWeiArray as $bw){
+                                $buWeiChecked="";
+                                if(in_array($bw, $dateSel)){
+                                    $buWeiChecked=" checked ";
+                                }
+                                ?>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" <?= $buWeiChecked; ?>  value="<?= $bw; ?>"
+                                           data-name-parent="performance" name="buWei"><?= $bw; ?>
+                                </label>
 
-                                <div>
-                                    <?php
-                                    $shortShiLiArray=array("左","右");
-                                    $shortShiLiSel=array();
-                                    if($performance&&isset($performance->shortShiLi)){
-                                        $shortShiLiSel=$performance->shortShiLi;
-                                    }
-                                    foreach($shortShiLiArray as $ssl){
-                                        $shortShiLiChecked="";
-                                        if(in_array($ssl, $shortShiLiSel)){
-                                            $shortShiLiChecked=" checked ";
-                                        }
-                                        ?>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" <?= $shortShiLiChecked; ?>  value="<?= $ssl; ?>"
-                                                   data-name-parent="performance" name="shortShiLi"><?= $ssl; ?>
-                                        </label>
-                                    <?php
-                                    }
-                                    ?>
-                                </div>
+                            <?php
+                            }
+                            ?>
+
+                            <?php
+                            if(in_array("其他", $buWeiSel)){
+                                $bwQiTaChecked=" checked ";
+                                $bwQiTaPanelClass="";
+                            }else{
+                                $bwQiTaChecked="";
+                                $bwQiTaPanelClass="hidden";
+                            }
+
+                            ?>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" <?= $bwQiTaChecked; ?> value="其他"
+                                       data-name-parent="performance" name="buWeiQita" class="ctrl"
+                                       data-control-panel="performanceBuWeiQiTa">其他
+                            </label>
+                            <div class="ctrlPanel <?= $bwQiTaPanelClass; ?>" id="performanceBuWeiQiTa">
+                                其他：<input type="text" value="<?= isset($performance->buWeiQiTa)?$performance->buWeiQiTa:""; ?>"
+                                          data-name-parent="performance" name="buWeiQiTa">
                             </div>
                         </div>
                     </div>
+
+
                     <div class="form-group">
-                        <label class="control-label col-md-2">每次发作持续时间*</label>
+                        <label class="control-label col-md-2">每次发作持续时间</label>
 
                         <div class="col-md-3">
                             <input type="text" class="form-control"
@@ -343,298 +505,107 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?$performance_in
                             </select>
                         </div>
                     </div>
+
+
                     <div class="form-group">
-                        <label for="name" class="control-label col-md-2">副作用</label>
+                        <label class="control-label col-md-2">癫痫持续状态</label>
+
                         <div class="col-md-8">
                             <?php
-                            $sideEffectArray=array("无","有");
-                            $sideEffect="";
-                            $sideEffectPanelClass="";
-                            $sideEffectDataValue=false;
-                            if($performance&&isset($performance->sideEffect)){
-                                $sideEffect=$performance->sideEffect;
+                            $chiXuArray=array("无","有");
+                            $chiXu="";
+                            $chiXuPanelClass="";
+                            $chiXuDataValue=false;
+                            if($performance&&isset($performance->chiXu)){
+                                $chiXu=$performance->chiXu;
                             }
-                            foreach($sideEffectArray as $se){
-                                $sideEffectChecked="";
-                                $sideEffectDataValue=false;
-                                if($se==$sideEffect){
-                                    $sideEffectChecked=" checked ";
+                            foreach($chiXuArray as $f){
+                                $chiXuChecked="";
+                                $chiXuDataValue=false;
+                                if($f==$chiXu){
+                                    $chiXuChecked=" checked ";
                                 }
-                                if($se=="有"){
-                                    $sideEffectDataValue=true;
+                                if($f=="有"){
+                                    $chiXuDataValue=true;
                                 }
                                 ?>
                                 <label class="radio-inline">
-                                    <input type="radio" <?= $sideEffectChecked; ?> value="<?= $se; ?>" class="ctrl" data-name-parent="performance"
-                                           data-value="<?= $sideEffectDataValue; ?>" data-control-panel="sideEffectCtrlPanel"
-                                           name="sideEffect"><?= $se; ?>
+                                    <input type="radio" <?= $chiXuChecked; ?> value="<?= $f; ?>" class="ctrl" data-name-parent="performance"
+                                           data-value="<?= $chiXuDataValue; ?>" data-control-panel="chiXuCtrlPanel" name="chiXu"><?= $f; ?>
                                 </label>
                             <?php
                             }
 
-                            if($sideEffect=="有"){
-                                $sideEffectPanelClass="";
+                            if($chiXu=="有"){
+                                $chiXuPanelClass="";
                             }else{
-                                $sideEffectPanelClass="hidden";
+                                $chiXuPanelClass="hidden";
                             }
                             ?>
-                            <div id="sideEffectCtrlPanel" class="<?= $sideEffectPanelClass; ?> ">
-                                <span style="vertical-align: bottom">能否忍受：</span>
-                                <?php
-                                $sideEffectTypeArray=array("能","不能");
-                                $sideEffectType="";
-                                $sideEffectTypePanelClass="";
-                                $sideEffectTypeDataValue=false;
-                                if($performance&&isset($performance->sideEffectType)){
-                                    $sideEffectType=$performance->sideEffectType;
-                                }
-                                foreach($sideEffectTypeArray as $set){
-                                    $sideEffectTypeChecked="";
-                                    $sideEffectTypeDataValue=false;
-                                    if($set==$sideEffectType){
-                                        $sideEffectTypeChecked=" checked ";
-                                    }
-                                    if($set=="不能"){
-                                        $sideEffectTypeDataValue=true;
-                                    }
-                                    ?>
-                                    <label class="radio-inline">
-                                        <input type="radio" <?= $sideEffectTypeChecked; ?> value="<?= $set; ?>" class="ctrl" data-name-parent="performance"
-                                               data-value="<?= $sideEffectTypeDataValue; ?>" data-control-panel="sideEffectCtrl1Panel"
-                                               name="sideEffectType"><?= $set; ?>
-                                    </label>
-                                <?php
-                                }
 
-                                if($sideEffectType=="不能"){
-                                    $sideEffectTypePanelClass="";
-                                }else{
-                                    $sideEffectTypePanelClass="hidden";
-                                }
-                                ?>
-                            </div>
-                            <div id="sideEffectCtrl1Panel" class="<?= $sideEffectTypePanelClass; ?>">
-                                <span style="vertical-align: bottom">表现：</span>
+                            <div id="chiXuCtrlPanel" class="ctrlPanel <?=$chiXuPanelClass; ?>">
+
+                                <span style="vertical-align: bottom">发作次数：</span>
+                                <input style="text" data-name-parent="performance" name="chiXuCiShu"
+                                       value="<?= isset($performance->chiXuCiShu)?$performance->chiXuCiShu:""; ?>">
+                                <br>
+                                <span style="vertical-align: bottom">类型：</span>
+
                                 <?php
-                                $sideEffectTypeValuesArray=array("胃肠道紊乱","神经精神反应","肝毒性","体重增加或减轻",
-                                    "血液紊乱","引起发作加重","心血管反应","皮疹");
-                                $sideEffectTypeValuesSel=array();
-                                if($performance&&isset($performance->sideEffectTypeValues)){
-                                    $sideEffectTypeValuesSel=$performance->sideEffectTypeValues;
+                                $chiXuValuesArray=array("幻嗅","幻视","幻听","胃气上升","头晕","其他");
+                                $chiXuValuesSel=array();
+                                if($performance&&isset($performance->chiXuValues)){
+                                    $chiXuValuesSel=$performance->chiXuValues;
                                 }
-                                foreach($sideEffectTypeValuesArray as $setv){
-                                    $sideEffectTypeValuesChecked="";
-                                    if(in_array($setv, $sideEffectTypeValuesSel)){
-                                        $sideEffectTypeValuesChecked=" checked ";
+                                foreach($chiXuValuesArray as $fv){
+                                    $chiXuValuesChecked="";
+                                    if(in_array($fv, $chiXuValuesSel)){
+                                        $chiXuValuesChecked=" checked ";
                                     }
                                     ?>
                                     <label class="checkbox-inline">
-                                        <input type="checkbox" <?= $sideEffectTypeValuesChecked; ?>  value="<?= $setv; ?>"
-                                               data-name-parent="performance" name="sideEffectTypeValues"><?= $setv; ?>
+                                        <input type="checkbox" <?= $chiXuValuesChecked; ?>  value="<?= $fv; ?>"
+                                               data-name-parent="performance" name="chiXuValues"><?= $fv; ?>
                                     </label>
                                 <?php
                                 }
                                 ?>
+
                             </div>
                         </div>
                     </div>
+
+
                     <div class="form-group">
-                        <label for="name" class="control-label col-md-2">患者依存性</label>
-
-                        <div class="col-md-8">
-                            <?php
-                            $dependencyArray=array("好","不好");
-                            $dependency="";
-                            $dependencyPanelClass="";
-                            $dependencyDataValue=false;
-                            if($performance&&isset($performance->dependency)){
-                                $dependency=$performance->dependency;
-                            }
-                            foreach($dependencyArray as $dv){
-                                $dependencyChecked="";
-                                $dependencyDataValue=false;
-                                if($dv==$dependency){
-                                    $dependencyChecked=" checked ";
-                                }
-                                if($dv=="不好"){
-                                    $dependencyDataValue=true;
-                                }
-                                ?>
-                                <label class="radio-inline">
-                                    <input type="radio" <?= $dependencyChecked; ?> value="<?= $dv; ?>" class="ctrl" data-name-parent="performance"
-                                           data-value="<?= $dependencyDataValue; ?>" data-control-panel="dependencyCtrlPanel"
-                                           name="dependency"><?= $dv; ?>
-                                </label>
-                            <?php
-                            }
-
-                            if($dependency=="不好"){
-                                $dependencyPanelClass="";
-                            }else{
-                                $dependencyPanelClass="hidden";
-                            }
-                            ?>
-
-                            <div id="dependencyCtrlPanel" class="<?= $dependencyPanelClass; ?>">
-                                <span style="vertical-align: bottom">工作学习的影响 ：</span>
+                        <label class="control-label col-md-2">发作视频</label>
+                        <div class="col-md-8" id="uploadContainer">
+                            <input type="file" id="uploadFaZuoFile">
+                            <br>
+                            <div id="faZuoFiles">
                                 <?php
-                                $dependencyWorkEffectArray=array("无","有","严重影响");
-                                $dependencyWorkEffect="";
-                                if($performance&&isset($performance->dependencyWorkEffect)){
-                                    $dependencyWorkEffect=$performance->dependencyWorkEffect;
+                                $faZuoShiPin=array();
+                                if($performance&&isset($performance->faZuoShiPin)){
+                                    $faZuoShiPin=$performance->faZuoShiPin;
                                 }
-                                foreach($dependencyWorkEffectArray as $dwe){
-                                    $dependencyWorkEffectChecked="";
-                                    if($dwe==$dependencyWorkEffect){
-                                        $dependencyWorkEffectChecked=" checked ";
-                                    }
+                                foreach($faZuoShiPin as $key=>$value){
+
                                     ?>
-                                    <label class="radio-inline">
-                                        <input type="radio" <?= $dependencyWorkEffectChecked; ?> value="<?= $dwe; ?>"
-                                               data-name-parent="performance" name="dependencyWorkEffect"><?= $dwe; ?>
-                                    </label>
+                                    <a id="faZuoFile" target="_blank" href="<?= $value; ?>">
+                                        视频<?= $key; ?>
+
+                                        <input type="hidden" value="<?= $value; ?>"
+                                               name="faZuoShiPin">
+                                    </a>
                                 <?php
                                 }
-
                                 ?>
                             </div>
+
+
+
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="name" class="control-label col-md-2">终止治疗</label>
 
-                        <div class="col-md-8">
-                            <?php
-                            $stopArray=array("否","是");
-                            $stop="";
-                            $stopPanelClass="";
-                            $stopDataValue=false;
-                            if($performance&&isset($performance->stop)){
-                                $stop=$performance->stop;
-                            }
-                            foreach($stopArray as $ta){
-                                $stopChecked="";
-                                $stopDataValue=false;
-
-                                if($ta==$stop){
-                                    $stopChecked=" checked ";
-                                }
-                                if($ta=="是"){
-                                    $stopDataValue=true;
-                                }
-                                ?>
-                                <label class="radio-inline">
-                                    <input type="radio" <?= $stopChecked; ?> value="<?= $ta; ?>" class="ctrl" data-value="<?= $stopDataValue; ?>"
-                                           data-name-parent="performance" name="stop" data-control-panel="stopCtrlPanel"><?= $ta; ?>
-                                </label>
-                            <?php
-                            }
-                            if($stop=="是"){
-                                $stopPanelClass="";
-                            }else{
-                                $stopPanelClass="hidden";
-                            }
-                            ?>
-
-                            <div id="stopCtrlPanel" class="<?= $stopPanelClass; ?>">
-                                <div>
-                                    <span style="vertical-align: bottom">原因 ：</span>
-                                    <?php
-                                    $stopElementArray=array("疗效差","不能耐受的副作用","认为西医治疗药物副作用大，迷信祖传秘方",
-                                        "打算结婚或生子","经济困难","其他");
-                                    $stopElement="";
-                                    if($performance&&isset($performance->stopElement)){
-                                        $stopElement=$performance->stopElement;
-                                    }
-                                    foreach($stopElementArray as $sea){
-                                        $stopElementChecked="";
-                                        if($sea==$stopElement){
-                                            $stopElementChecked=" checked ";
-                                        }
-                                        ?>
-                                        <label class="radio-inline">
-                                            <input type="radio" <?= $stopElementChecked; ?> value="<?= $sea; ?>"
-                                                   data-name-parent="performance" name="stopElement"><?= $sea; ?>
-                                        </label>
-                                    <?php
-                                    }
-                                    ?>
-                                </div>
-                                <div style="margin: 5px 0px;">
-                                    终止时间：<input type="date" name="stopDate" value="<?= isset($performance->stopDate)?$performance->stopDate:"";  ?>"
-                                                data-name-parent="performance" name="stopDate">
-                                </div>
-                                <div style="margin: 5px 0px;">
-                                    终止后措施：
-                                    <ul style="margin: 5px 0px;" class="list">
-                                        <?php
-                                        $stopMeasure="";
-                                        $stopMeasureValue="";
-                                        if($performance&&isset($performance->stopMeasure)){
-                                            $stopMeasure=$performance->stopMeasure;
-                                            $stopMeasureValue=$performance->stopMeasureValue;
-                                        }
-                                        ?>
-                                        <li>
-                                            <?php
-                                                if($stopMeasure=="换药或加药"){
-                                                    ?>
-                                                    <input type="radio" checked name="stopMeasure" data-name-parent="performance"
-                                                           value="换药或加药"><label class="name">换药或加药</label>
-                                                    <input type="text" name="stopMeasureValue"
-                                                           value="<?= $stopMeasureValue; ?>" data-name-parent="performance" >
-                                                    <?php
-                                                }else{
-                                                    ?>
-                                                    <input type="radio" name="stopMeasure" data-name-parent="performance"
-                                                           value="换药或加药"><label class="name">换药或加药</label>
-                                                    <input type="text" name="stopMeasureValue" data-name-parent="performance" >
-                                                    <?php
-                                                }
-                                            ?>
-
-                                        </li>
-                                        <li>
-                                            <?php
-                                            if($stopMeasure=="其他疗法"){
-                                                ?>
-                                                <input type="radio" checked name="stopMeasure" data-name-parent="performance" value="其他疗法"><label class="name">其他疗法</label>
-                                                <select name="stopMeasureValue" data-name-parent="performance">
-                                                    <?php
-                                                    $stopMeasureValueArray=array("中药","祖传秘方","偏方");
-                                                    foreach($stopMeasureValueArray as $smv){
-                                                        $smOptionSel="";
-                                                        if($smv==$stopMeasureValue){
-                                                            $smOptionSel=" selected ";
-                                                        }
-                                                        ?>
-
-                                                        <option <?= $smOptionSel; ?> value="<?= $smv; ?>"><?= $smv; ?></option>
-
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                                <?php
-                                            }else{
-                                                ?>
-                                                <input type="radio" name="stopMeasure" data-name-parent="performance" value="其他疗法"><label class="name">其他疗法</label>
-                                                <select name="stopMeasureValue" data-name-parent="performance">
-                                                    <option value="中药">中药</option>
-                                                    <option value="祖传秘方">祖传秘方</option>
-                                                    <option value="偏方">偏方</option>
-                                                </select>
-                                            <?php
-                                            }
-
-                                            ?>
-
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -652,7 +623,302 @@ $drugInfos=$performance_info&&isset($performance_info->drugInfo)?$performance_in
         </div>
         <div id="collapseThreeInfo" class="panel-collapse collapse in" aria-labelledby="headingThreeInfo">
             <div class="panel-body">
+                <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="control-label col-md-2">副作用</label>
+                    <div class="col-md-8">
+                        <?php
+                        $sideEffectArray=array("无","有");
+                        $sideEffect="";
+                        $sideEffectPanelClass="";
+                        $sideEffectDataValue=false;
+                        if($performance&&isset($performance->sideEffect)){
+                            $sideEffect=$performance->sideEffect;
+                        }
+                        foreach($sideEffectArray as $se){
+                            $sideEffectChecked="";
+                            $sideEffectDataValue=false;
+                            if($se==$sideEffect){
+                                $sideEffectChecked=" checked ";
+                            }
+                            if($se=="有"){
+                                $sideEffectDataValue=true;
+                            }
+                            ?>
+                            <label class="radio-inline">
+                                <input type="radio" <?= $sideEffectChecked; ?> value="<?= $se; ?>" class="ctrl" data-name-parent="performance"
+                                       data-value="<?= $sideEffectDataValue; ?>" data-control-panel="sideEffectCtrlPanel"
+                                       name="sideEffect"><?= $se; ?>
+                            </label>
+                        <?php
+                        }
+
+                        if($sideEffect=="有"){
+                            $sideEffectPanelClass="";
+                        }else{
+                            $sideEffectPanelClass="hidden";
+                        }
+                        ?>
+                        <div id="sideEffectCtrlPanel" class="<?= $sideEffectPanelClass; ?> ">
+                            <span style="vertical-align: bottom">能否忍受：</span>
+                            <?php
+                            $sideEffectTypeArray=array("能","不能");
+                            $sideEffectType="";
+                            $sideEffectTypePanelClass="";
+                            $sideEffectTypeDataValue=false;
+                            if($performance&&isset($performance->sideEffectType)){
+                                $sideEffectType=$performance->sideEffectType;
+                            }
+                            foreach($sideEffectTypeArray as $set){
+                                $sideEffectTypeChecked="";
+                                $sideEffectTypeDataValue=false;
+                                if($set==$sideEffectType){
+                                    $sideEffectTypeChecked=" checked ";
+                                }
+                                if($set=="不能"){
+                                    $sideEffectTypeDataValue=true;
+                                }
+                                ?>
+                                <label class="radio-inline">
+                                    <input type="radio" <?= $sideEffectTypeChecked; ?> value="<?= $set; ?>" class="ctrl" data-name-parent="performance"
+                                           data-value="<?= $sideEffectTypeDataValue; ?>" data-control-panel="sideEffectCtrl1Panel"
+                                           name="sideEffectType"><?= $set; ?>
+                                </label>
+                            <?php
+                            }
+
+                            if($sideEffectType=="不能"){
+                                $sideEffectTypePanelClass="";
+                            }else{
+                                $sideEffectTypePanelClass="hidden";
+                            }
+                            ?>
+                        </div>
+                        <div id="sideEffectCtrl1Panel" class="<?= $sideEffectTypePanelClass; ?>">
+                            <span style="vertical-align: bottom">表现：</span>
+                            <?php
+                            $sideEffectTypeValuesArray=array("胃肠道紊乱","神经精神反应","肝毒性","体重增加或减轻",
+                                "血液紊乱","引起发作加重","心血管反应","皮疹");
+                            $sideEffectTypeValuesSel=array();
+                            if($performance&&isset($performance->sideEffectTypeValues)){
+                                $sideEffectTypeValuesSel=$performance->sideEffectTypeValues;
+                            }
+                            foreach($sideEffectTypeValuesArray as $setv){
+                                $sideEffectTypeValuesChecked="";
+                                if(in_array($setv, $sideEffectTypeValuesSel)){
+                                    $sideEffectTypeValuesChecked=" checked ";
+                                }
+                                ?>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" <?= $sideEffectTypeValuesChecked; ?>  value="<?= $setv; ?>"
+                                           data-name-parent="performance" name="sideEffectTypeValues"><?= $setv; ?>
+                                </label>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label col-md-2">患者依存性</label>
+
+                    <div class="col-md-8">
+                        <?php
+                        $dependencyArray=array("好","不好");
+                        $dependency="";
+                        $dependencyPanelClass="";
+                        $dependencyDataValue=false;
+                        if($performance&&isset($performance->dependency)){
+                            $dependency=$performance->dependency;
+                        }
+                        foreach($dependencyArray as $dv){
+                            $dependencyChecked="";
+                            $dependencyDataValue=false;
+                            if($dv==$dependency){
+                                $dependencyChecked=" checked ";
+                            }
+                            if($dv=="不好"){
+                                $dependencyDataValue=true;
+                            }
+                            ?>
+                            <label class="radio-inline">
+                                <input type="radio" <?= $dependencyChecked; ?> value="<?= $dv; ?>" class="ctrl" data-name-parent="performance"
+                                       data-value="<?= $dependencyDataValue; ?>" data-control-panel="dependencyCtrlPanel"
+                                       name="dependency"><?= $dv; ?>
+                            </label>
+                        <?php
+                        }
+
+                        if($dependency=="不好"){
+                            $dependencyPanelClass="";
+                        }else{
+                            $dependencyPanelClass="hidden";
+                        }
+                        ?>
+
+                        <div id="dependencyCtrlPanel" class="<?= $dependencyPanelClass; ?>">
+                            <span style="vertical-align: bottom">工作学习的影响 ：</span>
+                            <?php
+                            $dependencyWorkEffectArray=array("无","有","严重影响");
+                            $dependencyWorkEffect="";
+                            if($performance&&isset($performance->dependencyWorkEffect)){
+                                $dependencyWorkEffect=$performance->dependencyWorkEffect;
+                            }
+                            foreach($dependencyWorkEffectArray as $dwe){
+                                $dependencyWorkEffectChecked="";
+                                if($dwe==$dependencyWorkEffect){
+                                    $dependencyWorkEffectChecked=" checked ";
+                                }
+                                ?>
+                                <label class="radio-inline">
+                                    <input type="radio" <?= $dependencyWorkEffectChecked; ?> value="<?= $dwe; ?>"
+                                           data-name-parent="performance" name="dependencyWorkEffect"><?= $dwe; ?>
+                                </label>
+                            <?php
+                            }
+
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label col-md-2">终止治疗</label>
+
+                    <div class="col-md-8">
+                        <?php
+                        $stopArray=array("否","是");
+                        $stop="";
+                        $stopPanelClass="";
+                        $stopDataValue=false;
+                        if($performance&&isset($performance->stop)){
+                            $stop=$performance->stop;
+                        }
+                        foreach($stopArray as $ta){
+                            $stopChecked="";
+                            $stopDataValue=false;
+
+                            if($ta==$stop){
+                                $stopChecked=" checked ";
+                            }
+                            if($ta=="是"){
+                                $stopDataValue=true;
+                            }
+                            ?>
+                            <label class="radio-inline">
+                                <input type="radio" <?= $stopChecked; ?> value="<?= $ta; ?>" class="ctrl" data-value="<?= $stopDataValue; ?>"
+                                       data-name-parent="performance" name="stop" data-control-panel="stopCtrlPanel"><?= $ta; ?>
+                            </label>
+                        <?php
+                        }
+                        if($stop=="是"){
+                            $stopPanelClass="";
+                        }else{
+                            $stopPanelClass="hidden";
+                        }
+                        ?>
+
+                        <div id="stopCtrlPanel" class="<?= $stopPanelClass; ?>">
+                            <div>
+                                <span style="vertical-align: bottom">原因 ：</span>
+                                <?php
+                                $stopElementArray=array("疗效差","不能耐受的副作用","认为西医治疗药物副作用大，迷信祖传秘方",
+                                    "打算结婚或生子","经济困难","其他");
+                                $stopElement="";
+                                if($performance&&isset($performance->stopElement)){
+                                    $stopElement=$performance->stopElement;
+                                }
+                                foreach($stopElementArray as $sea){
+                                    $stopElementChecked="";
+                                    if($sea==$stopElement){
+                                        $stopElementChecked=" checked ";
+                                    }
+                                    ?>
+                                    <label class="radio-inline">
+                                        <input type="radio" <?= $stopElementChecked; ?> value="<?= $sea; ?>"
+                                               data-name-parent="performance" name="stopElement"><?= $sea; ?>
+                                    </label>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                            <div style="margin: 5px 0px;">
+                                终止时间：<input type="date" name="stopDate" value="<?= isset($performance->stopDate)?$performance->stopDate:"";  ?>"
+                                            data-name-parent="performance" name="stopDate">
+                            </div>
+                            <div style="margin: 5px 0px;">
+                                终止后措施：
+                                <ul style="margin: 5px 0px;" class="list">
+                                    <?php
+                                    $stopMeasure="";
+                                    $stopMeasureValue="";
+                                    if($performance&&isset($performance->stopMeasure)){
+                                        $stopMeasure=$performance->stopMeasure;
+                                        $stopMeasureValue=$performance->stopMeasureValue;
+                                    }
+                                    ?>
+                                    <li>
+                                        <?php
+                                        if($stopMeasure=="换药或加药"){
+                                            ?>
+                                            <input type="radio" checked name="stopMeasure" data-name-parent="performance"
+                                                   value="换药或加药"><label class="name">换药或加药</label>
+                                            <input type="text" name="stopMeasureValue"
+                                                   value="<?= $stopMeasureValue; ?>" data-name-parent="performance" >
+                                        <?php
+                                        }else{
+                                            ?>
+                                            <input type="radio" name="stopMeasure" data-name-parent="performance"
+                                                   value="换药或加药"><label class="name">换药或加药</label>
+                                            <input type="text" name="stopMeasureValue" data-name-parent="performance" >
+                                        <?php
+                                        }
+                                        ?>
+
+                                    </li>
+                                    <li>
+                                        <?php
+                                        if($stopMeasure=="其他疗法"){
+                                            ?>
+                                            <input type="radio" checked name="stopMeasure" data-name-parent="performance" value="其他疗法"><label class="name">其他疗法</label>
+                                            <select name="stopMeasureValue" data-name-parent="performance">
+                                                <?php
+                                                $stopMeasureValueArray=array("中药","祖传秘方","偏方");
+                                                foreach($stopMeasureValueArray as $smv){
+                                                    $smOptionSel="";
+                                                    if($smv==$stopMeasureValue){
+                                                        $smOptionSel=" selected ";
+                                                    }
+                                                    ?>
+
+                                                    <option <?= $smOptionSel; ?> value="<?= $smv; ?>"><?= $smv; ?></option>
+
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        <?php
+                                        }else{
+                                            ?>
+                                            <input type="radio" name="stopMeasure" data-name-parent="performance" value="其他疗法"><label class="name">其他疗法</label>
+                                            <select name="stopMeasureValue" data-name-parent="performance">
+                                                <option value="中药">中药</option>
+                                                <option value="祖传秘方">祖传秘方</option>
+                                                <option value="偏方">偏方</option>
+                                            </select>
+                                        <?php
+                                        }
+
+                                        ?>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
                 <form class="form-inline" id="drugInfoForm">
+
                     <div class="form-group">
                         <select class="form-control" id="drugInfoName">
                             <option value="卡马西平">卡马西平</option>

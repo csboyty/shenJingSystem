@@ -25,6 +25,30 @@ $this->title = '基本信息';
                 </div>
             </div>
             <div class="form-group">
+                <label for="name" class="control-label col-md-2">门诊号</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" name="patient_no" value="<?= $model->patient_no; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label col-md-2">住院号</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" name="ad" value="<?= $model->ad; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label col-md-2">血DNA标本号</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" name="dna_no" value="<?= $model->dna_no; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label col-md-2">其他标本号</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" name="other_no" value="<?= $model->other_no; ?>">
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="name" class="control-label col-md-2">姓名</label>
                 <div class="col-md-8">
                     <input type="text" class="form-control" name="fullname" value="<?= $model->fullname; ?>">
@@ -156,6 +180,18 @@ $this->title = '基本信息';
                 <label for="name" class="control-label col-md-2">联系电话</label>
                 <div class="col-md-8">
                     <input type="text" class="form-control" name="tel" value="<?= $model->tel; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label col-md-2">qq</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="qq" value="<?= $model->qq; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label col-md-2">微信</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="weixin" value="<?= $model->weixin; ?>">
                 </div>
             </div>
             <div class="form-group">

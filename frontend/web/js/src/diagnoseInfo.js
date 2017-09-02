@@ -1,26 +1,10 @@
 var diagnoseInfo=(function(config,functions){
 
     return {
-        saveType:function(callback){
+        saveData:function(callback){
             var buNengFenLei = functions.getInfo("buNengFenLei"),
                 buFenFaZuo = functions.getInfo("buFenFaZuo"),
                 quanMianFaZuo = functions.getInfo("quanMianFaZuo");
-
-            var me = this;
-
-            functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
-                patientId: patientId,
-                col:"attack_type",
-                value: JSON.stringify({
-                    buNengFenLei:buNengFenLei,
-                    buFenFaZuo:buFenFaZuo,
-                    quanMianFaZuo:quanMianFaZuo
-                })
-            },function(data){
-                me.saveSeizureType(callback);
-            });
-        },
-        saveSeizureType:function(callback){
             var buWei = functions.getInfo("buWei"),
                 quanMian = functions.getInfo("quanMian"),
                 buNeng = functions.getInfo("buNeng"),
@@ -30,28 +14,23 @@ var diagnoseInfo=(function(config,functions){
 
             functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
                 patientId: patientId,
-                col:"type",
-                value:JSON.stringify({
+                attack_type: JSON.stringify({
+                    buNengFenLei:buNengFenLei,
+                    buFenFaZuo:buFenFaZuo,
+                    quanMianFaZuo:quanMianFaZuo
+                }),
+                type:JSON.stringify({
                     buWei:buWei,
                     quanMian:quanMian,
                     buNeng:buNeng,
                     teShu:teShu
-                })
+                }),
+                status:JSON.stringify(functions.getInfo("status"))
             },function(data){
-                me.savePersistentSate(callback);
+                if(callback){
+                    callback(data);
+                }
             });
-        },
-        savePersistentSate:function(callback){
-            functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
-                patientId: patientId,
-                col:"status",
-                value: JSON.stringify(functions.getInfo("status"))
-            },function(data){
-                callback();
-            });
-        },
-        saveData:function(callback){
-            this.saveType(callback);
         }
     }
 

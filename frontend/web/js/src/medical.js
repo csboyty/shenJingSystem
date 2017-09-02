@@ -27,49 +27,41 @@ var medical = (function (config, functions) {
 
             return arr.join('');
         },
-        saveBaseInfo:function(callback){
+        getFaZuoShiPin:function(){
+            var arr = [];
+            $("input[name='faZuoShiPin']").each(function(index,val){
+                arr.push($(this).val());
+            });
+
+            return arr;
+        },
+        saveData:function(callback){
             var firstInfo = functions.getInfo("firstInfo"),
                 performance = functions.getInfo("performance"),
                 drugInfos = this.getDrugInfo();
+            var normal = functions.getInfo("normal"),
+                profession = functions.getInfo("profession");
+            var historyPast = functions.getInfo("historyPast"),
+                historyPersonal = functions.getInfo("historyPersonal"),
+                historyFamily = functions.getInfo("historyFamily");
             var me = this;
+
+
+            performance["faZuoShiPin"] = this.getFaZuoShiPin();
 
             functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
                 patientId: patientId,
                 col:"performance_info",
-                value: JSON.stringify({
+                performance_info: JSON.stringify({
                     firstInfo:firstInfo,
                     performance:performance,
                     drugInfos:drugInfos
-                })
-            },function(){
-                me.saveCheckInfo(callback);
-            });
-        },
-        saveCheckInfo:function(callback){
-            var normal = functions.getInfo("normal"),
-                profession = functions.getInfo("profession");
-            var me = this;
-
-            functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
-                patientId: patientId,
-                col:"examine_info",
-                value: JSON.stringify({
+                }),
+                examine_info:JSON.stringify({
                     normal:normal,
                     profession:profession
-                })
-            },function(){
-                me.saveHistoryInfo(callback);
-            });
-        },
-        saveHistoryInfo:function(callback){
-            var historyPast = functions.getInfo("historyPast"),
-                historyPersonal = functions.getInfo("historyPersonal"),
-                historyFamily = functions.getInfo("historyFamily");
-
-            functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
-                patientId: patientId,
-                col:"history_info",
-                value: JSON.stringify({
+                }),
+                history_info:JSON.stringify({
                     historyPast:historyPast,
                     historyPersonal:historyPersonal,
                     historyFamily:historyFamily
@@ -79,9 +71,6 @@ var medical = (function (config, functions) {
                     callback();
                 }
             });
-        },
-        saveData:function(callback){
-            this.saveBaseInfo(callback);
         }
     }
 })(config, functions);
@@ -138,6 +127,14 @@ $(document).ready(function () {
             var fileInfo = functions.getFileInfo(url);
             $("#file").attr("href", url).text(fileInfo.filename + "." + fileInfo.ext);
             $("#fileUrl").val(url);
+        });
+    });
+    $("#uploadFaZuoFile").change(function(){
+        functions.uploadFile($(this), function (url) {
+            $('<a id="faZuoFile" href="'+url+'">'+
+                '视频'+$("#faZuoFiles").length+
+                '<input type="hidden" value="'+url+'" name="faZuoShiPin">'+
+            '</a>').appendTo($("#faZuoFiles"));
         });
     });
 });

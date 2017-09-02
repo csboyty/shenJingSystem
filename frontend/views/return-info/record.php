@@ -10,7 +10,7 @@ $other=isset($record->other)?$record->other:null;
     var recordIndex = "<?= $recordIndex; ?>";
 </script>
 
-<a class="btn btn-primary" style="margin-bottom: 10px;" href="javascript:history.go(-1);">
+<a class="btn btn-primary" style="margin-bottom: 10px;" id="goBack" href="#">
     <span class="glyphicon glyphicon-arrow-left"></span> 返回
 </a>
 <div class="panel-group" id="accordionResult" aria-multiselectable="true">

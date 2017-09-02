@@ -55,14 +55,15 @@ class DiagnoseProcessController extends Controller
     public function actionInfoUpdate(){
         $params=Yii::$app->request->post();
         $model=$this->findModel($params["patientId"]);
-        $col=$params["col"];
-        $info=$params["value"];
+        $check_result = $params["check_result"];
+        $treatment_options = $params["treatment_options"];
         if(!$model){
             $model=new DiagnoseProcess();
             $model->patient_id=$params["patientId"];
         }
 
-        $model->$col=$info;
+        $model->check_result = $check_result;
+        $model->treatment_options = $treatment_options;
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         if($model->save()){
