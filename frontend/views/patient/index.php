@@ -4,10 +4,18 @@ $this->title = '病患管理';
 ?>
 
 <div class="row">
-    <div class="col-md-4">
-        <a class="btn btn-primary" href="patient/create">
-            <span class="glyphicon glyphicon-plus"></span> 新建
-        </a>
+    <div class="col-md-4 row">
+        <div class="col-md-4">
+            <a class="btn btn-primary" href="patient/create">
+                <span class="glyphicon glyphicon-plus"></span> 新建
+            </a>
+        </div>
+
+        <div class="col-md-4" style="line-height: 34px;">
+            排序：<span style="cursor: pointer" class="text-primary" id="sortByAge" data-sort="asc">
+                年龄<span class="glyphicon glyphicon-arrow-up"></span>
+            </span>
+        </div>
     </div>
     <div class="col-md-8">
         <div class="input-group col-md-5" style="margin-left: auto">

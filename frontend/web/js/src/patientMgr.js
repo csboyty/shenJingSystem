@@ -34,6 +34,9 @@ var userMgr=(function(config,functions){
                 aoData.push({
                     name:"filter",
                     value:$("#filter").val()
+                },{
+                    name:"orderByAge",
+                    value:$("#sortByAge").data("sort")
                 })
             },
             "fnServerData": function(sSource, aoData, fnCallback) {
@@ -118,6 +121,17 @@ $(document).ready(function(){
             userMgr.delete($(this).attr("href"));
         }
         return false;
+    });
+    $("#sortByAge").click(function(){
+        var sort = $(this).data("sort");
+        if(sort == "asc"){
+            $(this).data("sort","desc");
+            $(this).find(".glyphicon-arrow-up").addClass("glyphicon-arrow-down").removeClass("glyphicon-arrow-up");
+        }else{
+            $(this).data("sort","asc");
+            $(this).find(".glyphicon-arrow-down").addClass("glyphicon-arrow-up").removeClass("glyphicon-arrow-down");
+        }
+        userMgr.tableRedraw();
     });
 });
 

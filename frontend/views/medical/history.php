@@ -26,7 +26,7 @@ $historyFamily=$history_info&&isset($history_info->historyFamily)?$history_info-
                         <div class="col-md-8">
                             <?php
                                 $historyMedicalArray=array("脑外伤","脑寄生虫","肿瘤及手术","脑血管病","低血糖昏迷","CO 中毒",
-                                    "药物过敏史","脑部疾患","心脏疾患","哮喘","胆道疾患","习惯性便秘","肾脏疾患","糖尿病");
+                                    "药物过敏史","脑部疾患","心脏疾患","哮喘","胆道疾患","习惯性便秘","肾脏疾患","糖尿病","焦虑","抑郁","记忆力下降");
                                 $historyMedicalSel=array();
                                 if($historyPast&&isset($historyPast->medical)){
                                     $historyMedicalSel=$historyPast->medical;
@@ -247,6 +247,36 @@ $historyFamily=$history_info&&isset($history_info->historyFamily)?$history_info-
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-md-2">其他家族病史</label>
+                        <div class="col-md-8">
+                            <?php
+                            $qiTaJiaZuBingArray=array("是","否");
+                            $qiTaJiaZuBingSel="";
+
+                            if(isset($historyFamily->qiTaJiaZuBing)){
+                                $qiTaJiaZuBingSel=$historyFamily->qiTaJiaZuBing;
+                            }
+
+                            foreach($qiTaJiaZuBingArray as $pa){
+                                $pChecked="";
+                                if($qiTaJiaZuBingSel==$pa){
+                                    $pChecked=" checked ";
+                                }
+
+                                ?>
+
+                                <label class="radio-inline">
+                                    <input type="radio" <?= $pChecked; ?> value="<?= $pa; ?>" data-name-qiTaJiaZuBing="historyFamily"
+                                           name="qiTaJiaZuBing" ><?= $pa; ?>
+                                </label>
+
+                            <?php
+                            }
+
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-md-2">家系图</label>
                         <div class="col-md-8" id="uploadContainer">
                             <input type="file" id="uploadFile">
@@ -256,6 +286,20 @@ $historyFamily=$history_info&&isset($history_info->historyFamily)?$history_info-
                             </a>
                             <input type="hidden" value="<?= isset($historyFamily->familyImage)?$historyFamily->familyImage:""; ?>"
                                    data-name-parent="historyFamily"  name="familyImage" id="fileUrl">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">子女名</label>
+                        <div class="col-md-8">
+                            <input class="form-control"  value="<?= isset($historyPast->ziNvMing)?$historyPast->ziNvMing:""; ?> "
+                                   type="text" data-name-parent="historyFamily" name="ziNvMing">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">兄弟姐妹名</label>
+                        <div class="col-md-8">
+                            <input class="form-control"  value="<?= isset($historyPast->xiongDiMing)?$historyPast->xiongDiMing:""; ?> "
+                                   type="text" data-name-parent="historyFamily" name="xiongDiMing">
                         </div>
                     </div>
                 </form>

@@ -52,6 +52,7 @@ class PatientController extends Controller
         $offset=$params["iDisplayStart"];
         $sEcho = $params["sEcho"];
         $filter = $params["filter"];
+        $orderByAge = $params["orderByAge"];
         $query=PatientInfo::find();
         if($filter){
             $query->where(['or', 'no=:filter', 'fullname=:filter'],[":filter"=>$filter]);
@@ -59,6 +60,7 @@ class PatientController extends Controller
         $count=$query->count();
         $aaData=$query
             ->asArray()
+            ->orderBy("age ".$orderByAge)
             ->limit($limit)
             ->offset($offset)
             ->all();
