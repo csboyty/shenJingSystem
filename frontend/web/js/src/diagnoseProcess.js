@@ -21,6 +21,21 @@ var diagnoseProcess = (function (config, functions) {
 
             return arr;
         },
+        getXueShengHuaTableInfo:function(trs){
+            var arr=[];
+            trs.each(function(index,el){
+                el=$(el);
+                arr.push([
+                    el.find(".name").val(),
+                    el.find(".value").val(),
+                    el.find(".unit").val(),
+                    el.find(".isNormal:checked").val(),
+                    el.find(".hasSense:checked").val()
+                ]);
+            });
+
+            return arr;
+        },
         getDrugInfo: function (index) {
             var arr = [];
             $("#drugInfoTable tbody tr").each(function (i,el) {
@@ -55,7 +70,7 @@ var diagnoseProcess = (function (config, functions) {
         saveData:function(callback){
             var xueNongDu=this.getXueNongDuInfo(),
                 xueChangGui=this.getTableInfo($("#xueChangGuiTable tbody tr")),
-                xueShengHua=this.getTableInfo($("#xueShengHuaTable tbody tr")),
+                xueShengHua=this.getXueShengHuaTableInfo($("#xueShengHuaTable tbody tr")),
                 other=functions.getInfo("other");
             var drugInfo = this.getDrugInfo(),
                 otherDrug = $("#otherDrug").val();
@@ -97,6 +112,26 @@ $(document).ready(function () {
         });
     });
 
+    $("#addXueShengHua").click(function(){
+        var arrString = [
+            '<tr>',
+            '<td><input type="text" class="form-control name" name="name"></td>',
+            '<td><input type="text" class="form-control value" name="value"></td>',
+            '<td><input type="text" class="form-control unit" name="unit"></td>',
+            '<td>',
+                '<label class="radio-inline"><input type="radio" class="isNormal" name="ALTNormal"  value="是">是</label>',
+                '<label class="radio-inline"><input type="radio" class="isNormal"  name="ALTNormal" checked value="否">否</label>',
+            '</td>',
+            '<td>',
+                '<label class="radio-inline"><input type="radio" class="hasSense" name="ALTSense"  value="是">是</label>',
+                '<label class="radio-inline"><input type="radio" class="hasSense"  name="ALTSense" checked value="否">否</label>',
+            '</td>',
+            '</tr>'
+        ];
+
+        $("#xueShengHuaTable tbody").append(arrString.join(''));
+
+    });
 
     /**************************************************************/
     $("#drugInfoAdd").click(function () {

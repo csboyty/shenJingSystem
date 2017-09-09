@@ -2,8 +2,9 @@ var diagnoseInfo=(function(config,functions){
 
     return {
         saveData:function(callback){
-            var buNengFenLei = functions.getInfo("buNengFenLei"),
+            var buNengFenLei = functions.getInfo("weiZhiQiYuan"),
                 buFenFaZuo = functions.getInfo("buFenFaZuo"),
+                nanZhiXing = functions.getInfo("nanZhiXing"),
                 quanMianFaZuo = functions.getInfo("quanMianFaZuo");
             var buWei = functions.getInfo("buWei"),
                 quanMian = functions.getInfo("quanMian"),
@@ -17,7 +18,8 @@ var diagnoseInfo=(function(config,functions){
                 attack_type: JSON.stringify({
                     buNengFenLei:buNengFenLei,
                     buFenFaZuo:buFenFaZuo,
-                    quanMianFaZuo:quanMianFaZuo
+                    quanMianFaZuo:quanMianFaZuo,
+                    nanZhiXing:nanZhiXing
                 }),
                 type:JSON.stringify({
                     buWei:buWei,

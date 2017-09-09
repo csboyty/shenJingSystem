@@ -15,6 +15,33 @@ var medical = (function (config, functions) {
 
             return arr;
         },
+        getChiXuDrugInfo: function (index) {
+            var arr = [];
+            $("#chiXuDrugInfoTable tbody tr").each(function (i,el) {
+                el=$(el);
+                if(index!=i){
+                    arr.push([
+                        el.find("td:eq(0)").text(),
+                        el.find("td:eq(1)").text(),
+                        el.find("td:eq(2)").text()
+                    ]);
+                }
+            });
+
+            return arr;
+        },
+        createChiXuDrugInfoItem: function (list) {
+            var arr = [
+                "<tr>",
+                "<td>", list[0], "</td>",
+                "<td>", list[1], "</td>",
+                "<td>", list[2], "</td>",
+                "<td>", "<a href='#' class='deleteChiXuDrugInfo'>删除</a>", "</td>",
+                "</tr>"
+            ];
+
+            return arr.join('');
+        },
         createDrugInfoItem: function (list) {
             var arr = [
                 "<tr>",
@@ -38,7 +65,8 @@ var medical = (function (config, functions) {
         saveData:function(callback){
             var firstInfo = functions.getInfo("firstInfo"),
                 performance = functions.getInfo("performance"),
-                drugInfos = this.getDrugInfo();
+                drugInfos = this.getDrugInfo(),
+                chiXuDrugInfos = this.getChiXuDrugInfo();
             var normal = functions.getInfo("normal"),
                 profession = functions.getInfo("profession");
             var historyPast = functions.getInfo("historyPast"),
@@ -55,7 +83,8 @@ var medical = (function (config, functions) {
                 performance_info: JSON.stringify({
                     firstInfo:firstInfo,
                     performance:performance,
-                    drugInfos:drugInfos
+                    drugInfos:drugInfos,
+                    chiXuDrugInfos:chiXuDrugInfos
                 }),
                 examine_info:JSON.stringify({
                     normal:normal,
@@ -116,6 +145,32 @@ $(document).ready(function () {
 
         return false;
     });
+
+    $("#chiXuDrugInfoAdd").click(function () {
+        var info;
+
+        info=[
+            $("#chiXuDrugInfoName").val(),
+            $("#chiXuDrugInfoAmount").val() + $("#chiXuDrugInfoFrequency").val(),
+            $("#chiXuDrugInfoUnit").val()
+        ];
+
+        info = medical.createChiXuDrugInfoItem(info);
+        $("#chiXuDrugInfoTable tbody").append(info);
+
+        return false;
+    });
+
+    $("#chiXuDrugInfoTable").on("click", ".deleteChiXuDDrugInfo", function () {
+        if(confirm(config.messages.confirmDelete)){
+            var tr=$(this).parents("tr");
+            tr.remove();
+        }
+
+
+        return false;
+    });
+
     $("[name='stopMeasure']").click(function () {
         $("[name='stopMeasureValue']").val("");
     });

@@ -32,7 +32,9 @@ $this->title = $patient->fullname."病史信息";
                 ?>
             </div>
         </div>
-    <br><br>
+
+        <br><br>
+
         <div class="form-group">
             <button type="button" class="btn btn-primary form-control" id="save">保存</button>
         </div>

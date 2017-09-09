@@ -163,112 +163,52 @@ $other=isset($check_result->other)?$check_result->other:array();
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>ALT</td>
-                        <td><input type="text" class="form-control value" name="value"
-                                   value="<?= isset($xueShengHua[0][0])?$xueShengHua[0][0]:""; ?>"></td>
-                        <td>U/L</td>
-                        <td>
-                            <label class="radio-inline">
-                                <input type="radio" class="isNormal" name="ALTNormal"
-                                       <?=isset($xueShengHua[0][1])&&$xueShengHua[0][1]=="是"?" checked ":""  ?> value="是">是
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" class="isNormal"  name="ALTNormal"
-                                    <?=isset($xueShengHua[0][1])&&$xueShengHua[0][1]=="否"?" checked ":""  ?> value="否">否
-                            </label>
-                        </td>
-                        <td>
-                            <label class="radio-inline">
-                                <input type="radio" class="hasSense" name="ALTSense"
-                                       <?=isset($xueShengHua[0][2])&&$xueShengHua[0][2]=="是"?" checked ":""?> value="是">是
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" class="hasSense" name="ALTSense"
-                                       <?=isset($xueShengHua[0][2])&&$xueShengHua[0][2]=="否"?" checked ":""?> value="否">否
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>AST</td>
-                        <td><input type="text" class="form-control value"
-                                   value="<?= isset($xueShengHua[1][0])?$xueShengHua[1][0]:""; ?>"></td>
-                        <td>U/L</td>
-                        <td>
-                            <label class="radio-inline">
-                                <input type="radio" class="isNormal" name="ASTNormal"
-                                    <?=isset($xueShengHua[1][1])&&$xueShengHua[1][1]=="是"?" checked ":""  ?> value="是">是
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" class="isNormal"  name="ASTNormal"
-                                    <?=isset($xueShengHua[1][1])&&$xueShengHua[1][1]=="否"?" checked ":""  ?> value="否">否
-                            </label>
-                        </td>
-                        <td>
-                            <label class="radio-inline">
-                                <input type="radio" class="hasSense" name="ASTSense"
-                                    <?=isset($xueShengHua[1][2])&&$xueShengHua[1][2]=="是"?" checked ":""?> value="是">是
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" class="hasSense" name="ASTSense"
-                                    <?=isset($xueShengHua[1][2])&&$xueShengHua[1][2]=="否"?" checked ":""?> value="否">否
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>白蛋白</td>
-                        <td><input type="text" class="form-control value" name="value"
-                                   value="<?= isset($xueShengHua[2][0])?$xueShengHua[2][0]:""; ?>"></td>
-                        <td>g/L</td>
-                        <td>
-                            <label class="radio-inline">
-                                <input type="radio" class="isNormal" name="baiDanBaiNormal"
-                                    <?=isset($xueShengHua[2][1])&&$xueShengHua[2][1]=="是"?" checked ":""  ?> value="是">是
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" class="isNormal"  name="baiDanBaiNormal"
-                                    <?=isset($xueShengHua[2][1])&&$xueShengHua[2][1]=="否"?" checked ":""  ?> value="否">否
-                            </label>
-                        </td>
-                        <td>
-                            <label class="radio-inline">
-                                <input type="radio" class="hasSense" name="baiDanBaiSense"
-                                    <?=isset($xueShengHua[2][2])&&$xueShengHua[2][2]=="是"?" checked ":""?> value="是">是
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" class="hasSense" name="baiDanBaiSense"
-                                    <?=isset($xueShengHua[2][2])&&$xueShengHua[2][2]=="否"?" checked ":""?> value="否">否
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>球蛋白</td>
-                        <td><input type="text" class="form-control value" name="value"
-                                   value="<?= isset($xueShengHua[3][0])?$xueShengHua[3][0]:""; ?>"></td>
-                        <td>g/L</td>
-                        <td>
-                            <label class="radio-inline">
-                                <input type="radio" class="isNormal" name="qiuDanBaiNormal"
-                                    <?=isset($xueShengHua[3][1])&&$xueShengHua[3][1]=="是"?" checked ":""  ?> value="是">是
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" class="isNormal"  name="qiuDanBaiNormal"
-                                    <?=isset($xueShengHua[3][1])&&$xueShengHua[3][1]=="否"?" checked ":""  ?> value="否">否
-                            </label>
-                        </td>
-                        <td>
-                            <label class="radio-inline">
-                                <input type="radio" class="hasSense" name="qiuDanBaiSense"
-                                    <?=isset($xueShengHua[3][2])&&$xueShengHua[3][2]=="是"?" checked ":""?> value="是">是
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" class="hasSense" name="qiuDanBaiSense"
-                                    <?=isset($xueShengHua[3][2])&&$xueShengHua[3][2]=="否"?" checked ":""?> value="否">否
-                            </label>
-                        </td>
-                    </tr>
+
+                    <?php
+
+                        foreach($xueShengHua as $value){
+
+                            ?>
+                            <tr>
+                                <td><input type="text" class="form-control name" name="name"
+                                           value="<?= isset($value[0])?$value[0]:""; ?>"></td>
+                                <td><input type="text" class="form-control value" name="value"
+                                           value="<?= isset($value[1])?$value[1]:""; ?>"></td>
+                                <td><input type="text" class="form-control unit" name="unit"
+                                           value="<?= isset($value[2])?$value[2]:""; ?>"></td>
+                                <td>
+                                    <label class="radio-inline">
+                                        <input type="radio" class="isNormal" name="ALTNormal"
+                                            <?=isset($value[3])&&$value[3]=="是"?" checked ":""  ?> value="是">是
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" class="isNormal"  name="ALTNormal"
+                                            <?=isset($value[3])&&$value[3]=="否"?" checked ":""  ?> value="否">否
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-inline">
+                                        <input type="radio" class="hasSense" name="ALTSense"
+                                            <?=isset($value[4])&&$value[4]=="是"?" checked ":""?> value="是">是
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" class="hasSense" name="ALTSense"
+                                            <?=isset($value[4])&&$value[4]=="否"?" checked ":""?> value="否">否
+                                    </label>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+
+                    ?>
+
+
                     </tbody>
                 </table>
+                <br>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary form-control glyphicon glyphicon-plus" id="addXueShengHua">新增项目</button>
+                </div>
             </div>
         </div>
     </div>

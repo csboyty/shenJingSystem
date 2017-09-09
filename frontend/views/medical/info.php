@@ -6,8 +6,9 @@ $firstInfo = $performance_info && isset($performance_info->firstInfo) ? $perform
 
 $performance = $performance_info && isset($performance_info->performance) ? $performance_info->performance : null;
 
-$drugInfos = $performance_info && isset($performance_info->drugInfo) ? $performance_info->drugInfo : array();
+$drugInfos = $performance_info && isset($performance_info->drugInfos) ? $performance_info->drugInfos : array();
 
+$chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) ? $performance_info->chiXuDrugInfos : array();
 ?>
 <div class="panel-group" id="accordionInfo" aria-multiselectable="true">
 <div class="panel panel-default">
@@ -1100,6 +1101,119 @@ $drugInfos = $performance_info && isset($performance_info->drugInfo) ? $performa
         </div>
     </div>
 </div>
+
+<div class="form-group">
+    <label class="control-label col-md-2">外科干预</label>
+
+    <div class="col-md-8">
+        <?php
+        $waiKeGanYuArray = array("病灶切除", "迷走神经磁刺激", "三叉神经刺激", "DBS");
+        $waiKeGanYuSel = array();
+        if ($performance && isset($performance->waiKeGanYuValues)) {
+            $waiKeGanYuValuesSel = $performance->waiKeGanYuValues;
+        }
+        foreach ($waiKeGanYuArray as $pv) {
+            $waiKeGanYuChecked = "";
+            if (in_array($pv, $waiKeGanYuSel)) {
+                $waiKeGanYuChecked = " checked ";
+            }
+            ?>
+            <label class="checkbox-inline">
+                <input type="checkbox" <?= $waiKeGanYuChecked; ?>  value="<?= $pv; ?>"
+                       data-name-parent="waiKeGanYu" name="waiKeGanYuValues"><?= $pv; ?>
+            </label>
+
+        <?php
+        }
+        ?>
+
+        <?php
+        if (in_array("其他", $waiKeGanYuSel)) {
+            $waiKeGanYuQiTaChecked = " checked ";
+            $waiKeGanYuQiTaPanelClass = "";
+        } else {
+            $waiKeGanYuQiTaChecked = "";
+            $waiKeGanYuQiTaPanelClass = "hidden";
+        }
+
+        ?>
+        <div style="margin-top:5px;">
+            时间：<input type="date" value="<?= isset($performance->waiKeGanYuShiJian) ? $performance->waiKeGanYuShiJian : ""; ?>"
+                      data-name-parent="performance" name="waiKeGanYuShiJian">
+        </div>
+        <label class="checkbox-inline">
+            <input type="checkbox" <?= $waiKeGanYuQiTaChecked; ?> value="其他"
+                   data-name-parent="waiKeGanYu" name="waiKeGanYuQita" class="ctrl"
+                   data-control-panel="waiKeGanYuQiTa">其他
+        </label>
+
+        <div class="ctrlPanel <?= $waiKeGanYuQiTaPanelClass; ?>" id="waiKeGanYuQiTa">
+            其他：<input type="text" value="<?= isset($performance->waiKeGanYuQiTa) ? $performance->waiKeGanYuQiTa : ""; ?>"
+                      data-name-parent="performance" name="waiKeGanYuQiTa">
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="name" class="control-label col-md-2">癫痫持续状态的药物治疗</label>
+
+    <div class="col-md-10">
+            <div class="row" id="chiXuDrugInfoForm">
+
+                <div class="col-md-2">
+                    <select class="form-control" id="chiXuDrugInfoName">
+                        <option value="地西泮">地西泮</option>
+                        <option value="丙戊酸注射液">丙戊酸注射液</option>
+                        <option value="苯巴比妥注射液">苯巴比妥注射液</option>
+                        <option value="咪达唑仑">咪达唑仑</option>
+                        <option value="丙泊酚">丙泊酚</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <input class="form-control" type="text" placeholder="剂量" id="chiXuDrugInfoAmount">
+                </div>
+                <div class="col-md-2">
+                    <select class="form-control" id="chiXuDrugInfoFrequency">
+                        <option>mg/次</option>
+                        <option>g/次</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="次/日" id="chiXuDrugInfoUnit">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" id="chiXuDrugInfoAdd" class="btn btn-primary">新增</button>
+                </div>
+            </div>
+            <table class="dataTable" id="chiXuDrugInfoTable">
+                <thead>
+                <tr>
+                    <th>药物名称</th>
+                    <th>剂量</th>
+                    <th>频率（次/日）</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+
+                foreach ($chiXuDrugInfos as $di) {
+                    ?>
+                    <tr>
+                        <td><?= $di[0] ?></td>
+                        <td><?= $di[1] ?></td>
+                        <td><?= $di[2] ?></td>
+                        <td><a href="#" class="deleteChiXuDrugInfo">删除</a></td>
+                    </tr>
+                <?php
+                }
+                ?>
+                </tbody>
+            </table>
+    </div>
+</div>
+
 </form>
 
 </div>
