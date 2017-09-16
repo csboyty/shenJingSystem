@@ -54,9 +54,9 @@ var medical = (function (config, functions) {
 
             return arr.join('');
         },
-        getFaZuoShiPin:function(){
+        getFaZuoFiles:function(){
             var arr = [];
-            $("input[name='faZuoShiPin']").each(function(index,val){
+            $("input[name='faZuoFile']").each(function(index,val){
                 arr.push($(this).val());
             });
 
@@ -75,7 +75,7 @@ var medical = (function (config, functions) {
             var me = this;
 
 
-            performance["faZuoShiPin"] = this.getFaZuoShiPin();
+            performance["faZuoFiles"] = this.getFaZuoFiles();
 
             functions.saveInfo(config.ajaxUrls.medicalInfoUpdate, {
                 patientId: patientId,
@@ -186,9 +186,9 @@ $(document).ready(function () {
     });
     $("#uploadFaZuoFile").change(function(){
         functions.uploadFile($(this), function (url) {
-            $('<a id="faZuoFile" href="'+url+'">'+
+            $('<a target="_blank" href="'+url+'">'+
                 '视频'+$("#faZuoFiles").length+
-                '<input type="hidden" value="'+url+'" name="faZuoShiPin">'+
+                '<input type="hidden" value="'+url+'" name="faZuoFile">'+
             '</a>').appendTo($("#faZuoFiles"));
         });
     });

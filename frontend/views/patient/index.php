@@ -33,7 +33,8 @@ $this->title = '病患管理';
     <tr>
         <th>编号</th>
         <th>姓名</th>
-        <th>联系电话</th>
+        <th>电话</th>
+        <th>备注</th>
         <th>操作</th>
     </tr>
     </thead>

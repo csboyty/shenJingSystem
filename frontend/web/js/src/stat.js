@@ -29,7 +29,7 @@ $(document).ready(function () {
         var sexOption = {
             title: {
                 text: '性别',
-                subtext: '纯属虚构',
+                subtext: '',
                 x: 'center'
             },
             color: ['#66a4f9', '#eb6100', '#EC577B', '#32d6c5', '#4ac246'],
@@ -78,7 +78,7 @@ $(document).ready(function () {
         var ageOption = {
             title: {
                 text: '年龄',
-                subtext: '纯属虚构',
+                subtext: '',
                 x: 'center'
             },
             color: ['#66a4f9', '#eb6100', '#EC577B', '#32d6c5', '#4ac246'],

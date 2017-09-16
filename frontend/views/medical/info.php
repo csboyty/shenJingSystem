@@ -605,18 +605,18 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
 
         <div id="faZuoFiles">
             <?php
-            $faZuoShiPin = array();
-            if ($performance && isset($performance->faZuoShiPin)) {
-                $faZuoShiPin = $performance->faZuoShiPin;
+            $faZuoFiles = array();
+            if ($performance && isset($performance->faZuoFiles)) {
+                $faZuoFiles = $performance->faZuoFiles;
             }
-            foreach ($faZuoShiPin as $key => $value) {
+            foreach ($faZuoFiles as $key => $value) {
 
                 ?>
-                <a id="faZuoFile" target="_blank" href="<?= $value; ?>" style="margin-right: 5px">
+                <a target="_blank" href="<?= $value; ?>" style="margin-right: 5px">
                     视频<?= $key; ?>
 
                     <input type="hidden" value="<?= $value; ?>"
-                           name="faZuoShiPin">
+                           name="faZuoFile">
                 </a>
             <?php
             }

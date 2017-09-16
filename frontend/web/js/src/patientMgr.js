@@ -24,6 +24,20 @@ var userMgr=(function(config,functions){
                 { "mDataProp": "no"},
                 { "mDataProp": "fullname"},
                 { "mDataProp": "tel"},
+                { "mDataProp": "memo",
+                    "fnRender":function(oObj){
+                        var string = "",
+                            memo = JSON.parse(oObj.aData.memo);
+                        if(memo[0] == 1){
+                            string += "！";
+                        }
+                        if(memo[1] == 1){
+                            string += "△";
+                        }
+
+                        return "<span style='color:red'>"+string+"</span>";
+                    }
+                },
                 { "mDataProp": "opt",
                     "fnRender":function(oObj){
                         return '<a href="patient/info/'+oObj.aData.id+'">详情</a>';

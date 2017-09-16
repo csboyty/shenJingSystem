@@ -68,6 +68,16 @@ class MedicalController extends Controller
         $model->examine_info=$examine_info;
         $model->history_info=$history_info;
 
+        $patientModel = PatientInfo::findOne($params["patientId"]);
+        $patientMemo = json_decode($patientModel->memo);
+        if(stripos($performance_info,'"chiXu":"有"')!==false){
+            $patientMemo[1]=1;
+        }else{
+            $patientMemo[1]=0;
+        }
+        $patientModel->memo = json_encode($patientMemo);
+        $patientModel->save();
+
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         if($model->save()){

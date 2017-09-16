@@ -41,7 +41,7 @@ $this->title = $patient->fullname."病史信息";
 
     </div>
     <div class="col-md-2">
-        <div class="pageLinkList">
+        <div class="pageLinkList" id="pageLinkList">
             <a href="patient/info/<?= $patient->id; ?>" class="item">基本信息</a>
             <a href="medical/<?= $patient->id; ?>" class="item">病史信息</a>
             <a href="diagnose-info/<?= $patient->id; ?>" class="item">拟诊信息</a>

@@ -73,6 +73,16 @@ class DiagnoseInfoController extends Controller
         $model->type=$type;
         $model->status=$status;
 
+        $patientModel = PatientInfo::findOne($params["patientId"]);
+        $patientMemo = json_decode($patientModel->memo);
+        if(stripos($attack_type,'"nanZhiXingValue":"有"')!==false){
+            $patientMemo[0]=1;
+        }else{
+            $patientMemo[0]=0;
+        }
+        $patientModel->memo = json_encode($patientMemo);
+        $patientModel->save();
+
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         if($model->save()){
             return [

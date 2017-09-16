@@ -67,6 +67,22 @@ var diagnoseProcess = (function (config, functions) {
 
             return arr.join('');
         },
+        getTouLuFiles:function(){
+            var arr = [];
+            $("input[name='touLuFile']").each(function(index,val){
+                arr.push($(this).val());
+            });
+
+            return arr;
+        },
+        getEEGFiles:function(){
+            var arr = [];
+            $("input[name='EEGFile']").each(function(index,val){
+                arr.push($(this).val());
+            });
+
+            return arr;
+        },
         saveData:function(callback){
             var xueNongDu=this.getXueNongDuInfo(),
                 xueChangGui=this.getTableInfo($("#xueChangGuiTable tbody tr")),
@@ -75,6 +91,9 @@ var diagnoseProcess = (function (config, functions) {
             var drugInfo = this.getDrugInfo(),
                 otherDrug = $("#otherDrug").val();
             var me = this;
+
+            other["touLuFiles"] = this.getTouLuFiles();
+            other["EEGFiles"] = this.getEEGFiles();
 
             functions.saveInfo(config.ajaxUrls.diagnoseProcessInfoUpdate, {
                 patientId: patientId,
@@ -131,6 +150,23 @@ $(document).ready(function () {
 
         $("#xueShengHuaTable tbody").append(arrString.join(''));
 
+    });
+
+    $("#uploadTouLuFile").change(function(){
+        functions.uploadFile($(this), function (url) {
+            $('<a target="_blank" href="'+url+'">'+
+                '文件'+$("#touLuFiles").length+
+                '<input type="hidden" value="'+url+'" name="touLuFile">'+
+                '</a>').appendTo($("#touLuFiles"));
+        });
+    });
+    $("#uploadEEGFile").change(function(){
+        functions.uploadFile($(this), function (url) {
+            $('<a target="_blank" href="'+url+'">'+
+                '文件'+$("#EEGFiles").length+
+                '<input type="hidden" value="'+url+'" name="EEGFile">'+
+                '</a>').appendTo($("#EEGFiles"));
+        });
     });
 
     /**************************************************************/

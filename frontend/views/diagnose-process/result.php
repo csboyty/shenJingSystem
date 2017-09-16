@@ -377,6 +377,37 @@ $other=isset($check_result->other)?$check_result->other:array();
                                     ?>
                                 </div>
                             </div>
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">头颅 MRI 或 CT文件</label>
+                        <div class="col-md-8" id="uploadTouLuContainer">
+                            <input type="file" id="uploadTouLuFile">
+                            <br>
+
+                            <div id="touLuFiles">
+                                <?php
+                                $touLuFiles = array();
+                                if ($other && isset($other->touLuFiles)) {
+                                    $touLuFiles = $other->touLuFiles;
+                                }
+                                foreach ($touLuFiles as $key => $value) {
+
+                                    ?>
+                                    <a target="_blank" href="<?= $value; ?>" style="margin-right: 5px">
+                                        视频<?= $key; ?>
+
+                                        <input type="hidden" value="<?= $value; ?>"
+                                               name="touLuFile">
+                                    </a>
+                                <?php
+                                }
+                                ?>
+                            </div>
+
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -491,6 +522,38 @@ $other=isset($check_result->other)?$check_result->other:array();
                                        data-name-parent="other" name="EEGFrequency"
                                        value="<?= isset($other->EEGFrequency)?$other->EEGFrequency:""; ?>">&nbsp;Hz</p>
                             </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">EEG/AEEG/VEEG文件</label>
+                        <div class="col-md-8" id="uploadEEGContainer">
+                            <input type="file" id="uploadEEGFile">
+                            <br>
+
+                            <div id="EEGFiles">
+                                <?php
+                                $EEGFiles = array();
+                                if ($other && isset($other->EEGFiles)) {
+                                    $EEGFiles = $other->EEGFiles;
+                                }
+                                foreach ($EEGFiles as $key => $value) {
+
+                                    ?>
+                                    <a target="_blank" href="<?= $value; ?>" style="margin-right: 5px">
+                                        视频<?= $key; ?>
+
+                                        <input type="hidden" value="<?= $value; ?>"
+                                               name="EEGFile">
+                                    </a>
+                                <?php
+                                }
+                                ?>
+                            </div>
+
+
                         </div>
                     </div>
                     <div class="form-group">
