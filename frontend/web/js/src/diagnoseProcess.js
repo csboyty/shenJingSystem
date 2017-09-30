@@ -118,7 +118,7 @@ var diagnoseProcess = (function (config, functions) {
 $(document).ready(function () {
     setInterval(function(){
         diagnoseProcess.saveData();
-    },50000);
+    },300000);
     $("#toReturnInfo,#save").click(function(){
         diagnoseProcess.saveData(function(){
             location.href="return-info/"+patientId;

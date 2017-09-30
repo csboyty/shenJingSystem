@@ -54,7 +54,7 @@ $(document).ready(function () {
         returnInfoAdd.saveData(function(data){
             recordIndex = data.recordIndex
         });
-    },50000);
+    },300000);
 
     $("#addXueShengHua").click(function(){
         var arrString = [

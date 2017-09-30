@@ -5,7 +5,7 @@ $buFenFaZuo=$attack_type&&isset($attack_type->buFenFaZuo)?$attack_type->buFenFaZ
 
 $quanMianFaZuo=$attack_type&&isset($attack_type->quanMianFaZuo)?$attack_type->quanMianFaZuo:null;
 
-$buNengFenLei=$attack_type&&isset($attack_type->weiZhiQiYuan)?$attack_type->weiZhiQiYuan:null;
+$buNengFenLei=$attack_type&&isset($attack_type->buNengFenLei)?$attack_type->buNengFenLei:null;
 
 $nanZhiXing=$attack_type&&isset($attack_type->nanZhiXing)?$attack_type->nanZhiXing:null;
 
@@ -194,8 +194,8 @@ $nanZhiXing=$attack_type&&isset($attack_type->nanZhiXing)?$attack_type->nanZhiXi
                             <?php
                             $wzYunDongArray=array("强直-阵挛发作","癫痫样痉挛发作");
                             $wzYunDongSel=array();
-                            if($quanMianFaZuo&&isset($quanMianFaZuo->wzYunDong)){
-                                $wzYunDongSel=$quanMianFaZuo->wzYunDong;
+                            if($buNengFenLei&&isset($buNengFenLei->wzYunDong)){
+                                $wzYunDongSel=$buNengFenLei->wzYunDong;
                             }
                             foreach($wzYunDongArray as $ssfz){
                                 $wzYunDongChecked="";
@@ -205,7 +205,7 @@ $nanZhiXing=$attack_type&&isset($attack_type->nanZhiXing)?$attack_type->nanZhiXi
                                 ?>
                                 <label class="checkbox-inline">
                                     <input type="checkbox" <?= $wzYunDongChecked ?> value="<?= $ssfz ?>"
-                                           data-name-parent="weiZhiQiYuan" name="wzYunDong"><?= $ssfz ?>
+                                           data-name-parent="buNengFenLei" name="wzYunDong"><?= $ssfz ?>
                                 </label>
                             <?php
                             }
@@ -219,8 +219,8 @@ $nanZhiXing=$attack_type&&isset($attack_type->nanZhiXing)?$attack_type->nanZhiXi
                             <?php
                             $wzFeiYunDongArray=array("行为终止");
                             $wzFeiYunDongSel=array();
-                            if($quanMianFaZuo&&isset($quanMianFaZuo->wzFeiYunDong)){
-                                $wzFeiYunDongSel=$quanMianFaZuo->wzFeiYunDong;
+                            if($buNengFenLei&&isset($buNengFenLei->wzFeiYunDong)){
+                                $wzFeiYunDongSel=$buNengFenLei->wzFeiYunDong;
                             }
                             foreach($wzFeiYunDongArray as $ssfz){
                                 $wzFeiYunDongChecked="";
@@ -230,7 +230,7 @@ $nanZhiXing=$attack_type&&isset($attack_type->nanZhiXing)?$attack_type->nanZhiXi
                                 ?>
                                 <label class="checkbox-inline">
                                     <input type="checkbox" <?= $wzFeiYunDongChecked ?> value="<?= $ssfz ?>"
-                                           data-name-parent="weiZhiQiYuan" name="wzFeiYunDong"><?= $ssfz ?>
+                                           data-name-parent="buNengFenLei" name="wzFeiYunDong"><?= $ssfz ?>
                                 </label>
                             <?php
                             }
@@ -244,8 +244,8 @@ $nanZhiXing=$attack_type&&isset($attack_type->nanZhiXing)?$attack_type->nanZhiXi
                             <?php
                             $wzBuNengGuiLeiArray=array("不能归类");
                             $wzBuNengGuiLeiSel=array();
-                            if($quanMianFaZuo&&isset($quanMianFaZuo->wzBuNengGuiLei)){
-                                $wzBuNengGuiLeiSel=$quanMianFaZuo->wzBuNengGuiLei;
+                            if($buNengFenLei&&isset($buNengFenLei->wzBuNengGuiLei)){
+                                $wzBuNengGuiLeiSel=$buNengFenLei->wzBuNengGuiLei;
                             }
                             foreach($wzBuNengGuiLeiArray as $ssfz){
                                 $wzBuNengGuiLeiChecked="";
@@ -255,7 +255,7 @@ $nanZhiXing=$attack_type&&isset($attack_type->nanZhiXing)?$attack_type->nanZhiXi
                                 ?>
                                 <label class="checkbox-inline">
                                     <input type="checkbox" <?= $wzBuNengGuiLeiChecked ?> value="<?= $ssfz ?>"
-                                           data-name-parent="weiZhiQiYuan" name="wzBuNengGuiLei"><?= $ssfz ?>
+                                           data-name-parent="buNengFenLei" name="wzBuNengGuiLei"><?= $ssfz ?>
                                 </label>
                             <?php
                             }

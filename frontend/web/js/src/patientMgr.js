@@ -35,7 +35,7 @@ var userMgr=(function(config,functions){
                             string += "△";
                         }
 
-                        return "<span style='color:red'>"+string+"</span>";
+                        return "<span style='color:red;font-size: 32px;vertical-align: bottom;'>"+string+"</span>";
                     }
                 },
                 { "mDataProp": "opt",
@@ -48,6 +48,9 @@ var userMgr=(function(config,functions){
                 aoData.push({
                     name:"filter",
                     value:$("#filter").val()
+                },{
+                    name:"filterType",
+                    value:$("#filterType").val()
                 },{
                     name:"orderByAge",
                     value:$("#sortByAge").data("sort")

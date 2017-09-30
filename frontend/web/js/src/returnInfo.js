@@ -49,7 +49,7 @@ $(document).ready(function () {
 
     setInterval(function(){
         returnInfo.saveData();
-    },50000);
+    },300000);
 
     $("#save").click(function(){
         returnInfo.saveData();

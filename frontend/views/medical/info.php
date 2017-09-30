@@ -526,6 +526,39 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
     </div>
 </div>
 
+<div class="form-group">
+    <label class="control-label col-md-2">首次发作后发作症状是否有改变</label>
+
+    <div class="col-md-8">
+        <?php
+        $shouCiFaZuoGaiBianArray = array("无", "有");
+        $shouCiFaZuoGaiBian = "";
+        $shouCiFaZuoGaiBianPanelClass = "";
+        $shouCiFaZuoGaiBianDataValue = false;
+        if ($performance && isset($performance->shouCiFaZuoGaiBian)) {
+            $shouCiFaZuoGaiBian = $performance->shouCiFaZuoGaiBian;
+        }
+        foreach ($shouCiFaZuoGaiBianArray as $f) {
+            $shouCiFaZuoGaiBianChecked = "";
+            $shouCiFaZuoGaiBianDataValue = false;
+            if ($f == $shouCiFaZuoGaiBian) {
+                $shouCiFaZuoGaiBianChecked = " checked ";
+            }
+            if ($f == "有") {
+                $shouCiFaZuoGaiBianDataValue = true;
+            }
+            ?>
+            <label class="radio-inline">
+                <input type="radio" <?= $shouCiFaZuoGaiBianChecked; ?> value="<?= $f; ?>" class="ctrl" data-name-parent="performance"
+                       data-value="<?= $shouCiFaZuoGaiBianDataValue; ?>"
+                       data-control-panel="shouCiFaZuoGaiBianCtrlPanel" name="shouCiFaZuoGaiBian"><?= $f; ?>
+            </label>
+        <?php
+        }
+        ?>
+
+    </div>
+</div>
 
 <div class="form-group">
     <label class="control-label col-md-2">癫痫持续状态</label>

@@ -107,7 +107,7 @@ $(document).ready(function () {
 
     setInterval(function(){
         medical.saveData();
-    },50000);
+    },300000);
 
     $("#toDiagnoseInfo,#save").click(function(){
         medical.saveData(function(){

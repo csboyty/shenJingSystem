@@ -52,11 +52,22 @@ class PatientController extends Controller
         $offset=$params["iDisplayStart"];
         $sEcho = $params["sEcho"];
         $filter = $params["filter"];
+        $filterType = $params["filterType"];
         $orderByAge = $params["orderByAge"];
         $query=PatientInfo::find();
         if($filter){
-            $query->where(['or', 'no=:filter', 'fullname=:filter'],[":filter"=>$filter]);
+            $query->where(['or',
+                ['like','no',$filter],
+                ['like','fullname',$filter]]);
         }
+        if($filterType){
+            $query->innerJoinWith(['diagnoseInfo' => function ($query) use($filterType) {
+                $query->where(["like","diagnose_info.attack_type",$filterType]);
+            }]);
+        }
+
+
+
         $count=$query->count();
         $aaData=$query
             ->asArray()
@@ -65,6 +76,7 @@ class PatientController extends Controller
             ->offset($offset)
             ->all();
 
+        //echo $query->createCommand()->getRawSql();
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
         return [

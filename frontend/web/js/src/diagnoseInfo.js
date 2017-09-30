@@ -2,7 +2,7 @@ var diagnoseInfo=(function(config,functions){
 
     return {
         saveData:function(callback){
-            var buNengFenLei = functions.getInfo("weiZhiQiYuan"),
+            var buNengFenLei = functions.getInfo("buNengFenLei"),
                 buFenFaZuo = functions.getInfo("buFenFaZuo"),
                 nanZhiXing = functions.getInfo("nanZhiXing"),
                 quanMianFaZuo = functions.getInfo("quanMianFaZuo");
@@ -13,14 +13,25 @@ var diagnoseInfo=(function(config,functions){
 
             var me = this;
 
+            var attachTypeJson = {
+
+            };
+            if(JSON.stringify(buNengFenLei) != "{}"){
+                attachTypeJson.buNengFenLei = buNengFenLei;
+            }
+            if(JSON.stringify(buFenFaZuo) != "{}"){
+                attachTypeJson.buFenFaZuo = buFenFaZuo;
+            }
+            if(JSON.stringify(nanZhiXing) != "{}"){
+                attachTypeJson.nanZhiXing = nanZhiXing;
+            }
+            if(JSON.stringify(quanMian) != "{}"){
+                attachTypeJson.quanMian = quanMian;
+            }
+
             functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {
                 patientId: patientId,
-                attack_type: JSON.stringify({
-                    buNengFenLei:buNengFenLei,
-                    buFenFaZuo:buFenFaZuo,
-                    quanMianFaZuo:quanMianFaZuo,
-                    nanZhiXing:nanZhiXing
-                }),
+                attack_type: JSON.stringify(attachTypeJson),
                 type:JSON.stringify({
                     buWei:buWei,
                     quanMian:quanMian,
@@ -41,7 +52,7 @@ var diagnoseInfo=(function(config,functions){
 $(document).ready(function(){
     setInterval(function(){
         diagnoseInfo.saveData();
-    },50000);
+    },300000);
     $("#toDiagnoseProcess,#save").click(function(){
         diagnoseInfo.saveData(function(){
             location.href="diagnose-process/"+patientId;

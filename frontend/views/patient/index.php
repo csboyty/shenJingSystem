@@ -17,13 +17,21 @@ $this->title = '病患管理';
             </span>
         </div>
     </div>
-    <div class="col-md-8">
-        <div class="input-group col-md-5" style="margin-left: auto">
+    <div class="col-md-8 row">
+        <div class="col-md-3">
             <input type="text" id="filter" class="form-control" placeholder="编号/姓名">
-            <span class="input-group-btn">
-                <button id="searchBtn" class="btn btn-primary" type="button">搜索</button>
-            </span>
         </div>
+        <div class="col-md-3">
+            <select type="text" id="filterType" class="form-control">
+                <option value="">全部</option>
+                <option value="buFenFaZuo">局灶性发作</option>
+                <option value="quanMianFaZuo">全面性发作</option>
+                <option value="buNengFenLei">未知起源</option>
+                <option value="nanZhiXing">药物难治性癫痫</option>
+            </select>
+        </div>
+
+        <button id="searchBtn" class="btn btn-primary col-md-2" type="button">搜索</button>
     </div>
 
 </div>

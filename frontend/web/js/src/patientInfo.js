@@ -43,7 +43,7 @@ $(document).ready(function(){
 
     setInterval(function(){
         patientCreateOrUpdate.autoSave();
-    },50000);
+    },300000);
 
     $("#toMedicalInfo, #save").click(function(){
         patientCreateOrUpdate.submitForm($("#myForm"),function(id){
