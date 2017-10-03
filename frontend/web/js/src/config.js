@@ -33,6 +33,17 @@ var config={
             "2":"处理完成"
         }
     },
+    seizureType:{
+        "yunDongZhengZhuang":"运动性发作",
+        "feiYunDongZhengZhuang":"非运动性发作",
+        "ceMianQiangZhi":"双侧全面强直",
+        "qmYunDong":"运动性发作",
+        "qmFeiYunDong":"非运动性发作",
+        "wzYunDong":"运动性发作",
+        "wzFeiYunDong":"非运动性发作",
+        "wzBuNengGuiLei":"不能归类",
+        "nanZhiXingValue":"药物难治性癫痫"
+    },
     uploader:{
         url:"#",
         swfUrl:"js/plupload/plupload.flash.swf",

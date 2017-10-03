@@ -27,15 +27,27 @@ var userMgr=(function(config,functions){
                 { "mDataProp": "memo",
                     "fnRender":function(oObj){
                         var string = "",
-                            memo = JSON.parse(oObj.aData.memo);
-                        if(memo[0] == 1){
+                            memo = JSON.parse(oObj.aData.memo),
+                            attackType, attackTypeArr =[];
+                       if(memo[0] == 1){
                             string += "！";
                         }
                         if(memo[1] == 1){
                             string += "△";
                         }
 
-                        return "<span style='color:red;font-size: 32px;vertical-align: bottom;'>"+string+"</span>";
+                        string = "<span style='color:red;font-size: 32px;vertical-align: bottom;'>"+string+"</span>";
+
+                        if(oObj.aData.diagnoseInfo){
+                            attackType = JSON.parse(oObj.aData.diagnoseInfo.attack_type);
+                            for(var o in attackType[$("#filterType").val()]){
+                                attackTypeArr.push(config.seizureType[o]);
+                            }
+
+                            string += "&nbsp;&nbsp;&nbsp;&nbsp;["+attackTypeArr.join(",")+"]";
+                        }
+
+                        return string;
                     }
                 },
                 { "mDataProp": "opt",
