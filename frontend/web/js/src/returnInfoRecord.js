@@ -28,12 +28,22 @@ var returnInfoAdd = (function (config, functions) {
 
             return arr;
         },
+        getNaoDianTuFiles:function(){
+            var arr = [];
+            $("input[name='naoDianTuFile']").each(function(index,val){
+                arr.push($(this).val());
+            });
+
+            return arr;
+        },
         saveData:function(callback){
             var info={};
             info.date= functions.formatDate("y-m-d");
             info.other=functions.getInfo("other");
             info.xueChangGui=this.geTableInfo($("#xueChangGuiTable tbody tr"));
             info.xueShengHua=this.getXueShengHuaTableInfo($("#xueShengHuaTable tbody tr"));
+
+            info.other["naoDianTuFiles"] = this.getNaoDianTuFiles();
 
             functions.saveInfo(config.ajaxUrls.returnInfoRecordSubmit, {
                 patientId: patientId,
@@ -79,6 +89,15 @@ $(document).ready(function () {
     $("#saveInfo").click(function(){
         returnInfoAdd.saveData(function(){
             location.href="return-info/"+patientId;
+        });
+    });
+
+    $("#uploadNaoDianTuFile").change(function(){
+        functions.uploadFile($(this), function (url) {
+            $('<a target="_blank" style="margin-right: 5px" href="'+url+'">'+
+                '文件'+($("#naoDianTuFiles a").length+1)+
+                '<input type="hidden" value="'+url+'" name="naoDianTuFile">'+
+                '</a>').appendTo($("#naoDianTuFiles"));
         });
     });
 

@@ -154,16 +154,16 @@ $(document).ready(function () {
 
     $("#uploadTouLuFile").change(function(){
         functions.uploadFile($(this), function (url) {
-            $('<a target="_blank" href="'+url+'">'+
-                '文件'+$("#touLuFiles").length+
+            $('<a target="_blank" style="margin-right: 5px" href="'+url+'">'+
+                '文件'+($("#touLuFiles a").length+1)+
                 '<input type="hidden" value="'+url+'" name="touLuFile">'+
                 '</a>').appendTo($("#touLuFiles"));
         });
     });
     $("#uploadEEGFile").change(function(){
         functions.uploadFile($(this), function (url) {
-            $('<a target="_blank" href="'+url+'">'+
-                '文件'+$("#EEGFiles").length+
+            $('<a target="_blank" style="margin-right: 5px" href="'+url+'">'+
+                '文件'+($("#EEGFiles a").length+1)+
                 '<input type="hidden" value="'+url+'" name="EEGFile">'+
                 '</a>').appendTo($("#EEGFiles"));
         });
@@ -189,12 +189,12 @@ $(document).ready(function () {
             info=[
                 $("#drugInfoName").val(),
                 $("#drugInfoAmount").val() + $("#drugInfoFrequency").val(),
-                $("#drugInfoUnit").val() + $("#drugInfoFrequency1").val(),
+                $("#drugInfoUnit").val() +"/"+ $("#drugInfoFrequency1").val(),
                 $("#drugInfoStartDate").val(),
                 $("#drugInfoEndDate").val()
             ];
 
-            info = diagnoseProcess.createDrugInfoItem(info.pop());
+            info = diagnoseProcess.createDrugInfoItem(info);
             $("#drugInfoTable tbody").append(info);
         }
 

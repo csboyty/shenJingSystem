@@ -6,6 +6,8 @@ $firstInfo = $performance_info && isset($performance_info->firstInfo) ? $perform
 
 $performance = $performance_info && isset($performance_info->performance) ? $performance_info->performance : null;
 
+$cengFuYao =  $performance_info && isset($performance_info->cengFuYao) ? $performance_info->cengFuYao : null;
+
 $drugInfos = $performance_info && isset($performance_info->drugInfos) ? $performance_info->drugInfos : array();
 
 $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) ? $performance_info->chiXuDrugInfos : array();
@@ -65,7 +67,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
 
         <div>
             <?php
-            $elementUnChangeArray = array("性别", "年龄", "遗传因素", "月经", "妊娠", "觉醒与睡眠", "其他");
+            $elementUnChangeArray = array("性别", "年龄", "遗传因素", "月经", "妊娠", "觉醒与睡眠");
             $elementUnChangeSel = array();
             if ($performance && isset($performance->elementUnChange)) {
                 $elementUnChangeSel = $performance->elementUnChange;
@@ -83,6 +85,29 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             <?php
             }
             ?>
+
+
+            <?php
+            if (in_array("其他", $elementUnChangeSel)) {
+                $elementUnChangeQiTaChecked = " checked ";
+                $elementUnChangeQiTaPanelClass = "";
+            } else {
+                $elementUnChangeQiTaChecked = "";
+                $elementUnChangeQiTaPanelClass = "hidden";
+            }
+
+            ?>
+            <br>
+            <label class="checkbox-inline">
+                <input type="checkbox" <?= $elementUnChangeQiTaChecked; ?> value="其他"
+                       data-name-parent="performance" name="elementUnChange" class="ctrl"
+                       data-control-panel="elementUnChangeQiTa">其他
+            </label>
+
+            <div class="ctrlPanel <?= $elementUnChangeQiTaPanelClass; ?>" id="elementUnChangeQiTa">
+                其他：<input type="text" value="<?= isset($performance->elementUnChangeQiTa) ? $performance->elementUnChangeQiTa : ""; ?>"
+                          data-name-parent="performance" name="elementUnChangeQiTa">
+            </div>
         </div>
         <br>
         <span>可改变的因素</span>
@@ -90,7 +115,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
         <div>
 
             <?php
-            $elementChangeArray = array("发热", "饮酒", "疲劳", "缺睡", "药物", "停药", "精神因素", "其他");
+            $elementChangeArray = array("发热", "饮酒", "疲劳", "缺睡", "药物", "停药", "精神因素");
             $elementChangeSel = array();
             if ($performance && isset($performance->elementChange)) {
                 $elementChangeSel = $performance->elementChange;
@@ -108,6 +133,28 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             <?php
             }
             ?>
+
+            <?php
+            if (in_array("其他", $elementChangeSel)) {
+                $elementChangeQiTaChecked = " checked ";
+                $elementChangeQiTaPanelClass = "";
+            } else {
+                $elementChangeQiTaChecked = "";
+                $elementChangeQiTaPanelClass = "hidden";
+            }
+
+            ?>
+            <br>
+            <label class="checkbox-inline">
+                <input type="checkbox" <?= $elementChangeQiTaChecked; ?> value="其他"
+                       data-name-parent="performance" name="elementChange" class="ctrl"
+                       data-control-panel="elementChangeQiTa">其他
+            </label>
+
+            <div class="ctrlPanel <?= $elementChangeQiTaPanelClass; ?>" id="elementChangeQiTa">
+                其他：<input type="text" value="<?= isset($performance->elementChangeQiTa) ? $performance->elementChangeQiTa : ""; ?>"
+                          data-name-parent="performance" name="elementChangeQiTa">
+            </div>
 
             <?php
 
@@ -199,7 +246,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             <span style="vertical-align: bottom">先兆：</span>
 
             <?php
-            $forebodingValuesArray = array("幻嗅", "幻视", "幻听", "胃气上升", "头晕", "其他");
+            $forebodingValuesArray = array("幻嗅", "幻视", "幻听", "胃气上升", "头晕");
             $forebodingValuesSel = array();
             if ($performance && isset($performance->forebodingValues)) {
                 $forebodingValuesSel = $performance->forebodingValues;
@@ -217,6 +264,28 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             <?php
             }
             ?>
+
+            <?php
+            if (in_array("其他", $forebodingValuesSel)) {
+                $forebodingQiTaChecked = " checked ";
+                $forebodingQiTaPanelClass = "";
+            } else {
+                $forebodingQiTaChecked = "";
+                $forebodingQiTaPanelClass = "hidden";
+            }
+
+            ?>
+            <br>
+            <label class="checkbox-inline">
+                <input type="checkbox" <?= $forebodingQiTaChecked; ?> value="其他"
+                       data-name-parent="performance" name="forebodingValues" class="ctrl"
+                       data-control-panel="forebodingQiTa">其他
+            </label>
+
+            <div class="ctrlPanel <?= $forebodingQiTaPanelClass; ?>" id="forebodingQiTa">
+                其他：<input type="text" value="<?= isset($performance->forebodingQiTa) ? $performance->forebodingQiTa : ""; ?>"
+                          data-name-parent="performance" name="forebodingQiTa">
+            </div>
 
         </div>
     </div>
@@ -402,13 +471,13 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
         ?>
         <label class="checkbox-inline">
             <input type="checkbox" <?= $fzQiTaChecked; ?> value="其他"
-                   data-name-parent="performance" name="faZuoQita" class="ctrl"
+                   data-name-parent="performance" name="performanceValues" class="ctrl"
                    data-control-panel="performanceFaZuoQiTa">其他
         </label>
 
         <div class="ctrlPanel <?= $fzQiTaPanelClass; ?>" id="performanceFaZuoQiTa">
-            其他：<input type="text" value="<?= isset($performance->faZuoQiTa) ? $performance->faZuoQiTa : ""; ?>"
-                      data-name-parent="performance" name="faZuoQiTa">
+            其他：<input type="text" value="<?= isset($performance->faZuoBiaoXianQiTa) ? $performance->faZuoBiaoXianQiTa : ""; ?>"
+                      data-name-parent="performance" name="faZuoBiaoXianQiTa">
         </div>
     </div>
 </div>
@@ -451,13 +520,13 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
         ?>
         <label class="checkbox-inline">
             <input type="checkbox" <?= $bwQiTaChecked; ?> value="其他"
-                   data-name-parent="performance" name="buWeiQita" class="ctrl"
+                   data-name-parent="performance" name="buWei" class="ctrl"
                    data-control-panel="performanceBuWeiQiTa">其他
         </label>
 
         <div class="ctrlPanel <?= $bwQiTaPanelClass; ?>" id="performanceBuWeiQiTa">
-            其他：<input type="text" value="<?= isset($performance->buWeiQiTa) ? $performance->buWeiQiTa : ""; ?>"
-                      data-name-parent="performance" name="buWeiQiTa">
+            其他：<input type="text" value="<?= isset($performance->faZuoBuWeiQiTa) ? $performance->faZuoBuWeiQiTa : ""; ?>"
+                      data-name-parent="performance" name="faZuoBuWeiQiTa">
         </div>
     </div>
 </div>
@@ -624,13 +693,35 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             }
             ?>
 
+            <?php
+            if (in_array("其他", $chiXuValuesSel)) {
+                $chiXuQiTaChecked = " checked ";
+                $chiXuQiTaPanelClass = "";
+            } else {
+                $chiXuQiTaChecked = "";
+                $chiXuQiTaPanelClass = "hidden";
+            }
+
+            ?>
+            <br>
+            <label class="checkbox-inline">
+                <input type="checkbox" <?= $chiXuQiTaChecked; ?> value="其他"
+                       data-name-parent="performance" name="chiXuValues" class="ctrl"
+                       data-control-panel="chiXuQiTa">其他
+            </label>
+
+            <div class="ctrlPanel <?= $chiXuQiTaPanelClass; ?>" id="chiXuQiTa">
+                其他：<input type="text" value="<?= isset($performance->chiXuQiTa) ? $performance->chiXuQiTa : ""; ?>"
+                          data-name-parent="performance" name="chiXuQiTa">
+            </div>
+
         </div>
     </div>
 </div>
 
 
 <div class="form-group">
-    <label class="control-label col-md-2">发作视频</label>
+    <label class="control-label col-md-2">发作视频(<500m)</label>
 
     <div class="col-md-8" id="uploadContainer">
         <input type="file" id="uploadFaZuoFile">
@@ -646,7 +737,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
 
                 ?>
                 <a target="_blank" href="<?= $value; ?>" style="margin-right: 5px">
-                    视频<?= $key; ?>
+                    视频<?= $key+1; ?>
 
                     <input type="hidden" value="<?= $value; ?>"
                            name="faZuoFile">
@@ -684,16 +775,16 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
     <div class="col-md-10">
         <?php
         $cengFuYaoArray = array("无", "有");
-        $cengFuYao = "";
+        $cengFuYaoValue = "";
         $cengFuYaoPanelClass = "";
         $cengFuYaoDataValue = false;
-        if ($performance && isset($performance->cengFuYao)) {
-            $cengFuYao = $performance->cengFuYao;
+        if ($cengFuYao && isset($cengFuYao->cengFuYaoValue)) {
+            $cengFuYaoValue = $cengFuYao->cengFuYaoValue;
         }
         foreach ($cengFuYaoArray as $cfy) {
             $cengFuYaoChecked = "";
             $cengFuYaoDataValue = false;
-            if ($cfy == $cengFuYao) {
+            if ($cfy == $cengFuYaoValue) {
                 $cengFuYaoChecked = " checked ";
             }
             if ($cfy == "有") {
@@ -702,14 +793,14 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             ?>
             <label class="radio-inline">
                 <input type="radio" <?= $cengFuYaoChecked; ?> value="<?= $cfy; ?>" class="ctrl"
-                       data-name-parent="performance"
+                       data-name-parent="cengFuYao"
                        data-value="<?= $cengFuYaoDataValue; ?>" data-control-panel="cengFuYaoCtrlPanel"
-                       name="cengFuYao"><?= $cfy; ?>
+                       name="cengFuYaoValue"><?= $cfy; ?>
             </label>
         <?php
         }
 
-        if ($cengFuYao == "有") {
+        if ($cengFuYaoValue == "有") {
             $cengFuYaoPanelClass = "";
         } else {
             $cengFuYaoPanelClass = "hidden";
@@ -719,26 +810,29 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             <div class="row" id="drugInfoForm">
 
                 <div class="col-md-2">
-                    <select class="form-control" id="drugInfoName">
-                        <option value="卡马西平">卡马西平</option>
-                        <option value="丙戊酸">丙戊酸</option>
-                        <option value="苯妥英">苯妥英</option>
-                        <option value="苯巴比妥">苯巴比妥</option>
-                        <option value="扑痫酮">扑痫酮</option>
-                        <option value="乙琥胺">乙琥胺</option>
-                        <option value="苯二氮卓类">苯二氮卓类</option>
-                        <option value="吡拉西坦">吡拉西坦</option>
-                        <option value="拉莫三嗪">拉莫三嗪</option>
-                        <option value="托吡酯">托吡酯</option>
-                        <option value="左乙拉西坦">左乙拉西坦</option>
-                        <option value="加巴喷丁">加巴喷丁</option>
-                        <option value="非氨酯">非氨酯</option>
-                        <option value="奥卡西平">奥卡西平</option>
-                        <option value="氨己烯酸">氨己烯酸</option>
-                        <option value="噻加宾">噻加宾</option>
-                        <option value="唑尼沙胺">唑尼沙胺</option>
-                        <option value="司替戊醇">司替戊醇</option>
-                    </select>
+                    <div class="inputSel">
+                        <input type="text" class="form-control" id="drugInfoName">
+                        <select class="form-control inputSelSel">
+                            <option value="卡马西平">卡马西平</option>
+                            <option value="丙戊酸">丙戊酸</option>
+                            <option value="苯妥英">苯妥英</option>
+                            <option value="苯巴比妥">苯巴比妥</option>
+                            <option value="扑痫酮">扑痫酮</option>
+                            <option value="乙琥胺">乙琥胺</option>
+                            <option value="苯二氮卓类">苯二氮卓类</option>
+                            <option value="吡拉西坦">吡拉西坦</option>
+                            <option value="拉莫三嗪">拉莫三嗪</option>
+                            <option value="托吡酯">托吡酯</option>
+                            <option value="左乙拉西坦">左乙拉西坦</option>
+                            <option value="加巴喷丁">加巴喷丁</option>
+                            <option value="非氨酯">非氨酯</option>
+                            <option value="奥卡西平">奥卡西平</option>
+                            <option value="氨己烯酸">氨己烯酸</option>
+                            <option value="噻加宾">噻加宾</option>
+                            <option value="唑尼沙胺">唑尼沙胺</option>
+                            <option value="司替戊醇">司替戊醇</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-md-2">
                     <input class="form-control" type="text" placeholder="剂量" id="drugInfoAmount">
@@ -762,10 +856,10 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                 <div class="col-md-2">
                     <input type="text" class="form-control" placeholder="次" id="drugInfoFrequency1">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <input type="date" class="form-control" placeholder="起" id="drugInfoStartDate">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <input type="date" class="form-control" placeholder="止" id="drugInfoEndDate">
                 </div>
                 <div class="col-md-2">
@@ -778,6 +872,8 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                     <th>药物名称</th>
                     <th>剂量</th>
                     <th>频率</th>
+                    <th>开始日期</th>
+                    <th>结束日期</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -790,6 +886,8 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                         <td><?= $di[0] ?></td>
                         <td><?= $di[1] ?></td>
                         <td><?= $di[2] ?></td>
+                        <td><?= $di[3] ?></td>
+                        <td><?= $di[4] ?></td>
                         <td><a href="#" class="deleteDrugInfo">删除</a></td>
                     </tr>
                 <?php
@@ -809,8 +907,8 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
         $sideEffect = "";
         $sideEffectPanelClass = "";
         $sideEffectDataValue = false;
-        if ($performance && isset($performance->sideEffect)) {
-            $sideEffect = $performance->sideEffect;
+        if ($cengFuYao && isset($cengFuYao->sideEffect)) {
+            $sideEffect = $cengFuYao->sideEffect;
         }
         foreach ($sideEffectArray as $se) {
             $sideEffectChecked = "";
@@ -824,7 +922,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             ?>
             <label class="radio-inline">
                 <input type="radio" <?= $sideEffectChecked; ?> value="<?= $se; ?>" class="ctrl"
-                       data-name-parent="performance"
+                       data-name-parent="cengFuYao"
                        data-value="<?= $sideEffectDataValue; ?>" data-control-panel="sideEffectCtrlPanel"
                        name="sideEffect"><?= $se; ?>
             </label>
@@ -844,8 +942,8 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             $sideEffectType = "";
             $sideEffectTypePanelClass = "";
             $sideEffectTypeDataValue = false;
-            if ($performance && isset($performance->sideEffectType)) {
-                $sideEffectType = $performance->sideEffectType;
+            if ($cengFuYao && isset($cengFuYao->sideEffectType)) {
+                $sideEffectType = $cengFuYao->sideEffectType;
             }
             foreach ($sideEffectTypeArray as $set) {
                 $sideEffectTypeChecked = "";
@@ -859,7 +957,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                 ?>
                 <label class="radio-inline">
                     <input type="radio" <?= $sideEffectTypeChecked; ?> value="<?= $set; ?>" class="ctrl"
-                           data-name-parent="performance"
+                           data-name-parent="cengFuYao"
                            data-value="<?= $sideEffectTypeDataValue; ?>" data-control-panel="sideEffectCtrl1Panel"
                            name="sideEffectType"><?= $set; ?>
                 </label>
@@ -879,8 +977,8 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             $sideEffectTypeValuesArray = array("胃肠道紊乱", "神经精神反应", "肝毒性", "体重增加或减轻",
                 "血液紊乱", "引起发作加重", "心血管反应", "皮疹");
             $sideEffectTypeValuesSel = array();
-            if ($performance && isset($performance->sideEffectTypeValues)) {
-                $sideEffectTypeValuesSel = $performance->sideEffectTypeValues;
+            if ($cengFuYao && isset($cengFuYao->sideEffectTypeValues)) {
+                $sideEffectTypeValuesSel = $cengFuYao->sideEffectTypeValues;
             }
             foreach ($sideEffectTypeValuesArray as $setv) {
                 $sideEffectTypeValuesChecked = "";
@@ -890,11 +988,33 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                 ?>
                 <label class="checkbox-inline">
                     <input type="checkbox" <?= $sideEffectTypeValuesChecked; ?>  value="<?= $setv; ?>"
-                           data-name-parent="performance" name="sideEffectTypeValues"><?= $setv; ?>
+                           data-name-parent="cengFuYao" name="sideEffectTypeValues"><?= $setv; ?>
                 </label>
             <?php
             }
             ?>
+
+
+            <?php
+            if (in_array("其他", $sideEffectTypeValuesSel)) {
+                $sideEffectTypeQiTaChecked = " checked ";
+                $sideEffectTypeQiTaPanelClass = "";
+            } else {
+                $sideEffectTypeQiTaChecked = "";
+                $sideEffectTypeQiTaPanelClass = "hidden";
+            }
+
+            ?>
+            <label class="checkbox-inline">
+                <input type="checkbox" <?= $sideEffectTypeQiTaChecked; ?> value="其他"
+                       data-name-parent="cengFuYao" name="sideEffectTypeValues" class="ctrl"
+                       data-control-panel="sideEffectTypeQiTa">其他
+            </label>
+
+            <div class="ctrlPanel <?= $sideEffectTypeQiTaPanelClass; ?>" id="sideEffectTypeQiTa">
+                其他：<input type="text" value="<?= isset($cengFuYao->sideEffectTypeQiTa) ? $cengFuYao->sideEffectTypeQiTa : ""; ?>"
+                          data-name-parent="cengFuYao" name="sideEffectTypeQiTa">
+            </div>
         </div>
     </div>
 </div>
@@ -907,8 +1027,8 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
         $dependency = "";
         $dependencyPanelClass = "";
         $dependencyDataValue = false;
-        if ($performance && isset($performance->dependency)) {
-            $dependency = $performance->dependency;
+        if ($cengFuYao && isset($cengFuYao->dependency)) {
+            $dependency = $cengFuYao->dependency;
         }
         foreach ($dependencyArray as $dv) {
             $dependencyChecked = "";
@@ -922,7 +1042,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             ?>
             <label class="radio-inline">
                 <input type="radio" <?= $dependencyChecked; ?> value="<?= $dv; ?>" class="ctrl"
-                       data-name-parent="performance"
+                       data-name-parent="cengFuYao"
                        data-value="<?= $dependencyDataValue; ?>" data-control-panel="dependencyCtrlPanel"
                        name="dependency"><?= $dv; ?>
             </label>
@@ -939,10 +1059,10 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
         <div id="dependencyCtrlPanel" class="<?= $dependencyPanelClass; ?>">
             <?php
             $yiCunXingArray = array("药物副作用严重影响患者的工作学习", "药物贵，经济压力大", "患者主观随意性用药", "自行频繁更换药物或改偏方/中药治疗",
-                "自行停药、撤药", "其他");
+                "自行停药、撤药");
             $yiCunXingSel = array();
-            if ($performance && isset($performance->yiCunXing)) {
-                $yiCunXingSel = $performance->yiCunXing;
+            if ($cengFuYao && isset($cengFuYao->yiCunXing)) {
+                $yiCunXingSel = $cengFuYao->yiCunXing;
             }
             foreach ($yiCunXingArray as $setv) {
                 $yiCunXingChecked = "";
@@ -952,11 +1072,33 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                 ?>
                 <label class="checkbox-inline">
                     <input type="checkbox" <?= $yiCunXingChecked; ?>  value="<?= $setv; ?>"
-                           data-name-parent="performance" name="yiCunXing"><?= $setv; ?>
+                           data-name-parent="cengFuYao" name="yiCunXing"><?= $setv; ?>
                 </label>
             <?php
             }
             ?>
+
+
+            <?php
+            if (in_array("其他", $yiCunXingSel)) {
+                $yiCunXingQiTaChecked = " checked ";
+                $yiCunXingQiTaPanelClass = "";
+            } else {
+                $yiCunXingQiTaChecked = "";
+                $yiCunXingQiTaPanelClass = "hidden";
+            }
+
+            ?>
+            <label class="checkbox-inline">
+                <input type="checkbox" <?= $yiCunXingQiTaChecked; ?> value="其他"
+                       data-name-parent="cengFuYao" name="yiCunXing" class="ctrl"
+                       data-control-panel="yiCunXingQiTa">其他
+            </label>
+
+            <div class="ctrlPanel <?= $yiCunXingQiTaPanelClass; ?>" id="yiCunXingQiTa">
+                其他：<input type="text" value="<?= isset($cengFuYao->yiCunXingQiTa) ? $cengFuYao->yiCunXingQiTa : ""; ?>"
+                          data-name-parent="cengFuYao" name="yiCunXingQiTa">
+            </div>
         </div>
     </div>
 </div>
@@ -969,8 +1111,8 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
         $stop = "";
         $stopPanelClass = "";
         $stopDataValue = false;
-        if ($performance && isset($performance->stop)) {
-            $stop = $performance->stop;
+        if ($cengFuYao && isset($cengFuYao->stop)) {
+            $stop = $cengFuYao->stop;
         }
         foreach ($stopArray as $ta) {
             $stopChecked = "";
@@ -986,7 +1128,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             <label class="radio-inline">
                 <input type="radio" <?= $stopChecked; ?> value="<?= $ta; ?>" class="ctrl"
                        data-value="<?= $stopDataValue; ?>"
-                       data-name-parent="performance" name="stop" data-control-panel="stopCtrlPanel"><?= $ta; ?>
+                       data-name-parent="cengFuYao" name="stop" data-control-panel="stopCtrlPanel"><?= $ta; ?>
             </label>
         <?php
         }
@@ -1002,10 +1144,10 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                 <span style="vertical-align: bottom">原因 ：</span>
                 <?php
                 $stopElementArray = array("疗效差", "不能耐受的副作用", "认为西医治疗药物副作用大，迷信祖传秘方",
-                    "打算结婚或生子", "经济困难", "其他");
+                    "打算结婚或生子", "经济困难");
                 $stopElement = "";
-                if ($performance && isset($performance->stopElement)) {
-                    $stopElement = $performance->stopElement;
+                if ($cengFuYao && isset($cengFuYao->stopElement)) {
+                    $stopElement = $cengFuYao->stopElement;
                 }
                 foreach ($stopElementArray as $sea) {
                     $stopElementChecked = "";
@@ -1015,38 +1157,43 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                     ?>
                     <label class="radio-inline">
                         <input type="radio" <?= $stopElementChecked; ?> value="<?= $sea; ?>"
-                               data-name-parent="performance" name="stopElement"><?= $sea; ?>
+                               data-name-parent="cengFuYao" name="stopElement"><?= $sea; ?>
                     </label>
                 <?php
                 }
                 ?>
+                <label class="radio-inline">
+                    其他：<input type="text" value="<?= isset($cengFuYao->stopElementQiTa) ? $cengFuYao->stopElementQiTa : ""; ?>"
+                              data-name-parent="cengFuYao" name="stopElementQiTa">
+                </label>
+
             </div>
             <div style="margin: 5px 0px;">
                 终止时间：<input type="date" name="stopDate"
-                            value="<?= isset($performance->stopDate) ? $performance->stopDate : ""; ?>"
-                            data-name-parent="performance" name="stopDate">
+                            value="<?= isset($cengFuYao->stopDate) ? $cengFuYao->stopDate : ""; ?>"
+                            data-name-parent="cengFuYao" name="stopDate">
             </div>
             <div style="margin: 5px 0px;">
                 终止后措施：
                 <ul style="margin: 5px 0px;" class="list">
                     <?php
-                    $stopMeasure = isset($performance->stopMeasure)?$performance->stopMeasure:"";
-                    $stopMeasureValue = isset($performance->stopMeasureValue)?$performance->stopMeasureValue:"";
+                    $stopMeasure = isset($cengFuYao->stopMeasure)?$cengFuYao->stopMeasure:"";
+                    $stopMeasureValue = isset($cengFuYao->stopMeasureValue)?$cengFuYao->stopMeasureValue:"";
                     ?>
                     <li>
                         <?php
                         if ($stopMeasure == "换药或加药") {
                             ?>
-                            <input type="radio" checked name="stopMeasure" data-name-parent="performance"
+                            <input type="radio" checked name="stopMeasure" data-name-parent="cengFuYao"
                                    value="换药或加药"><label class="name">换药或加药</label>
                             <input type="text" name="stopMeasureValue"
-                                   value="<?= $stopMeasureValue; ?>" data-name-parent="performance">
+                                   value="<?= $stopMeasureValue; ?>" data-name-parent="cengFuYao">
                         <?php
                         } else {
                             ?>
-                            <input type="radio" name="stopMeasure" data-name-parent="performance"
+                            <input type="radio" name="stopMeasure" data-name-parent="cengFuYao"
                                    value="换药或加药"><label class="name">换药或加药</label>
-                            <input type="text" name="stopMeasureValue" data-name-parent="performance">
+                            <input type="text" name="stopMeasureValue" data-name-parent="cengFuYao">
                         <?php
                         }
                         ?>
@@ -1056,9 +1203,9 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                         <?php
                         if ($stopMeasure == "其他疗法") {
                             ?>
-                            <input type="radio" checked name="stopMeasure" data-name-parent="performance" value="其他疗法">
+                            <input type="radio" checked name="stopMeasure" data-name-parent="cengFuYao" value="其他疗法">
                             <label class="name">其他疗法</label>
-                            <select name="stopMeasureValue" data-name-parent="performance">
+                            <select name="stopMeasureValue" data-name-parent="cengFuYao">
                                 <?php
                                 $stopMeasureValueArray = array("中药", "祖传秘方", "偏方");
                                 foreach ($stopMeasureValueArray as $smv) {
@@ -1077,9 +1224,9 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                         <?php
                         } else {
                             ?>
-                            <input type="radio" name="stopMeasure" data-name-parent="performance" value="其他疗法"><label
+                            <input type="radio" name="stopMeasure" data-name-parent="cengFuYao" value="其他疗法"><label
                                 class="name">其他疗法</label>
-                            <select name="stopMeasureValue" data-name-parent="performance">
+                            <select name="stopMeasureValue" data-name-parent="cengFuYao">
                                 <option value="中药">中药</option>
                                 <option value="祖传秘方">祖传秘方</option>
                                 <option value="偏方">偏方</option>
@@ -1091,20 +1238,8 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
 
                     </li>
                     <li>
-                        <?php
-                            if ($stopMeasure == "其他") {
-                        ?>
-                        <input type="radio" checked name="stopMeasure" data-name-parent="performance" value="其他">
-                        <label class="name">其他</label>
-                        <?php
-                        } else {
-                            ?>
-                            <input type="radio" name="stopMeasure" data-name-parent="performance" value="其他"><label
-                                class="name">其他</label>
-                        <?php
-                        }
-
-                        ?>
+                        其他：<input type="text" value="<?= isset($cengFuYao->stopMeasureQiTa) ? $cengFuYao->stopMeasureQiTa : ""; ?>"
+                                  data-name-parent="cengFuYao" name="stopMeasureQiTa">
                     </li>
                 </ul>
             </div>
@@ -1114,8 +1249,8 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                 <?php
                 $zhongZhiHouFaZuoArray = array("增加", "减少", "消失");
                 $zhongZhiHouFaZuo = "";
-                if ($performance && isset($performance->zhongZhiHouFaZuo)) {
-                    $zhongZhiHouFaZuo = $performance->zhongZhiHouFaZuo;
+                if ($cengFuYao && isset($cengFuYao->zhongZhiHouFaZuo)) {
+                    $zhongZhiHouFaZuo = $cengFuYao->zhongZhiHouFaZuo;
                 }
                 foreach ($zhongZhiHouFaZuoArray as $sea) {
                     $zhongZhiHouFaZuoChecked = "";
@@ -1125,7 +1260,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                     ?>
                     <label class="radio-inline">
                         <input type="radio" <?= $zhongZhiHouFaZuoChecked; ?> value="<?= $sea; ?>"
-                               data-name-parent="performance" name="zhongZhiHouFaZuo"><?= $sea; ?>
+                               data-name-parent="cengFuYao" name="zhongZhiHouFaZuo"><?= $sea; ?>
                     </label>
                 <?php
                 }
@@ -1142,8 +1277,8 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
         <?php
         $waiKeGanYuArray = array("病灶切除", "迷走神经磁刺激", "三叉神经刺激", "DBS");
         $waiKeGanYuSel = array();
-        if ($performance && isset($performance->waiKeGanYuValues)) {
-            $waiKeGanYuValuesSel = $performance->waiKeGanYuValues;
+        if ($cengFuYao && isset($cengFuYao->waiKeGanYuValues)) {
+            $waiKeGanYuValuesSel = $cengFuYao->waiKeGanYuValues;
         }
         foreach ($waiKeGanYuArray as $pv) {
             $waiKeGanYuChecked = "";
@@ -1153,7 +1288,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             ?>
             <label class="checkbox-inline">
                 <input type="checkbox" <?= $waiKeGanYuChecked; ?>  value="<?= $pv; ?>"
-                       data-name-parent="waiKeGanYu" name="waiKeGanYuValues"><?= $pv; ?>
+                       data-name-parent="cengFuYao" name="waiKeGanYuValues"><?= $pv; ?>
             </label>
 
         <?php
@@ -1171,18 +1306,18 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
 
         ?>
         <div style="margin-top:5px;">
-            时间：<input type="date" value="<?= isset($performance->waiKeGanYuShiJian) ? $performance->waiKeGanYuShiJian : ""; ?>"
-                      data-name-parent="performance" name="waiKeGanYuShiJian">
+            时间：<input type="date" value="<?= isset($cengFuYao->waiKeGanYuShiJian) ? $cengFuYao->waiKeGanYuShiJian : ""; ?>"
+                      data-name-parent="cengFuYao" name="waiKeGanYuShiJian">
         </div>
         <label class="checkbox-inline">
             <input type="checkbox" <?= $waiKeGanYuQiTaChecked; ?> value="其他"
-                   data-name-parent="waiKeGanYu" name="waiKeGanYuQita" class="ctrl"
+                   data-name-parent="cengFuYao" name="waiKeGanYuValues" class="ctrl"
                    data-control-panel="waiKeGanYuQiTa">其他
         </label>
 
         <div class="ctrlPanel <?= $waiKeGanYuQiTaPanelClass; ?>" id="waiKeGanYuQiTa">
-            其他：<input type="text" value="<?= isset($performance->waiKeGanYuQiTa) ? $performance->waiKeGanYuQiTa : ""; ?>"
-                      data-name-parent="performance" name="waiKeGanYuQiTa">
+            其他：<input type="text" value="<?= isset($cengFuYao->waiKeGanYuQiTa) ? $cengFuYao->waiKeGanYuQiTa : ""; ?>"
+                      data-name-parent="cengFuYao" name="waiKeGanYuQiTa">
         </div>
     </div>
 </div>
@@ -1194,13 +1329,16 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             <div class="row" id="chiXuDrugInfoForm">
 
                 <div class="col-md-2">
-                    <select class="form-control" id="chiXuDrugInfoName">
-                        <option value="地西泮">地西泮</option>
-                        <option value="丙戊酸注射液">丙戊酸注射液</option>
-                        <option value="苯巴比妥注射液">苯巴比妥注射液</option>
-                        <option value="咪达唑仑">咪达唑仑</option>
-                        <option value="丙泊酚">丙泊酚</option>
-                    </select>
+                    <div class="inputSel">
+                        <input type="text" class="form-control" id="chiXuDrugInfoName">
+                        <select class="form-control inputSelSel">
+                            <option value="地西泮">地西泮</option>
+                            <option value="丙戊酸注射液">丙戊酸注射液</option>
+                            <option value="苯巴比妥注射液">苯巴比妥注射液</option>
+                            <option value="咪达唑仑">咪达唑仑</option>
+                            <option value="丙泊酚">丙泊酚</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-md-2">
                     <input class="form-control" type="text" placeholder="剂量" id="chiXuDrugInfoAmount">

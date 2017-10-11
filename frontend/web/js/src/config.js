@@ -86,9 +86,8 @@ var config={
         optSuccRedirect:"操作成功,3秒后跳转到管理页！",
         timeout:"登录超时，3秒后自动跳到登陆页！",
         optError:"服务器端异常，请稍后重试！",
-        uploadSizeError:"最大文件大小${value}！",
-        uploadExtensionError:"只允许上传${value}！",
-        uploadIOError:"上传出错，请稍后重试！",
+        uploadSizeError:"最大文件大小500M！",
+        uploadError:"上传出错，请稍后重试！",
         imageSizeError:"图片大小不符合！"
     }
 };

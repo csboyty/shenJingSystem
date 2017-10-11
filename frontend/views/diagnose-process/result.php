@@ -397,7 +397,7 @@ $other=isset($check_result->other)?$check_result->other:array();
 
                                     ?>
                                     <a target="_blank" href="<?= $value; ?>" style="margin-right: 5px">
-                                        视频<?= $key; ?>
+                                        视频<?= $key+1; ?>
 
                                         <input type="hidden" value="<?= $value; ?>"
                                                name="touLuFile">

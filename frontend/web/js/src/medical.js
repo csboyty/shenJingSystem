@@ -8,7 +8,9 @@ var medical = (function (config, functions) {
                     arr.push([
                         el.find("td:eq(0)").text(),
                         el.find("td:eq(1)").text(),
-                        el.find("td:eq(2)").text()
+                        el.find("td:eq(2)").text(),
+                        el.find("td:eq(3)").text(),
+                        el.find("td:eq(4)").text()
                     ]);
                 }
             });
@@ -48,6 +50,8 @@ var medical = (function (config, functions) {
                 "<td>", list[0], "</td>",
                 "<td>", list[1], "</td>",
                 "<td>", list[2], "</td>",
+                "<td>", list[3], "</td>",
+                "<td>", list[4], "</td>",
                 "<td>", "<a href='#' class='deleteDrugInfo'>删除</a>", "</td>",
                 "</tr>"
             ];
@@ -65,6 +69,7 @@ var medical = (function (config, functions) {
         saveData:function(callback){
             var firstInfo = functions.getInfo("firstInfo"),
                 performance = functions.getInfo("performance"),
+                cengFuYao = functions.getInfo("cengFuYao"),
                 drugInfos = this.getDrugInfo(),
                 chiXuDrugInfos = this.getChiXuDrugInfo();
             var normal = functions.getInfo("normal"),
@@ -83,6 +88,7 @@ var medical = (function (config, functions) {
                 performance_info: JSON.stringify({
                     firstInfo:firstInfo,
                     performance:performance,
+                    cengFuYao:cengFuYao,
                     drugInfos:drugInfos,
                     chiXuDrugInfos:chiXuDrugInfos
                 }),
@@ -127,7 +133,9 @@ $(document).ready(function () {
         info=[
             $("#drugInfoName").val(),
             $("#drugInfoAmount").val() + $("#drugInfoFrequency").val(),
-            $("#drugInfoUnit").val() + $("#drugInfoFrequency1").val()
+            $("#drugInfoUnit").val() + "/" +$("#drugInfoFrequency1").val(),
+            $("#drugInfoStartDate").val(),
+            $("#drugInfoEndDate").val()
         ];
 
         info = medical.createDrugInfoItem(info);
@@ -186,8 +194,8 @@ $(document).ready(function () {
     });
     $("#uploadFaZuoFile").change(function(){
         functions.uploadFile($(this), function (url) {
-            $('<a target="_blank" href="'+url+'">'+
-                '视频'+$("#faZuoFiles").length+
+            $('<a target="_blank" style="margin-right: 5px" href="'+url+'">'+
+                '视频'+($("#faZuoFiles a").length+1)+
                 '<input type="hidden" value="'+url+'" name="faZuoFile">'+
             '</a>').appendTo($("#faZuoFiles"));
         });

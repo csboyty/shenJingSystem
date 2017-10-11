@@ -10,26 +10,29 @@ $drugInfos=$treatment_options?$treatment_options->drugInfo:array();
 
 <form class="form-inline" id="optionsForm">
     <div class="form-group">
-        <select class="form-control" id="drugInfoName">
-            <option value="卡马西平">卡马西平</option>
-            <option value="丙戊酸">丙戊酸</option>
-            <option value="苯妥英">苯妥英</option>
-            <option value="苯巴比妥">苯巴比妥</option>
-            <option value="扑痫酮">扑痫酮</option>
-            <option value="乙琥胺">乙琥胺</option>
-            <option value="苯二氮卓类">苯二氮卓类</option>
-            <option value="吡拉西坦">吡拉西坦</option>
-            <option value="拉莫三嗪">拉莫三嗪</option>
-            <option value="托吡酯">托吡酯</option>
-            <option value="左乙拉西坦">左乙拉西坦</option>
-            <option value="加巴喷丁">加巴喷丁</option>
-            <option value="非氨酯">非氨酯</option>
-            <option value="奥卡西平">奥卡西平</option>
-            <option value="氨己烯酸">氨己烯酸</option>
-            <option value="噻加宾">噻加宾</option>
-            <option value="唑尼沙胺">唑尼沙胺</option>
-            <option value="司替戊醇">司替戊醇</option>
-        </select>
+        <div class="inputSel">
+            <input type="text" class="form-control" id="drugInfoName">
+            <select class="form-control inputSelSel">
+                <option value="卡马西平">卡马西平</option>
+                <option value="丙戊酸">丙戊酸</option>
+                <option value="苯妥英">苯妥英</option>
+                <option value="苯巴比妥">苯巴比妥</option>
+                <option value="扑痫酮">扑痫酮</option>
+                <option value="乙琥胺">乙琥胺</option>
+                <option value="苯二氮卓类">苯二氮卓类</option>
+                <option value="吡拉西坦">吡拉西坦</option>
+                <option value="拉莫三嗪">拉莫三嗪</option>
+                <option value="托吡酯">托吡酯</option>
+                <option value="左乙拉西坦">左乙拉西坦</option>
+                <option value="加巴喷丁">加巴喷丁</option>
+                <option value="非氨酯">非氨酯</option>
+                <option value="奥卡西平">奥卡西平</option>
+                <option value="氨己烯酸">氨己烯酸</option>
+                <option value="噻加宾">噻加宾</option>
+                <option value="唑尼沙胺">唑尼沙胺</option>
+                <option value="司替戊醇">司替戊醇</option>
+            </select>
+        </div>
     </div>
     <div class="form-group">
         <input class="form-control" type="text"  placeholder="剂量"  id="drugInfoAmount">
@@ -89,4 +92,4 @@ $drugInfos=$treatment_options?$treatment_options->drugInfo:array();
 </table>
 <hr>
 <h2 class="text-own">其他用药</h2>
-<textarea style="width:100%;height: 200px;" id="otherDrug"><?= isset($treatment_options->otherDrug)?json_decode($treatment_options->otherDrug):""; ?></textarea>
+<textarea style="width:100%;height: 200px;" id="otherDrug"><?= isset($treatment_options->otherDrug)?$treatment_options->otherDrug:""; ?></textarea>

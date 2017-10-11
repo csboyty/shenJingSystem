@@ -17,7 +17,7 @@ $nanZhiXing=$attack_type&&isset($attack_type->nanZhiXing)?$attack_type->nanZhiXi
             <h4 class="panel-title">
                 <a data-toggle="collapse" href="#collapseOneSeizureType" data-parent="#accordionSeizureType"
                    aria-expanded="true" aria-controls="collapseOneSeizureType">
-                    局灶性发作
+                    局灶性起源
                 </a>
             </h4>
         </div>
@@ -80,6 +80,32 @@ $nanZhiXing=$attack_type&&isset($attack_type->nanZhiXing)?$attack_type->nanZhiXi
                     </div>
 
                     <div class="form-group">
+                        <label class="control-label col-md-2">意识</label>
+                        <div class="col-md-8">
+                            <?php
+                            $yiShiArray=array("意识清楚","意识障碍");
+                            $yiShiSel=array();
+                            if($buFenFaZuo&&isset($buFenFaZuo->yiShi)){
+                                $yiShiSel=$buFenFaZuo->yiShi;
+                            }
+                            foreach($yiShiArray as $ysitem){
+                                $yiShiChecked="";
+                                if(in_array($ysitem, $yiShiSel)){
+                                    $yiShiChecked=" checked ";
+                                }
+                                ?>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" <?= $yiShiChecked ?> value="<?= $ysitem ?>"
+                                           data-name-parent="buFenFaZuo" name="yiShi"><?= $ysitem ?>
+                                </label>
+                            <?php
+                            }
+
+                            ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="control-label col-md-2">双侧全面强直</label>
                         <div class="col-md-8">
                             <?php
@@ -114,7 +140,7 @@ $nanZhiXing=$attack_type&&isset($attack_type->nanZhiXing)?$attack_type->nanZhiXi
             <h4 class="panel-title">
                 <a data-toggle="collapse" href="#collapseTwoSeizureType" data-parent="#accordionSeizureType"
                    aria-expanded="false" aria-controls="collapseTwoSeizureType">
-                    全面性发作
+                    全面性起源
                 </a>
             </h4>
         </div>

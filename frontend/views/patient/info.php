@@ -27,25 +27,25 @@ $this->title = '基本信息';
             <div class="form-group">
                 <label for="name" class="control-label col-md-2">门诊号</label>
                 <div class="col-md-8">
-                    <input type="date" class="form-control" name="patient_no" value="<?= $model->patient_no; ?>">
+                    <input type="text" class="form-control" name="patient_no" value="<?= $model->patient_no; ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="name" class="control-label col-md-2">住院号</label>
                 <div class="col-md-8">
-                    <input type="date" class="form-control" name="ad" value="<?= $model->ad; ?>">
+                    <input type="text" class="form-control" name="ad" value="<?= $model->ad; ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="name" class="control-label col-md-2">血DNA标本号</label>
                 <div class="col-md-8">
-                    <input type="date" class="form-control" name="dna_no" value="<?= $model->dna_no; ?>">
+                    <input type="text" class="form-control" name="dna_no" value="<?= $model->dna_no; ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="name" class="control-label col-md-2">其他标本号</label>
                 <div class="col-md-8">
-                    <input type="date" class="form-control" name="other_no" value="<?= $model->other_no; ?>">
+                    <input type="text" class="form-control" name="other_no" value="<?= $model->other_no; ?>">
                 </div>
             </div>
             <div class="form-group">

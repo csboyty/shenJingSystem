@@ -252,6 +252,35 @@ $other=isset($record->other)?$record->other:null;
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-md-2">脑电图文件</label>
+                        <div class="col-md-8" id="uploadNaoDianTuContainer">
+                            <input type="file" id="uploadNaoDianTuFile">
+                            <br>
+
+                            <div id="naoDianTuFiles">
+                                <?php
+                                $naoDianTuFiles = array();
+                                if ($other && isset($other->naoDianTuFiles)) {
+                                    $naoDianTuFiles = $other->naoDianTuFiles;
+                                }
+                                foreach ($naoDianTuFiles as $key => $value) {
+
+                                    ?>
+                                    <a target="_blank" href="<?= $value; ?>" style="margin-right: 5px">
+                                        文件<?= $key+1; ?>
+
+                                        <input type="hidden" value="<?= $value; ?>"
+                                               name="naoDianTuFile">
+                                    </a>
+                                <?php
+                                }
+                                ?>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-md-2">检查日期</label>
                         <div class="col-md-8">
                             <input type="date" class="form-control" data-name-parent="other" name="jianChaRiQi"
@@ -302,6 +331,13 @@ $other=isset($record->other)?$record->other:null;
                         <div class="col-md-8">
                             <textarea class="form-control"
                                       data-name-parent="other" name="qiTaJianCha"><?= isset($other->qiTaJianCha)?$other->qiTaJianCha:""; ?></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">其他</label>
+                        <div class="col-md-8">
+                            <textarea class="form-control"
+                                      data-name-parent="other" name="other"><?= isset($other->other)?$other->other:""; ?></textarea>
                         </div>
                     </div>
                 </form>

@@ -42,13 +42,23 @@ class UploadController extends Controller
 
         if(is_uploaded_file($_FILES['file']['tmp_name']))
         {
+            if($_FILES['file']['size'] > 500*1024*1024) { //500 MB (size is also in bytes)
+                return [
+                    "success"=>false,
+                    "error_code"=>"uploadSizeError"
+                ];
+            }
+
             if(!is_dir($this->dir)){
                 mkdir($this->dir);
             }
 
             $pathInfo=pathinfo($_FILES['file']['name']);
 
-            $target=$this->dir.'/'.time()."-".$pathInfo["basename"];
+            list($msec, $sec) = explode(' ', microtime());
+            $msectime =  (float)sprintf('%.0f', (floatval($msec) + floatval($sec)) * 1000);
+
+            $target=$this->dir.'/'.$msectime.".".$pathInfo["extension"];
 
             if(move_uploaded_file($_FILES['file']['tmp_name'], $target))
             {
@@ -67,7 +77,7 @@ class UploadController extends Controller
         }else{
             return [
                 "success"=>false,
-                "error_code"=>"uploadNoFileError"
+                "error_code"=>"uploadError"
             ];
         }
     }

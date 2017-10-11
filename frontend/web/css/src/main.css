@@ -229,6 +229,25 @@ table.dataTable .thumb{
     color: #66a4f9!important;
     padding: 5px 10px;
 }
+/*********************************模拟可输入sel********************************/
+.inputSel{
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.inputSel input{
+    position: absolute;
+    left:-20px;
+    top:0px;
+    padding-left: 20px;
+    padding-right: 0px;
+    width:100% !important;
+    border: none;
+}
+.inputSel select{
+    border: none;
+}
 /**
 * 页面link list
 */

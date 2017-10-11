@@ -269,12 +269,7 @@ var functions=(function(config){
          */
         ajaxReturnErrorHandler:function(errorCode){
             var me=this;
-            var message="";
-            switch(errorCode){
-                default :
-                    message=config.messages.systemError;
-                    break;
-            }
+            var message=config.messages[errorCode] || config.messages.systemError;
             this.hideLoading();
             $().toastmessage("showErrorToast",message);
         },
@@ -523,5 +518,8 @@ $(document).ready(function(){
             $("#"+targetPanelId).addClass("hidden");
             $("#"+targetPanelId).find("input").val("").prop("checked",false);
         }
+    });
+    $(".inputSel .inputSelSel").change(function(){
+        $(this).parent().find("input").val($(this).val());
     });
 });
