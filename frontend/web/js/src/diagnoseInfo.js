@@ -25,8 +25,8 @@ var diagnoseInfo=(function(config,functions){
             if(JSON.stringify(nanZhiXing) != "{}"){
                 attachTypeJson.nanZhiXing = nanZhiXing;
             }
-            if(JSON.stringify(quanMian) != "{}"){
-                attachTypeJson.quanMian = quanMian;
+            if(JSON.stringify(quanMianFaZuo) != "{}"){
+                attachTypeJson.quanMianFaZuo = quanMianFaZuo;
             }
 
             functions.saveInfo(config.ajaxUrls.diagnoseInfoUpdate, {

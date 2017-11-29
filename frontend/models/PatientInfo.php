@@ -9,6 +9,10 @@ use Yii;
  *
  * @property integer $id
  * @property string $no
+ * @property string $patient_no
+ * @property string $dna_no
+ * @property string $ad
+ * @property string $other_no
  * @property string $create_at
  * @property string $fullname
  * @property string $sex
@@ -20,6 +24,8 @@ use Yii;
  * @property string $address
  * @property string $tel
  * @property string $contact
+ * @property string $qq
+ * @property string $weixin
  *
  * @property DiagnoseInfo $diagnoseInfo
  * @property DiagnoseProcess $diagnoseProcess
@@ -44,7 +50,8 @@ class PatientInfo extends \yii\db\ActiveRecord
         return [
             [['create_at'], 'safe'],
             [['age', 'relatives_count'], 'integer'],
-            [['no', 'profession', 'contact'], 'string', 'max' => 32],
+            [['no', 'profession', 'contact', "ad","patient_no","dna_no","other_no"], 'string', 'max' => 32],
+            [['qq', 'weixin'], 'string', 'max' => 12],
             [['fullname'], 'string', 'max' => 255],
             [['sex', 'education'], 'string', 'max' => 8],
             [['marriage'], 'string', 'max' => 2],
@@ -61,6 +68,12 @@ class PatientInfo extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'no' => 'No',
+            'ad' => 'ad',
+            'dna_no' => 'DNA NO',
+            'patient_no' => 'Patient No',
+            'other_no' => 'Other No',
+            'qq' => 'QQ',
+            'weixin' => 'Wei Xin',
             'create_at' => 'Create At',
             'fullname' => 'Fullname',
             'sex' => 'Sex',

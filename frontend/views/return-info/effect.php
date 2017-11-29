@@ -1,6 +1,6 @@
 <?php
 
-$treatment_effect=$returnInfo?json_decode($returnInfo->treatment_effect):array();
+$treatment_effect=isset($returnInfo->treatment_effect)?json_decode($returnInfo->treatment_effect):array();
 
 ?>
 

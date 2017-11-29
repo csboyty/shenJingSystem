@@ -38,7 +38,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                     <label class="control-label col-md-2">首次发作日期</label>
 
                     <div class="col-md-8">
-                        <input type="date" class="form-control"
+                        <input type="text" class="form-control" placeholder="请手动输入"
                                value="<?= isset($firstInfo->date) ? $firstInfo->date : ""; ?>"
                                data-name-parent="firstInfo" name="date">
                     </div>
@@ -566,7 +566,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
 <div class="form-group">
     <label for="name" class="control-label col-md-2">发作频率</label>
 
-    <div class="col-md-3">
+    <div class="col-md-1">
         <input type="text" class="form-control"
                value="<?= isset($performance->frequency) ? $performance->frequency : ""; ?>"
                data-name-parent="performance" name="frequency">
@@ -592,6 +592,10 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
             }
             ?>
         </select>
+    </div>
+    <div class="col-md-3">
+        <input type="text" placeholder="其他" class="form-control" value="<?= isset($performance->frequencyQiTa) ? $performance->frequencyQiTa : ""; ?>"
+                  data-name-parent="performance" name="frequencyQiTa">
     </div>
 </div>
 
@@ -857,10 +861,10 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
                     <input type="text" class="form-control" placeholder="次" id="drugInfoFrequency1">
                 </div>
                 <div class="col-md-3">
-                    <input type="date" class="form-control" placeholder="起" id="drugInfoStartDate">
+                    <input type="text" class="form-control" placeholder="起" id="drugInfoStartDate">
                 </div>
                 <div class="col-md-3">
-                    <input type="date" class="form-control" placeholder="止" id="drugInfoEndDate">
+                    <input type="text" class="form-control" placeholder="止" id="drugInfoEndDate">
                 </div>
                 <div class="col-md-2">
                     <button type="submit" id="drugInfoAdd" class="btn btn-primary">新增</button>
@@ -1169,7 +1173,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
 
             </div>
             <div style="margin: 5px 0px;">
-                终止时间：<input type="date" name="stopDate"
+                终止时间：<input type="text" name="stopDate"
                             value="<?= isset($cengFuYao->stopDate) ? $cengFuYao->stopDate : ""; ?>"
                             data-name-parent="cengFuYao" name="stopDate">
             </div>
@@ -1306,7 +1310,7 @@ $chiXuDrugInfos = $performance_info && isset($performance_info->chiXuDrugInfos) 
 
         ?>
         <div style="margin-top:5px;">
-            时间：<input type="date" value="<?= isset($cengFuYao->waiKeGanYuShiJian) ? $cengFuYao->waiKeGanYuShiJian : ""; ?>"
+            时间：<input type="text" value="<?= isset($cengFuYao->waiKeGanYuShiJian) ? $cengFuYao->waiKeGanYuShiJian : ""; ?>"
                       data-name-parent="cengFuYao" name="waiKeGanYuShiJian">
         </div>
         <label class="checkbox-inline">

@@ -72,7 +72,7 @@ class ReturnInfoController extends Controller
             ]);
         }else{
             $returnInfo = $this->findModel($patientId);
-            $check_result=json_decode($returnInfo->check_result);
+            $check_result=isset($returnInfo->check_result)?json_decode($returnInfo->check_result):array();
             $recordIndex = count($check_result);
             return $this->render("record",[
                 'patient' => $patient,

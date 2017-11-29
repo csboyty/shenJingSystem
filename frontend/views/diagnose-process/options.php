@@ -54,10 +54,10 @@ $drugInfos=$treatment_options?$treatment_options->drugInfo:array();
     </div>
     <br><br>
     <div class="form-group">
-        <input type="date" class="form-control" placeholder="开始时间" id="drugInfoStartDate">
+        <input type="text" class="form-control" placeholder="开始时间" id="drugInfoStartDate">
     </div>
     <div class="form-group">
-        <input type="date" class="form-control"  placeholder="结束时间" id="drugInfoEndDate">
+        <input type="text" class="form-control"  placeholder="结束时间" id="drugInfoEndDate">
     </div>
     <button type="submit" class="btn btn-primary" id="drugInfoAdd">新增</button>
 </form>

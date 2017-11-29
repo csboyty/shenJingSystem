@@ -244,9 +244,7 @@ $teShu=$type&&isset($type->teShu)?$type->teShu:null;
                         <label class="control-label col-md-2">未确定</label>
                         <div class="col-md-8">
                             <?php
-                            $weiQueDingArray=array("缺乏明确的分型证据，不能确定为全面性或局灶性的发作
-                                如果伴 GTCS 发作者临床表现及 EEG 无法提供分型的依据，则将其归为此类，如大部分睡眠强直
-                                －阵挛性发作患者");
+                            $weiQueDingArray=array("缺乏明确的分型证据，不能确定为全面性或局灶性的发作如果伴 GTCS 发作者临床表现及 EEG 无法提供分型的依据，则将其归为此类，如大部分睡眠强直－阵挛性发作患者");
                             $weiQueDingSel=array();
                             if($buNeng&&isset($buNeng->weiQueDing)){
                                 $weiQueDingSel=$buNeng->weiQueDing;
