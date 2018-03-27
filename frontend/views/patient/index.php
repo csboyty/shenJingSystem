@@ -4,20 +4,22 @@ $this->title = '病患管理';
 ?>
 
 <div class="row">
-    <div class="col-md-4 row">
-        <div class="col-md-4">
+    <div class="col-md-6 row">
+        <div class="col-md-2">
             <a class="btn btn-primary" href="patient/create">
                 <span class="glyphicon glyphicon-plus"></span> 新建
             </a>
         </div>
 
         <div class="col-md-4" style="line-height: 34px;">
-            排序：<span style="cursor: pointer" class="text-primary" id="sortByAge" data-sort="asc">
-                年龄<span class="glyphicon glyphicon-arrow-up"></span>
-            </span>
+            排序：<span style="cursor: pointer" class="text-primary orderBySel" data-name="create_at" id="sortByCreateDate" data-sort="asc">
+                创建时间<span class="glyphicon glyphicon-arrow-up"></span></span>
+                &nbsp;&nbsp;
+                <span style="cursor: pointer" class="orderBySel" data-name="age" id="sortByAge" data-sort="asc">
+                年龄<span class="glyphicon glyphicon-arrow-up"></span></span>
         </div>
     </div>
-    <div class="col-md-8 row">
+    <div class="col-md-6 row">
         <div class="col-md-3">
             <input type="text" id="filter" class="form-control" placeholder="编号/姓名">
         </div>
@@ -41,7 +43,9 @@ $this->title = '病患管理';
     <tr>
         <th>编号</th>
         <th>姓名</th>
+        <th>年龄</th>
         <th>电话</th>
+        <th>创建日期</th>
         <th>备注</th>
         <th>操作</th>
     </tr>

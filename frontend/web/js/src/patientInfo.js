@@ -54,9 +54,9 @@ $(document).ready(function(){
     $("#pageLinkList .item").click(function(){
         var href = $(this).attr("href");
 
-        if(!$("#editId")){
+        if($("#editId").length == 0){
             patientCreateOrUpdate.submitForm($("#myForm"),function(id){
-                location.href = (href+"id");
+                location.href = (href+id);
             });
             return false;
         }else{

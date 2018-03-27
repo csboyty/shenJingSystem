@@ -23,7 +23,9 @@ var userMgr=(function(config,functions){
             "aoColumns": [
                 { "mDataProp": "no"},
                 { "mDataProp": "fullname"},
+                { "mDataProp": "age"},
                 { "mDataProp": "tel"},
+                { "mDataProp": "create_at"},
                 { "mDataProp": "memo",
                     "fnRender":function(oObj){
                         var string = "",
@@ -52,7 +54,7 @@ var userMgr=(function(config,functions){
                 },
                 { "mDataProp": "opt",
                     "fnRender":function(oObj){
-                        return '<a href="patient/info/'+oObj.aData.id+'">详情</a>';
+                        return '<a href="patient/info/'+oObj.aData.id+'">详情</a> &nbsp;<a class="delete" href="'+oObj.aData.id+'">删除</a>';
                     }
                 }
             ] ,
@@ -64,8 +66,11 @@ var userMgr=(function(config,functions){
                     name:"filterType",
                     value:$("#filterType").val()
                 },{
-                    name:"orderByAge",
-                    value:$("#sortByAge").data("sort")
+                    name:"orderByName",
+                    value:$(".orderBySel.text-primary").data("name")
+                },{
+                    name:"order",
+                    value:$(".orderBySel.text-primary").data("sort")
                 })
             },
             "fnServerData": function(sSource, aoData, fnCallback) {
@@ -151,15 +156,21 @@ $(document).ready(function(){
         }
         return false;
     });
-    $("#sortByAge").click(function(){
-        var sort = $(this).data("sort");
-        if(sort == "asc"){
-            $(this).data("sort","desc");
-            $(this).find(".glyphicon-arrow-up").addClass("glyphicon-arrow-down").removeClass("glyphicon-arrow-up");
+    $(".orderBySel").click(function(){
+        if($(this).hasClass("text-primary")){
+            var sort = $(this).data("sort");
+            if(sort == "asc"){
+                $(this).data("sort","desc");
+                $(this).find(".glyphicon-arrow-up").addClass("glyphicon-arrow-down").removeClass("glyphicon-arrow-up");
+            }else{
+                $(this).data("sort","asc");
+                $(this).find(".glyphicon-arrow-down").addClass("glyphicon-arrow-up").removeClass("glyphicon-arrow-down");
+            }
         }else{
-            $(this).data("sort","asc");
-            $(this).find(".glyphicon-arrow-down").addClass("glyphicon-arrow-up").removeClass("glyphicon-arrow-down");
+            $(".orderBySel").removeClass("text-primary");
+            $(this).addClass("text-primary");
         }
+
         userMgr.tableRedraw();
     });
 });

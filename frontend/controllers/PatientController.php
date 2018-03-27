@@ -53,7 +53,8 @@ class PatientController extends Controller
         $sEcho = $params["sEcho"];
         $filter = $params["filter"];
         $filterType = $params["filterType"];
-        $orderByAge = $params["orderByAge"];
+        $orderByName = $params["orderByName"];
+        $order = $params["order"];
         $query=PatientInfo::find();
         if($filter){
             $query->where(['or',
@@ -71,7 +72,7 @@ class PatientController extends Controller
         $count=$query->count();
         $aaData=$query
             ->asArray()
-            ->orderBy("age ".$orderByAge)
+            ->orderBy($orderByName." ".$order)
             ->limit($limit)
             ->offset($offset)
             ->all();
