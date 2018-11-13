@@ -13,7 +13,13 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
-
+        'errorHandler' => [
+            'errorAction' => 'site/error',
+        ],
+        'request' => [
+            'baseUrl' => '/admin',
+        ]
     ],
+    'homeUrl' => '/admin',
     'params' => $params,
 ];
