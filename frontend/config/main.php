@@ -16,9 +16,10 @@ return [
             'errorAction' => 'site/error',
         ],
         'request' => [
-            'baseUrl' => '/',
+            'baseUrl' => '',
         ]
     ],
     'homeUrl' => '/',
+    'defaultRoute' => 'site/home',
     'params' => $params,
 ];

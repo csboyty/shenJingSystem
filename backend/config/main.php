@@ -21,5 +21,6 @@ return [
         ]
     ],
     'homeUrl' => '/admin',
+    'defaultRoute' => 'site/home',
     'params' => $params,
 ];
