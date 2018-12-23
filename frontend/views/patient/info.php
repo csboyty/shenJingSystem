@@ -3,7 +3,7 @@ $this->title = '基本信息';
 ?>
 <div class="row">
     <div class="col-md-10 col-left">
-        <form class="form-horizontal" id="myForm">
+        <form class="form-horizontal" id="myForm" method="post">
             <?php
             if($model->id){
                 ?>
