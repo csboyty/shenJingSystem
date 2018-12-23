@@ -110,6 +110,8 @@ $(document).ready(function(){
                 patientCreateOrUpdate.submitForm($("#myForm"),function(id){
                     location.href = (href+id);
                 });
+            }else{
+                $().toastmessage("showErrorToast",config.messages.fixedErrorFirst);
             }
             return false;
         }else{

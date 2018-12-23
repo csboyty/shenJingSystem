@@ -70,6 +70,7 @@ var config={
         pwdNotEqual:"两次输入的密码不一样！"
     },
     messages:{
+        fixedErrorFirst:"您提交的数据中有错误，请先更正",
         successTitle:"成功提示",
         errorTitle:"错误提示",
         optSuccess:"操作成功！",
