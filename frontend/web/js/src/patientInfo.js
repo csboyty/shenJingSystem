@@ -91,7 +91,7 @@ var patientCreateOrUpdate=(function(config,functions){
 })(config,functions);
 
 $(document).ready(function(){
-    
+
     patientCreateOrUpdate.formValidateSubmit();
 
     setInterval(function(){

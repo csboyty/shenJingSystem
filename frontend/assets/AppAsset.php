@@ -26,7 +26,7 @@ class AppAsset extends AssetBundle
         "js/lib/jquery.dataTables.min.js",
         "js/lib/jquery.toastmessage.js",
         "js/lib/jquery.form.js",
-        //"js/lib/jquery.validate.min.js",
+        "js/lib/jquery.validate.min.js",
         "js/src/config.js",
         "js/src/functions.js"
     ];
