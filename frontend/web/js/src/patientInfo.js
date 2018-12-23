@@ -35,11 +35,64 @@ var patientCreateOrUpdate=(function(config,functions){
                     });
                 }
             });
+        },
+        formValidateSubmit : function() {
+            var me = this;
+            $("#myForm").validate({
+                rules : {
+                    no : {
+                        maxlength : 32
+                    },
+                    patient_no : {
+                        maxlength : 32
+                    },
+                    ad : {
+                        maxlength : 32
+                    },
+                    dna_no : {
+                        maxlength : 32
+                    },
+                    other_no : {
+                        maxlength : 32
+                    },
+                    fullname : {
+                        maxlength : 32
+                    },
+                    age : {
+                        number:true,
+                        maxlength : 11
+                    },
+                    relatives_count : {
+                        number:true,
+                        maxlength : 11
+                    },
+                    address : {
+                        maxlength : 64
+                    },
+                    contact : {
+                        maxlength : 32
+                    },
+                    tel : {
+                        maxlength : 15
+                    },
+                    qq : {
+                        maxlength : 32
+                    },
+                    weixin : {
+                        maxlength : 32
+                    }
+                },
+                submitHandler : function(form) {
+                    me.submitForm(form);
+                }
+            })
         }
     }
 })(config,functions);
 
 $(document).ready(function(){
+    
+    patientCreateOrUpdate.formValidateSubmit();
 
     setInterval(function(){
         patientCreateOrUpdate.autoSave();

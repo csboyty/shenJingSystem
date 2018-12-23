@@ -17,6 +17,7 @@ use Yii;
  * @property string $fullname
  * @property string $sex
  * @property integer $age
+ * @property string $birthday
  * @property string $education
  * @property string $profession
  * @property string $marriage
@@ -48,7 +49,7 @@ class PatientInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['create_at'], 'safe'],
+            [['create_at','birthday'], 'safe'],
             [['age', 'relatives_count'], 'integer'],
             [['no', 'profession', 'contact', "ad","patient_no","dna_no","other_no"], 'string', 'max' => 32],
             [['qq', 'weixin'], 'string', 'max' => 12],
@@ -75,6 +76,7 @@ class PatientInfo extends \yii\db\ActiveRecord
             'qq' => 'QQ',
             'weixin' => 'Wei Xin',
             'create_at' => 'Create At',
+            'birthday' => 'Birthday',
             'fullname' => 'Fullname',
             'sex' => 'Sex',
             'age' => 'Age',

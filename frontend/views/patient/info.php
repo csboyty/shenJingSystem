@@ -77,6 +77,12 @@ $this->title = '基本信息';
                 </div>
             </div>
             <div class="form-group">
+                <label for="name" class="control-label col-md-2">出生日期</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" name="birthday" value="<?= $model->birthday; ?>">
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="name" class="control-label col-md-2">年龄</label>
                 <div class="col-md-8">
                     <input type="text" class="form-control" name="age" value="<?= $model->age; ?>">
