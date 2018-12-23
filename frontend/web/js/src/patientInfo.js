@@ -94,15 +94,15 @@ $(document).ready(function(){
 
     patientCreateOrUpdate.formValidateSubmit();
 
-    setInterval(function(){
+    /*setInterval(function(){
         patientCreateOrUpdate.autoSave();
-    },300000);
+    },300000);*/
 
-    $("#toMedicalInfo, #save").click(function(){
+    /*$("#toMedicalInfo, #save").click(function(){
         patientCreateOrUpdate.submitForm($("#myForm"),function(id){
             location.href="medical/"+id;
         });
-    });
+    });*/
 
     $("#pageLinkList .item").click(function(){
         var href = $(this).attr("href");

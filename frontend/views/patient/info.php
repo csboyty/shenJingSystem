@@ -205,7 +205,7 @@ $this->title = '基本信息';
                     <button type="button" class="btn btn-primary form-control" id="toMedicalInfo">》病史信息</button>
                 </div>
                 <div class="col-md-offset-2 col-md-3">
-                    <button type="button" class="btn btn-primary form-control" id="save">保存</button>
+                    <button type="button" class="btn btn-primary form-control">保存</button>
                 </div>
             </div>
         </form>
