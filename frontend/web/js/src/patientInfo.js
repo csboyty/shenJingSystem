@@ -96,15 +96,11 @@ $(document).ready(function(){
         location.href="medical/"+id;
     });
 
-    /*setInterval(function(){
-        patientCreateOrUpdate.autoSave();
-    },300000);*/
-
-    /*$("#toMedicalInfo, #save").click(function(){
-        patientCreateOrUpdate.submitForm($("#myForm"),function(id){
-            location.href="medical/"+id;
-        });
-    });*/
+    setInterval(function(){
+        if($("#myForm").valid()){
+            patientCreateOrUpdate.autoSave();
+        }
+    },300000);
 
     $("#pageLinkList .item").click(function(){
         var href = $(this).attr("href");
@@ -115,9 +111,11 @@ $(document).ready(function(){
             });
             return false;
         }else{
-            patientCreateOrUpdate.submitForm($("#myForm"),function(id){
-                location.href = href;
-            });
+            if($("#myForm").valid()){
+                patientCreateOrUpdate.submitForm($("#myForm"),function(id){
+                    location.href = href;
+                });
+            }
         }
     });
 });
