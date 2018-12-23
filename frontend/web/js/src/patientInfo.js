@@ -106,16 +106,18 @@ $(document).ready(function(){
         var href = $(this).attr("href");
 
         if($("#editId").length == 0){
-            patientCreateOrUpdate.submitForm($("#myForm"),function(id){
-                location.href = (href+id);
-            });
-            return false;
-        }else{
             if($("#myForm").valid()){
                 patientCreateOrUpdate.submitForm($("#myForm"),function(id){
-                    location.href = href;
+                    location.href = (href+id);
                 });
             }
+            return false;
+        }else{
+
+            patientCreateOrUpdate.submitForm($("#myForm"),function(id){
+                location.href = href;
+            });
+
         }
     });
 });
