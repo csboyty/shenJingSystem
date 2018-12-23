@@ -36,7 +36,7 @@ var patientCreateOrUpdate=(function(config,functions){
                 }
             });
         },
-        formValidateSubmit : function() {
+        formValidateSubmit : function(callback) {
             var me = this;
             $("#myForm").validate({
                 rules : {
@@ -83,7 +83,7 @@ var patientCreateOrUpdate=(function(config,functions){
                     }
                 },
                 submitHandler : function(form) {
-                    me.submitForm(form);
+                    me.submitForm(form, callback);
                 }
             })
         }
@@ -92,7 +92,9 @@ var patientCreateOrUpdate=(function(config,functions){
 
 $(document).ready(function(){
 
-    patientCreateOrUpdate.formValidateSubmit();
+    patientCreateOrUpdate.formValidateSubmit(function(id){
+        location.href="medical/"+id;
+    });
 
     /*setInterval(function(){
         patientCreateOrUpdate.autoSave();
